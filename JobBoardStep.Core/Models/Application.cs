@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,8 +9,11 @@ namespace JobBoardStep.Core.Models
 {
     public class Application
     {
+        [Required]
         public int ApplicationId { get; set; }
+        [Required]
         public DateTime CreateDate { get; set; }
+        [Required]        
         public DateTime UpdateDate { get; set; }
         public bool ApplicationStatus { get; set; }
         public Job Job { get; set; }
