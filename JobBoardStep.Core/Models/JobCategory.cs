@@ -12,7 +12,9 @@ namespace JobBoardStep.Core.Models
         [Required]
         public int Id { get; set; }
         [Required]
-        public string JobCatName { get; set; }
+        public DateTime CreateDate { get; set; }
+        [Required]
+        public DateTime UpdateDate { get; set; }
         public List<JobCategoryTranslate> JobCategoryTranslates { get; set; }
         public List<Job> Jobs { get; set; }
     }
