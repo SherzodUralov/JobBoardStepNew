@@ -1,4 +1,5 @@
 using JobBoardStep.Core.Context;
+using JobBoardStep.Core.Repository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 });
+builder.Services.AddScoped<IInformationRepo, InformationRepo>();
 
 var app = builder.Build();
 

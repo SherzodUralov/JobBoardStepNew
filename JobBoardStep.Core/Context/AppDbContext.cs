@@ -56,16 +56,6 @@ namespace JobBoardStep.Core.Context
               .HasOne(x => x.Information)
               .WithMany(t => t.InformationTranslates)
               .HasForeignKey(w => w.InformationId);
-
-            modelBuilder.Entity<RegionTranslate>()
-              .HasOne(x => x.Language)
-              .WithMany(t => t.RegionTranslates)
-              .HasForeignKey(w => w.LanguageId);
-
-            modelBuilder.Entity<RegionTranslate>()
-              .HasOne(x => x.Region)
-              .WithMany(t => t.RegionTranslates)
-              .HasForeignKey(w => w.RegionId);
         }
 
         public DbSet<User> Users { get; set; }
@@ -81,7 +71,6 @@ namespace JobBoardStep.Core.Context
         public DbSet<JobTypeTranslate> JobTypeTranslates { get; set; }
         public DbSet<Language> Languages { get; set; }
         public DbSet<Region> Regions { get; set; }
-        public DbSet<RegionTranslate> RegionTranslates { get; set; }
         public DbSet<UserType> UserTypes { get; set; }
     }
 }

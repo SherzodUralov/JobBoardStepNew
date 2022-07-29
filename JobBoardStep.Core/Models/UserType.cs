@@ -9,6 +9,7 @@ namespace JobBoardStep.Core.Models
 {
     public class UserType
     {
+        [Key]
         [Required]
         public int UserTypeId { get; set; }
         [Required]

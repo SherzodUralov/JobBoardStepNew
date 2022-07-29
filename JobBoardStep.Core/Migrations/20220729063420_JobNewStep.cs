@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace JobBoardStep.Core.Migrations
 {
-    public partial class InitalCreated : Migration
+    public partial class JobNewStep : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -98,6 +98,8 @@ namespace JobBoardStep.Core.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     CreateDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     RegionStatus = table.Column<bool>(type: "tinyint(1)", nullable: false)
@@ -240,35 +242,6 @@ namespace JobBoardStep.Core.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "RegionTranslates",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    LanguageId = table.Column<int>(type: "int", nullable: false),
-                    RegionId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RegionTranslates", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_RegionTranslates_Languages_LanguageId",
-                        column: x => x.LanguageId,
-                        principalTable: "Languages",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_RegionTranslates_Regions_RegionId",
-                        column: x => x.RegionId,
-                        principalTable: "Regions",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
@@ -289,7 +262,6 @@ namespace JobBoardStep.Core.Migrations
                     InformationId = table.Column<int>(type: "int", nullable: false),
                     RegionId = table.Column<int>(type: "int", nullable: false),
                     UserTypeId = table.Column<int>(type: "int", nullable: false),
-                    RegionTranslateId = table.Column<int>(type: "int", nullable: false),
                     InformationTranslateId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -311,12 +283,6 @@ namespace JobBoardStep.Core.Migrations
                         name: "FK_Users_Regions_RegionId",
                         column: x => x.RegionId,
                         principalTable: "Regions",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Users_RegionTranslates_RegionTranslateId",
-                        column: x => x.RegionTranslateId,
-                        principalTable: "RegionTranslates",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -343,7 +309,6 @@ namespace JobBoardStep.Core.Migrations
                     JobTypeId = table.Column<int>(type: "int", nullable: false),
                     ExperienceId = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    JobCategoryId = table.Column<int>(type: "int", nullable: false),
                     JobCateId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -356,8 +321,8 @@ namespace JobBoardStep.Core.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Jobs_JobCategories_JobCategoryId",
-                        column: x => x.JobCategoryId,
+                        name: "FK_Jobs_JobCategories_JobCateId",
+                        column: x => x.JobCateId,
                         principalTable: "JobCategories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -452,9 +417,9 @@ namespace JobBoardStep.Core.Migrations
                 column: "ExperienceId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Jobs_JobCategoryId",
+                name: "IX_Jobs_JobCateId",
                 table: "Jobs",
-                column: "JobCategoryId");
+                column: "JobCateId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Jobs_JobTypeId",
@@ -477,16 +442,6 @@ namespace JobBoardStep.Core.Migrations
                 column: "LanguageId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RegionTranslates_LanguageId",
-                table: "RegionTranslates",
-                column: "LanguageId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_RegionTranslates_RegionId",
-                table: "RegionTranslates",
-                column: "RegionId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Users_InformationId",
                 table: "Users",
                 column: "InformationId");
@@ -500,11 +455,6 @@ namespace JobBoardStep.Core.Migrations
                 name: "IX_Users_RegionId",
                 table: "Users",
                 column: "RegionId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Users_RegionTranslateId",
-                table: "Users",
-                column: "RegionTranslateId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_UserTypeId",
@@ -545,7 +495,7 @@ namespace JobBoardStep.Core.Migrations
                 name: "InformationTranslates");
 
             migrationBuilder.DropTable(
-                name: "RegionTranslates");
+                name: "Regions");
 
             migrationBuilder.DropTable(
                 name: "UserTypes");
@@ -555,9 +505,6 @@ namespace JobBoardStep.Core.Migrations
 
             migrationBuilder.DropTable(
                 name: "Languages");
-
-            migrationBuilder.DropTable(
-                name: "Regions");
         }
     }
 }

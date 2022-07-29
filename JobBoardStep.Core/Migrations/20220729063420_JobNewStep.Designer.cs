@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JobBoardStep.Core.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220723103505_InitalCreated")]
-    partial class InitalCreated
+    [Migration("20220729063420_JobNewStep")]
+    partial class JobNewStep
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -160,9 +160,6 @@ namespace JobBoardStep.Core.Migrations
                     b.Property<int>("JobCateId")
                         .HasColumnType("int");
 
-                    b.Property<int>("JobCategoryId")
-                        .HasColumnType("int");
-
                     b.Property<int>("JobTypeId")
                         .HasColumnType("int");
 
@@ -180,7 +177,7 @@ namespace JobBoardStep.Core.Migrations
 
                     b.HasIndex("ExperienceId");
 
-                    b.HasIndex("JobCategoryId");
+                    b.HasIndex("JobCateId");
 
                     b.HasIndex("JobTypeId");
 
@@ -303,6 +300,10 @@ namespace JobBoardStep.Core.Migrations
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<bool>("RegionStatus")
                         .HasColumnType("tinyint(1)");
 
@@ -312,31 +313,6 @@ namespace JobBoardStep.Core.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Regions");
-                });
-
-            modelBuilder.Entity("JobBoardStep.Core.Models.RegionTranslate", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("LanguageId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("RegionId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("LanguageId");
-
-                    b.HasIndex("RegionId");
-
-                    b.ToTable("RegionTranslates");
                 });
 
             modelBuilder.Entity("JobBoardStep.Core.Models.User", b =>
@@ -380,9 +356,6 @@ namespace JobBoardStep.Core.Migrations
                     b.Property<int>("RegionId")
                         .HasColumnType("int");
 
-                    b.Property<int>("RegionTranslateId")
-                        .HasColumnType("int");
-
                     b.Property<int>("UserTypeId")
                         .HasColumnType("int");
 
@@ -393,8 +366,6 @@ namespace JobBoardStep.Core.Migrations
                     b.HasIndex("InformationTranslateId");
 
                     b.HasIndex("RegionId");
-
-                    b.HasIndex("RegionTranslateId");
 
                     b.HasIndex("UserTypeId");
 
@@ -483,7 +454,7 @@ namespace JobBoardStep.Core.Migrations
 
                     b.HasOne("JobBoardStep.Core.Models.JobCategory", "JobCategory")
                         .WithMany("Jobs")
-                        .HasForeignKey("JobCategoryId")
+                        .HasForeignKey("JobCateId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -546,25 +517,6 @@ namespace JobBoardStep.Core.Migrations
                     b.Navigation("Language");
                 });
 
-            modelBuilder.Entity("JobBoardStep.Core.Models.RegionTranslate", b =>
-                {
-                    b.HasOne("JobBoardStep.Core.Models.Language", "Language")
-                        .WithMany("RegionTranslates")
-                        .HasForeignKey("LanguageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("JobBoardStep.Core.Models.Region", "Region")
-                        .WithMany("RegionTranslates")
-                        .HasForeignKey("RegionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Language");
-
-                    b.Navigation("Region");
-                });
-
             modelBuilder.Entity("JobBoardStep.Core.Models.User", b =>
                 {
                     b.HasOne("JobBoardStep.Core.Models.Information", "Information")
@@ -585,12 +537,6 @@ namespace JobBoardStep.Core.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("JobBoardStep.Core.Models.RegionTranslate", "RegionTranslate")
-                        .WithMany("Users")
-                        .HasForeignKey("RegionTranslateId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("JobBoardStep.Core.Models.UserType", "UserType")
                         .WithMany("Users")
                         .HasForeignKey("UserTypeId")
@@ -602,8 +548,6 @@ namespace JobBoardStep.Core.Migrations
                     b.Navigation("InformationTranslate");
 
                     b.Navigation("Region");
-
-                    b.Navigation("RegionTranslate");
 
                     b.Navigation("UserType");
                 });
@@ -655,18 +599,9 @@ namespace JobBoardStep.Core.Migrations
                     b.Navigation("JobCategoryTranslates");
 
                     b.Navigation("JobTypeTranslates");
-
-                    b.Navigation("RegionTranslates");
                 });
 
             modelBuilder.Entity("JobBoardStep.Core.Models.Region", b =>
-                {
-                    b.Navigation("RegionTranslates");
-
-                    b.Navigation("Users");
-                });
-
-            modelBuilder.Entity("JobBoardStep.Core.Models.RegionTranslate", b =>
                 {
                     b.Navigation("Users");
                 });

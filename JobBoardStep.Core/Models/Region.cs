@@ -9,14 +9,16 @@ namespace JobBoardStep.Core.Models
 {
     public class Region
     {
+        [Key]
         [Required]
         public int Id { get; set; }
+        [Required]
+        public string Name { get; set; }
         [Required]
         public DateTime CreateDate { get; set; }
         [Required]
         public DateTime UpdateDate { get; set; }
         public bool RegionStatus { get; set; }
-        public List<RegionTranslate> RegionTranslates { get; set; }
         public List<User> Users { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ namespace JobBoardStep.Core.Models
 {
     public class User
     {
+        [Key]
         [Required]
         public int UserId { get; set; }
         [Required]
@@ -28,14 +30,16 @@ namespace JobBoardStep.Core.Models
         public DateTime CreateDate { get; set; }
         public List<Job> Jobs { get; set; }
         public Information Information { get; set; }
+        [ForeignKey("Information")]
         public int InformationId { get; set; }
         public Region Region { get; set; }
+        [ForeignKey("Region")]
         public int RegionId { get; set; }
         public UserType UserType { get; set; }
+        [ForeignKey("UserType")]
         public int UserTypeId { get; set; }
-        public RegionTranslate RegionTranslate { get; set; }
-        public int RegionTranslateId { get; set; }
         public InformationTranslate InformationTranslate { get; set; }
+        [ForeignKey("InformationTranslate")]
         public int InformationTranslateId { get; set; }
         public List<Application>? Applications { get; set; }
     }

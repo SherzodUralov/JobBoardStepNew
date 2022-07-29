@@ -1,0 +1,48 @@
+﻿@model IList<InforListViewModel>
+@{
+    int intson = 0;
+}
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Datatable Information</h6>
+         <a asp-controller="Infor" asp-action="Create" class="btn btn-link btn-sm btn-rounded text-white btn-danger"><i class="fa fa-edit" aria-hidden="true"></i>Create</a>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>T/R</th>
+                        <th>Name</th>
+                        <th>Language</th>
+                        <th>CreateDate</th>
+                        <th>UpdateDate</th>
+                        <th>InformationStatus</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        intson += 1;
+                        <tr>
+                            <td>
+                                @intson
+                            </td>
+                            <td>@item.InforName</td>
+                            <td>@item.LangName</td>
+                            <td>@item.CreateDate</td>
+                            <td>@item.UpdateDate</td>
+                            <td>@item.InformationStatus</td>
+                            <td>
+                                <a href="#" class="btn btn-link btn-sm btn-rounded text-success"><i class="fa fa-edit" aria-hidden="true"></i> View</a>
+                                <a  href="#" class="btn btn-link btn-sm btn-rounded"><i class="fa fa-edit" aria-hidden="true"></i> Edit</a>
+                                <a  href="#" class="btn btn-link btn-sm btn-rounded"><i class="fa fa-edit" aria-hidden="true"></i> Delete</a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody> 
+            </table>
+        </div>
+    </div>
+</div>

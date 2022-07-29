@@ -9,6 +9,7 @@ namespace JobBoardStep.Core.Models
 {
     public class JobType
     {
+        [Key]
         [Required]
         public int Id { get; set; }
         [Required]

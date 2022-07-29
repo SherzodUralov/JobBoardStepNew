@@ -9,6 +9,7 @@ namespace JobBoardStep.Core.Models
 {
     public class Experience
     {
+        [Key]
         [Required]
         public int Id { get; set; }
         [Required]
