@@ -17,7 +17,7 @@ namespace JobBoardStep.Core.Models
         [Required]
         public DateTime UpdateDate { get; set; }
         public bool ExperienceStatus { get; set; }
-        public List<ExperienceTranslate> ExperienceTranslates { get; set; }
+        public List<ExperienceTranslate> ExperienceTranslates { get; set; } = new List<ExperienceTranslate>();
         public List<Job> Jobs { get; set; }
     }
 }

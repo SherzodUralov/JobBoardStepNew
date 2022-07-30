@@ -1,0 +1,135 @@
+﻿@model Experience
+@{
+    ViewData["Title"] = "create";
+}
+<form id="ApplicantForm" asp-controller="Exper" asp-action="Create" method="post" enctype="multipart/form-data">
+    <div class="col-xl-9">
+        <div class="card" style="border-radius: 15px;">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="card-body">
+                <div>
+                      <table id="exptable" class="table">
+                     <thead>
+                         <tr>
+                             <th>
+                                  Name
+                             </th>
+                               <th>
+                                   Language
+                             </th>
+                             <th>
+                              <button id="btnaddExperience" type="button" class="btn btn-sm btn-secondary visible" 
+                                     onclick="AddItem(this)">Add</button>
+                             </th>
+                         </tr>
+                     </thead>
+                     <tbody>
+                         @for (int i = 0; i <Model.ExperienceTranslates.Count; i++)
+                        {
+                            <tr>
+                                <td>
+                                    <input asp-for="@Model.ExperienceTranslates[i].Name" class="form-control"/>@*
+                                    <select asp-for="@Model.ExperienceTranslates[i].Id" asp-items="@ViewBag.expert" class="form-control">
+                                        <option>Place select</option>
+                                    </select>*@
+                                </td>
+                                <td>
+                                   <select asp-for="@Model.ExperienceTranslates[i].LanguageId" asp-items="@ViewBag.lang" class="form-control"
+                                   onchange="JsOnProductChange(this)"><option>Plase Select</option></select>
+                                </td>
+                                <td>
+                                    <button id="btnremov-@i" type="button" class="btn btn-sm btn-danger visible" 
+                                    onclick="DeleteItem(this)">Delete</button>
+                                </td>
+                            </tr>
+                        }
+                     </tbody>
+                </table>
+                <input type="hidden" id="hdnindex" value="0"/>
+
+                </div>
+                <div class="mb-3 col-md-9">
+                    <label asp-for="CareateDate" class="form-label">CreateDate</label>
+                    <input asp-for="CareateDate" class="form-control"/>
+                </div>
+                <div class="mb-3 col-md-9">
+                    <label asp-for="UpdateDate" class="form-label">UpdateDate</label>
+                    <input asp-for="UpdateDate" class="form-control" />
+                </div>
+                 <div class="mb-3 col-md-9">
+                    <label asp-for="ExperienceStatus" class="form-label">InformationStatus</label>
+                    <input asp-for="ExperienceStatus" class="form-control" />
+                </div>
+                
+                <div class="mb-3 col-md-9">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <script>
+
+function DeleteItem(btn) {
+
+    var table = document.getElementById('exptable');
+    var rows = table.getElementsByTagName('tr');
+    if( rows.length == 2)
+    {
+        alert("thes rows Cannot Be Delete");
+        return;
+    }
+
+    $(btn).closest('tr').remove();
+}
+
+         function AddItem(btn){
+    var table = document.getElementById('exptable')
+    var rows = table.getElementsByTagName('tr')
+
+    var rowOuterHtml = rows[rows.length-1].outerHTML;
+
+             var lastroWindex = document.getElementById('hdnindex').value;
+             var nextroWindex = eval(lastroWindex) + 1;
+             document.getElementById('hdnindex').value = nextroWindex;
+
+             rowOuterHtml = rowOuterHtml.replaceAll('_' + lastroWindex + '_', '_' + nextroWindex + '_');
+             rowOuterHtml = rowOuterHtml.replaceAll('[' + lastroWindex + ']', '[' + nextroWindex + ']');
+             rowOuterHtml = rowOuterHtml.replaceAll('-' + lastroWindex, '-' + nextroWindex);
+
+
+    var neWRow = table.insertRow();
+    neWRow.innerHTML = rowOuterHtml;
+
+
+             var btnAddID = btn.id;
+             var btnDeletedid = btnAddID.replaceAll('btnadd','btnremov')
+
+             var delbtn = document.getElementById(btnDeletedid);
+             delbtn.classList.add("visible");
+             delbtn.classList.remove("invisible");
+
+             var addbtn = document.getElementById(btnAddID);
+             addbtn.classList.remove("visible");
+             addbtn.classList.add("invisible");
+
+             rebindvalidators();    
+         }
+
+function rebindvalidators() 
+{
+    var $form = $('#ApplicantForm');
+    
+    $form.unbind();
+
+    $form.data("validator", null);
+
+    $.validator.unobtrusive.parse($form);
+
+    $form.validate($from.data("unobtrusiveValidation").options);
+
+}
+    </script>
+    }

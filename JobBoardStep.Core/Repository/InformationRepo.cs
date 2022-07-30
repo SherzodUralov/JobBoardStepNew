@@ -55,7 +55,7 @@ namespace JobBoardStep.Core.Repository
         {
             return context.Information
                 .Include(e => e.InformationTranslates)
-                .Where(a => a.Id.Equals(id)).FirstOrDefault();
+                .FirstOrDefault(a => a.Id.Equals(id));
         }
 
         public IList<Language> GetLan()
