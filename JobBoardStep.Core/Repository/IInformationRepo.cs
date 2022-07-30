@@ -13,7 +13,7 @@ namespace JobBoardStep.Core.Repository
         Information GetById(int id);
         void Create(Information information);
         void Update(Information information);
-        void Delete(Information information);
+        void Delete(int id);
         IList<InforListViewModel> GetAll();
         IList<Language> GetLan();
         void List(Information information);

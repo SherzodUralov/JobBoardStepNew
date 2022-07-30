@@ -16,7 +16,7 @@ namespace JobBoardStep.Core.Models
         public DateTime CreateDate { get; set; }
         [Required]
         public DateTime UpdateDate { get; set; }
-        public List<JobCategoryTranslate> JobCategoryTranslates { get; set; }
+        public List<JobCategoryTranslate> JobCategoryTranslates { get; set; } = new List<JobCategoryTranslate>();
         public List<Job> Jobs { get; set; }
     }
 }

@@ -12,9 +12,10 @@ namespace JobBoardStep.Core.Repository
     {
         JobCategory GetById(int id);
         void Update(JobCategory category);
-        void Delete(int id);
+        void Delete(JobCategory category);
         void Create(JobCategory category);
         IList<Language> GetLang();
         IList<CategoryListViewModel> GetCategory();
+        void List(JobCategory category);
     }
 }

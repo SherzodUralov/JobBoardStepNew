@@ -24,10 +24,14 @@ namespace JobBoardStep.Core.Repository
             context.SaveChanges();
         }
 
-        public void Delete(Information information)
+        public void Delete(int id)
         {
-            context.Information.Remove(information);
-            context.SaveChanges();
+            var infor = context.Information.Find(id);
+            if (infor != null)
+            {
+                context.Information.Remove(infor);
+                context.SaveChanges();
+            }
         }
 
         public IList<InforListViewModel> GetAll()
