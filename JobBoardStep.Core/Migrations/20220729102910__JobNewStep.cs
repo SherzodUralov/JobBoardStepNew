@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace JobBoardStep.Core.Migrations
 {
-    public partial class JobNewStep : Migration
+    public partial class _JobNewStep : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

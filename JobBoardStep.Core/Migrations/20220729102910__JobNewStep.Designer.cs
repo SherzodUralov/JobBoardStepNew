@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JobBoardStep.Core.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220729063420_JobNewStep")]
-    partial class JobNewStep
+    [Migration("20220729102910__JobNewStep")]
+    partial class _JobNewStep
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
