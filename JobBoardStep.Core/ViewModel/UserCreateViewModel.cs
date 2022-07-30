@@ -27,9 +27,8 @@ namespace JobBoardStep.Core.ViewModel
         public DateTime BirthDate { get; set; }
         [Required]
         public DateTime CreateDate { get; set; }
-        public int InformationId { get; set; }
         public int RegionId { get; set; }
         public int UserTypeId { get; set; }
-        public int InformationTranslateId { get; set; }
+        public int InforTranId { get; set; }
     }
 }

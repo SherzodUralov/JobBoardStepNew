@@ -37,10 +37,10 @@ namespace JobBoardStep.Core.Models
         public int RegionId { get; set; }
         public UserType UserType { get; set; }
         [ForeignKey("UserType")]
-        public int UserTypeId { get; set; }
-        public InformationTranslate InformationTranslate { get; set; }
+        public int? UserTypeId { get; set; }
+        public InformationTranslate InformationTranslate{ get; set; }
         [ForeignKey("InformationTranslate")]
-        public int InformationTranslateId { get; set; }
+        public int InformatTrId { get; set; }
         public List<Application>? Applications { get; set; }
     }
 }

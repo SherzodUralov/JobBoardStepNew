@@ -152,13 +152,22 @@ namespace JobBoardStep.Core.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int>("ExperTId")
+                        .HasColumnType("int");
+
                     b.Property<int>("ExperienceId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("JobCatTId")
                         .HasColumnType("int");
 
                     b.Property<int>("JobCateId")
                         .HasColumnType("int");
 
                     b.Property<int>("JobTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("JobTypeTId")
                         .HasColumnType("int");
 
                     b.Property<string>("Salary")
@@ -173,11 +182,17 @@ namespace JobBoardStep.Core.Migrations
 
                     b.HasKey("JobId");
 
+                    b.HasIndex("ExperTId");
+
                     b.HasIndex("ExperienceId");
+
+                    b.HasIndex("JobCatTId");
 
                     b.HasIndex("JobCateId");
 
                     b.HasIndex("JobTypeId");
+
+                    b.HasIndex("JobTypeTId");
 
                     b.HasIndex("UserId");
 
@@ -333,10 +348,10 @@ namespace JobBoardStep.Core.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("InformationId")
+                    b.Property<int>("InformatTrId")
                         .HasColumnType("int");
 
-                    b.Property<int>("InformationTranslateId")
+                    b.Property<int>("InformationId")
                         .HasColumnType("int");
 
                     b.Property<string>("LastName")
@@ -359,9 +374,9 @@ namespace JobBoardStep.Core.Migrations
 
                     b.HasKey("UserId");
 
-                    b.HasIndex("InformationId");
+                    b.HasIndex("InformatTrId");
 
-                    b.HasIndex("InformationTranslateId");
+                    b.HasIndex("InformationId");
 
                     b.HasIndex("RegionId");
 
@@ -444,9 +459,21 @@ namespace JobBoardStep.Core.Migrations
 
             modelBuilder.Entity("JobBoardStep.Core.Models.Job", b =>
                 {
+                    b.HasOne("JobBoardStep.Core.Models.ExperienceTranslate", "ExperienceTranslate")
+                        .WithMany("Jobs")
+                        .HasForeignKey("ExperTId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("JobBoardStep.Core.Models.Experience", "Experience")
                         .WithMany("Jobs")
                         .HasForeignKey("ExperienceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("JobBoardStep.Core.Models.JobCategoryTranslate", "JobCategoryTranslate")
+                        .WithMany("Jobs")
+                        .HasForeignKey("JobCatTId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -462,6 +489,12 @@ namespace JobBoardStep.Core.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("JobBoardStep.Core.Models.JobTypeTranslate", "JobTypeTranslate")
+                        .WithMany("Jobs")
+                        .HasForeignKey("JobTypeTId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("JobBoardStep.Core.Models.User", "User")
                         .WithMany("Jobs")
                         .HasForeignKey("UserId")
@@ -470,9 +503,15 @@ namespace JobBoardStep.Core.Migrations
 
                     b.Navigation("Experience");
 
+                    b.Navigation("ExperienceTranslate");
+
                     b.Navigation("JobCategory");
 
+                    b.Navigation("JobCategoryTranslate");
+
                     b.Navigation("JobType");
+
+                    b.Navigation("JobTypeTranslate");
 
                     b.Navigation("User");
                 });
@@ -517,15 +556,15 @@ namespace JobBoardStep.Core.Migrations
 
             modelBuilder.Entity("JobBoardStep.Core.Models.User", b =>
                 {
-                    b.HasOne("JobBoardStep.Core.Models.Information", "Information")
+                    b.HasOne("JobBoardStep.Core.Models.InformationTranslate", "InformationTranslate")
                         .WithMany("Users")
-                        .HasForeignKey("InformationId")
+                        .HasForeignKey("InformatTrId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("JobBoardStep.Core.Models.InformationTranslate", "InformationTranslate")
+                    b.HasOne("JobBoardStep.Core.Models.Information", "Information")
                         .WithMany("Users")
-                        .HasForeignKey("InformationTranslateId")
+                        .HasForeignKey("InformationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -557,6 +596,11 @@ namespace JobBoardStep.Core.Migrations
                     b.Navigation("Jobs");
                 });
 
+            modelBuilder.Entity("JobBoardStep.Core.Models.ExperienceTranslate", b =>
+                {
+                    b.Navigation("Jobs");
+                });
+
             modelBuilder.Entity("JobBoardStep.Core.Models.Information", b =>
                 {
                     b.Navigation("InformationTranslates");
@@ -581,10 +625,20 @@ namespace JobBoardStep.Core.Migrations
                     b.Navigation("Jobs");
                 });
 
+            modelBuilder.Entity("JobBoardStep.Core.Models.JobCategoryTranslate", b =>
+                {
+                    b.Navigation("Jobs");
+                });
+
             modelBuilder.Entity("JobBoardStep.Core.Models.JobType", b =>
                 {
                     b.Navigation("JobTypeTranslates");
 
+                    b.Navigation("Jobs");
+                });
+
+            modelBuilder.Entity("JobBoardStep.Core.Models.JobTypeTranslate", b =>
+                {
                     b.Navigation("Jobs");
                 });
 

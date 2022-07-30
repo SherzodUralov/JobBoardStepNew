@@ -17,7 +17,7 @@ namespace JobBoardStep.Core.Models
         [Required]
         public DateTime UpdateDate { get; set; }
         public bool JobTypeStatus { get; set; }
-        public List<JobTypeTranslate> JobTypeTranslates { get; set; }
+        public List<JobTypeTranslate> JobTypeTranslates { get; set; } = new List<JobTypeTranslate>();
         public virtual List<Job> Jobs { get; set; }
     }
 }

@@ -21,5 +21,6 @@ namespace JobBoardStep.Core.Models
         [ForeignKey("Experience")]
         public int ExperienceId { get; set; }
         public Experience Experience { get; set; }
+        public IList<Job> Jobs { get; set; }
     }
 }
