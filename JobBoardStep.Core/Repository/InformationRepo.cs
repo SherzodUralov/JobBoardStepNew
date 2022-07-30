@@ -1,6 +1,7 @@
 ﻿using JobBoardStep.Core.Context;
 using JobBoardStep.Core.Models;
 using JobBoardStep.Core.ViewModel;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,8 @@ namespace JobBoardStep.Core.Repository
 
         public void Delete(Information information)
         {
-            throw new NotImplementedException();
+            context.Information.Remove(information);
+            context.SaveChanges();
         }
 
         public IList<InforListViewModel> GetAll()
@@ -37,6 +39,7 @@ namespace JobBoardStep.Core.Repository
                          on t.LanguageId equals l.Id
                          select new InforListViewModel
                          {
+                             Id = I.Id,
                              InforName = t.Name,
                              LangName = l.LanguageName,
                              CreateDate = I.CreateDate,
@@ -50,7 +53,9 @@ namespace JobBoardStep.Core.Repository
 
         public Information GetById(int id)
         {
-            throw new NotImplementedException();
+            return context.Information
+                .Include(e => e.InformationTranslates)
+                .Where(a => a.Id.Equals(id)).FirstOrDefault();
         }
 
         public IList<Language> GetLan()
@@ -58,9 +63,25 @@ namespace JobBoardStep.Core.Repository
             return context.Languages.ToList();
         }
 
+        //public List<InformationTranslate> list(Information information)
+        //{
+        //    var list = context.InformationTranslates.Where(a => a.InformationId == information.Id).ToList();
+        //    context.InformationTranslates.RemoveRange(list);
+        //    context.SaveChanges();
+        //    return list;
+        //}
+
+        public void List(Information information)
+        {
+            List<InformationTranslate> list = context.InformationTranslates.Where(a => a.InformationId == information.Id).ToList();
+            context.InformationTranslates.RemoveRange(list);
+            context.SaveChanges();
+        }
+
         public void Update(Information information)
         {
-            throw new NotImplementedException();
+            context.Information.Update(information);
+            context.SaveChanges();
         }
     }
 }

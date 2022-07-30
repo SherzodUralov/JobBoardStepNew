@@ -8,6 +8,7 @@ namespace JobBoardStep.Core.ViewModel
 {
     public class InforListViewModel
     {
+        public int Id { get; set; }
         public string InforName { get; set; }
         public string LangName { get; set; }
         public DateTime CreateDate { get; set; }

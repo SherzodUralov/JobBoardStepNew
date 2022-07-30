@@ -12,6 +12,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 });
 builder.Services.AddScoped<IInformationRepo, InformationRepo>();
+builder.Services.AddScoped<IUserRepositroy, UserRepository>();
 
 var app = builder.Build();
 

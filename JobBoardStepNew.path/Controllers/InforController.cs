@@ -36,13 +36,26 @@ namespace JobBoardStepNew.path.Controllers
         public ViewResult Edit(int id) 
         {
             var information = repo.GetById(id);
+            var x = repo.GetLan();
+            ViewBag.lang = new SelectList(x, "Id", "LanguageName");
             return View(information);
         }
-        //[HttpPost]
-        //public IActionResult Edit() 
-        //{
-        //    return View();
-        //}
+        [HttpPost]
+        public IActionResult Edit(Information information)
+        {
+            repo.List(information);
+            repo.Update(information);
+            return RedirectToAction("List");
+        }
+        public IActionResult Delete(int id) 
+        {
+            var infor = repo.GetById(id);
+            if (infor != null)
+            {
+                repo.Delete(infor);
+            }
+            return RedirectToAction("List");
+        }
         public ViewResult List() 
         {
             var model =  repo.GetAll();

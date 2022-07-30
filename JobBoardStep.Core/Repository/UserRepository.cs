@@ -1,5 +1,6 @@
 ﻿using JobBoardStep.Core.Context;
 using JobBoardStep.Core.Models;
+using JobBoardStep.Core.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,6 +48,36 @@ namespace JobBoardStep.Core.Repository
         public User Update(User user)
         {
             throw new NotImplementedException();
+        }
+
+        public IList<UserListViewModel> UserList()
+        {
+            var model = (from u in context.Users
+                         join it in context.Information
+                         on u.InformationId equals it.Id
+                         join itt in context.InformationTranslates
+                         on it.Id equals itt.InformationId
+                         join ut in context.UserTypes
+                         on u.UserTypeId equals ut.UserTypeId
+                         join r in context.Regions
+                         on u.RegionId equals r.Id
+
+                         select new UserListViewModel
+                         {
+                             UserId = u.UserId,
+                             FirstName = u.FirstName,
+                             LastName = u.LastName,
+                             MiddleName = u.MiddleName,
+                             Email = u.Email,
+                             PassportNumber = u.PassportNumber,
+                             BirthDate = u.BirthDate,
+                             CreateDate = u.CreateDate,
+                             InformatTName = itt.Name,
+                             UserType = ut.UserTypeName,
+                             Region = r.Name
+                         }
+                         ).ToList();
+            return model;
         }
     }
 }
