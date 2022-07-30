@@ -16,6 +16,7 @@ namespace JobBoardStep.Core.Repository
         void Delete(Information information);
         IList<InforListViewModel> GetAll();
         IList<Language> GetLan();
+        void List(Information information);
 
     }
 }

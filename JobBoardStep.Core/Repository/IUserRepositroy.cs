@@ -1,4 +1,5 @@
 ﻿using JobBoardStep.Core.Models;
+using JobBoardStep.Core.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace JobBoardStep.Core.Repository
         User Create(User user);
         User Update(User user);
         User Delete(int id);
+        IList<UserListViewModel> UserList();
 
     }
 }
