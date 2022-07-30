@@ -34,5 +34,14 @@ namespace JobBoardStep.Core.Models
         public JobCategory JobCategory { get; set; }
         [ForeignKey("JobCategory")]
         public int JobCateId { get; set; }
+        public JobCategoryTranslate JobCategoryTranslate { get; set; }
+        [ForeignKey("JobCategoryTranslate")]
+        public int JobCatTId { get; set; }
+        public JobTypeTranslate JobTypeTranslate { get; set; }
+        [ForeignKey("JobTypeTranslate")]
+        public int JobTypeTId { get; set; }
+        public ExperienceTranslate ExperienceTranslate { get; set; }
+        [ForeignKey("ExperienceTranslate")]
+        public int ExperTId { get; set; }
     }
 }

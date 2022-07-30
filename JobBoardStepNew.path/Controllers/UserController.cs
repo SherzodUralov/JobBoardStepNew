@@ -16,6 +16,11 @@ namespace JobBoardStepNew.path.Controllers
             var model = repo.UserList();
             return View(model);
         }
+        [HttpGet]
+        public ViewResult Create() 
+        {
+            return View();
+        }
         public IActionResult Index()
         {
             return View();

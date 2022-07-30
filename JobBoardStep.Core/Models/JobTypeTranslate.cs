@@ -20,5 +20,6 @@ namespace JobBoardStep.Core.Models
         [ForeignKey("JobType")]
         public int JobTypeId { get; set; }
         public JobType JobType { get; set; }
+        public IList<Job> Jobs { get; set; }
     }
 }

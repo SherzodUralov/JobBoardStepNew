@@ -21,5 +21,7 @@ namespace JobBoardStep.Core.Models
         [ForeignKey("JobCategory")]
         public int JobCatId { get; set; }
         public JobCategory JobCategory { get; set; }
+        public IList<Job> Jobs { get; set; }
+
     }
 }

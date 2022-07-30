@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace JobBoardStep.Core.Migrations
 {
-    public partial class _JobNewStep : Migration
+    public partial class JobNewStep : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -262,7 +262,7 @@ namespace JobBoardStep.Core.Migrations
                     InformationId = table.Column<int>(type: "int", nullable: false),
                     RegionId = table.Column<int>(type: "int", nullable: false),
                     UserTypeId = table.Column<int>(type: "int", nullable: false),
-                    InformationTranslateId = table.Column<int>(type: "int", nullable: false)
+                    InformatTrId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -274,8 +274,8 @@ namespace JobBoardStep.Core.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Users_InformationTranslates_InformationTranslateId",
-                        column: x => x.InformationTranslateId,
+                        name: "FK_Users_InformationTranslates_InformatTrId",
+                        column: x => x.InformatTrId,
                         principalTable: "InformationTranslates",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -309,7 +309,10 @@ namespace JobBoardStep.Core.Migrations
                     JobTypeId = table.Column<int>(type: "int", nullable: false),
                     ExperienceId = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    JobCateId = table.Column<int>(type: "int", nullable: false)
+                    JobCateId = table.Column<int>(type: "int", nullable: false),
+                    JobCatTId = table.Column<int>(type: "int", nullable: false),
+                    JobTypeTId = table.Column<int>(type: "int", nullable: false),
+                    ExperTId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -321,15 +324,33 @@ namespace JobBoardStep.Core.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
+                        name: "FK_Jobs_ExperienceTranslates_ExperTId",
+                        column: x => x.ExperTId,
+                        principalTable: "ExperienceTranslates",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_Jobs_JobCategories_JobCateId",
                         column: x => x.JobCateId,
                         principalTable: "JobCategories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
+                        name: "FK_Jobs_JobCategoryTranslates_JobCatTId",
+                        column: x => x.JobCatTId,
+                        principalTable: "JobCategoryTranslates",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_Jobs_JobTypes_JobTypeId",
                         column: x => x.JobTypeId,
                         principalTable: "JobTypes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Jobs_JobTypeTranslates_JobTypeTId",
+                        column: x => x.JobTypeTId,
+                        principalTable: "JobTypeTranslates",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -417,14 +438,29 @@ namespace JobBoardStep.Core.Migrations
                 column: "ExperienceId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Jobs_ExperTId",
+                table: "Jobs",
+                column: "ExperTId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Jobs_JobCateId",
                 table: "Jobs",
                 column: "JobCateId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Jobs_JobCatTId",
+                table: "Jobs",
+                column: "JobCatTId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Jobs_JobTypeId",
                 table: "Jobs",
                 column: "JobTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Jobs_JobTypeTId",
+                table: "Jobs",
+                column: "JobTypeTId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Jobs_UserId",
@@ -447,9 +483,9 @@ namespace JobBoardStep.Core.Migrations
                 column: "InformationId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Users_InformationTranslateId",
+                name: "IX_Users_InformatTrId",
                 table: "Users",
-                column: "InformationTranslateId");
+                column: "InformatTrId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_RegionId",
@@ -468,6 +504,9 @@ namespace JobBoardStep.Core.Migrations
                 name: "Applications");
 
             migrationBuilder.DropTable(
+                name: "Jobs");
+
+            migrationBuilder.DropTable(
                 name: "ExperienceTranslates");
 
             migrationBuilder.DropTable(
@@ -477,7 +516,7 @@ namespace JobBoardStep.Core.Migrations
                 name: "JobTypeTranslates");
 
             migrationBuilder.DropTable(
-                name: "Jobs");
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Experiences");
@@ -487,9 +526,6 @@ namespace JobBoardStep.Core.Migrations
 
             migrationBuilder.DropTable(
                 name: "JobTypes");
-
-            migrationBuilder.DropTable(
-                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "InformationTranslates");
