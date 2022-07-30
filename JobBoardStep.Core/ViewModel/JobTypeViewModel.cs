@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace JobBoardStep.Core.ViewModel
 {
-    public class CategoryListViewModel
+    public class JobTypeViewModel
     {
         public int Id { get; set; }
-        public string CategoryName { get; set; }
+        public string JobTypeName { get; set; }
         public string LangName { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime UpdateDate { get; set; }
-        public bool CatwgoryStatus { get; set; }
+        public bool JobTypeStatus { get; set; }
+
     }
 }

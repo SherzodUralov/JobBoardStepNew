@@ -1,4 +1,5 @@
-﻿using JobBoardStep.Core.Models;
+﻿
+using JobBoardStep.Core.Models;
 using JobBoardStep.Core.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -49,11 +50,7 @@ namespace JobBoardStepNew.path.Controllers
         }
         public IActionResult Delete(int id) 
         {
-            var infor = repo.GetById(id);
-            if (infor != null)
-            {
-                repo.Delete(infor);
-            }
+            repo.Delete(id);
             return RedirectToAction("List");
         }
         public ViewResult List() 

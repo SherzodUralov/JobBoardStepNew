@@ -1,6 +1,7 @@
 ﻿using JobBoardStep.Core.Context;
 using JobBoardStep.Core.Models;
 using JobBoardStep.Core.ViewModel;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,14 +24,18 @@ namespace JobBoardStep.Core.Repository
            context.SaveChanges();
         }
 
-        public void Delete(int id)
+        public void Delete(JobCategory category)
         {
-            throw new NotImplementedException();
+            context.JobCategories.Remove(category);
+            context.SaveChanges();
         }
 
         public JobCategory GetById(int id)
         {
-            throw new NotImplementedException();
+          var data = context.JobCategories
+                .Include(x => x.JobCategoryTranslates)
+                .Where(a => a.Id.Equals(id)).FirstOrDefault();
+            return data;
         }
 
         public IList<CategoryListViewModel> GetCategory()
@@ -42,6 +47,7 @@ namespace JobBoardStep.Core.Repository
                          on t.LanguageId equals l.Id
                          select new CategoryListViewModel
                          {
+                             Id = J.Id,
                              CategoryName = t.JobCatName,
                              LangName = l.LanguageName,
                              CreateDate = J.CreateDate,
@@ -55,12 +61,20 @@ namespace JobBoardStep.Core.Repository
 
         public IList<Language> GetLang()
         {
-            throw new NotImplementedException();
+            return context.Languages.ToList();
+        }
+
+        public void List(JobCategory category)
+        {
+            List<JobCategoryTranslate> list = context.JobCategoryTranslates.Where(a => a.JobCatId == category.Id).ToList();
+            context.JobCategoryTranslates.RemoveRange(list);
+            context.SaveChanges();
         }
 
         public void Update(JobCategory category)
         {
-            throw new NotImplementedException();
+           context.JobCategories.Update(category);
+            context.SaveChanges();
         }
     }
 }

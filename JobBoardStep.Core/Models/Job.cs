@@ -13,7 +13,7 @@ namespace JobBoardStep.Core.Models
         [Key]
         [Required]
         public int JobId { get; set; }
-        [Required]
+        [Required]  
         public string Salary { get; set; }
         [Required]
         public DateTime CareateDate { get; set; }

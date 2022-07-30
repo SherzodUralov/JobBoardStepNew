@@ -13,7 +13,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 });
 builder.Services.AddScoped<IInformationRepo, InformationRepo>();
 builder.Services.AddScoped<IUserRepositroy, UserRepository>();
-builder.Services.AddScoped<IExperienceRepo, ExperienceRepo>();
+builder.Services.AddScoped<IJobCategoryRepository, JobCategoryRepository>();
+builder.Services.AddScoped<IJobTypeRepository, JobTypeRepository>();
 
 var app = builder.Build();
 
