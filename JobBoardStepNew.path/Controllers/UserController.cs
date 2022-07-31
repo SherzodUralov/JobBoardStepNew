@@ -1,5 +1,8 @@
-﻿using JobBoardStep.Core.Repository;
+﻿using JobBoardStep.Core.Models;
+using JobBoardStep.Core.Repository;
+using JobBoardStep.Core.ViewModel;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace JobBoardStepNew.path.Controllers
 {
@@ -19,11 +22,26 @@ namespace JobBoardStepNew.path.Controllers
         [HttpGet]
         public ViewResult Create() 
         {
+            ViewBag.region = new SelectList(repo.RegionList(), "Id", "Name");
+            ViewBag.infor = new SelectList(repo.InfroList(), "Id", "Name");
+            ViewBag.usertype = new SelectList(repo.UserTypeList(), "UserTypeId", "UserTypeName");
             return View();
         }
-        public IActionResult Index()
+        [HttpPost]
+        public IActionResult Index(UserCreateViewModel userCreate)
         {
-            return View();
+            var newuser = repo.NewUser(userCreate);
+            repo.Create(newuser);
+            return RedirectToAction("List");
+        }
+        [HttpGet]
+        public ViewResult Edit(int id) 
+        {
+            var model = repo.GetById(id);
+            ViewBag.region = new SelectList(repo.RegionList(), "Id", "Name");
+            ViewBag.infor = new SelectList(repo.InfroList(), "Id", "Name");
+            ViewBag.usertype = new SelectList(repo.UserTypeList(), "UserTypeId", "UserTypeName");
+            return View(model);
         }
     }
 }

@@ -12,10 +12,15 @@ namespace JobBoardStep.Core.Repository
     {
         User GetById(int id);
         IEnumerable<User> GetAll();
-        User Create(User user);
-        User Update(User user);
-        User Delete(int id);
+        void Create(User user);
+        void Update(User user);
+        void Delete(int id);
         IList<UserListViewModel> UserList();
+        List<InformationTranslate> InfroList();
+        List<Region> RegionList();
+        List<UserType> UserTypeList();
+        User NewUser(UserCreateViewModel newuser);
+
 
     }
 }

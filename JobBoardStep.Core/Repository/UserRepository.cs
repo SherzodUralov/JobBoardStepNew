@@ -17,22 +17,14 @@ namespace JobBoardStep.Core.Repository
         {
             this.context = context;
         }
-        public User Create(User user)
+        public void Create(User user)
         {
             context.Users.Add(user);
             context.SaveChanges();
-            return user;
         }
 
-        public User Delete(int id)
+        public void Delete(int id)
         {
-            var user = context.Users.Find(id);
-            if (user != null)
-            {
-                context.Users.Remove(user);
-                context.SaveChanges();
-            }
-            return user;
         }
 
         public IEnumerable<User> GetAll()
@@ -45,7 +37,36 @@ namespace JobBoardStep.Core.Repository
             return context.Users.Find(id);
         }
 
-        public User Update(User user)
+        public List<InformationTranslate> InfroList()
+        {
+            throw new NotImplementedException();
+        }
+
+        public User NewUser(UserCreateViewModel newuser)
+        {
+            User newuser1 = new User
+            {
+                UserId = newuser.UserId,
+                FirstName = newuser.FirstName,
+                LastName = newuser.LastName,
+                MiddleName = newuser.MiddleName,
+                Email = newuser.Email,
+                PassportNumber = newuser.PassportNumber,
+                BirthDate = newuser.BirthDate,
+                CreateDate = newuser.CreateDate,
+                RegionId = newuser.RegionId,
+                UserTypeId = newuser.UserTypeId,
+                InformatTrId = newuser.InforTranId
+            };
+            return newuser1;
+        }
+
+        public List<Region> RegionList()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(User user)
         {
             throw new NotImplementedException();
         }
@@ -78,6 +99,11 @@ namespace JobBoardStep.Core.Repository
                          }
                          ).ToList();
             return model;
+        }
+
+        public List<UserType> UserTypeList()
+        {
+            throw new NotImplementedException();
         }
     }
 }

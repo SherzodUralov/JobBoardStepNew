@@ -15,6 +15,7 @@ builder.Services.AddScoped<IInformationRepo, InformationRepo>();
 builder.Services.AddScoped<IUserRepositroy, UserRepository>();
 builder.Services.AddScoped<IJobCategoryRepository, JobCategoryRepository>();
 builder.Services.AddScoped<IJobTypeRepository, JobTypeRepository>();
+builder.Services.AddScoped<IExperienceRepo, ExperienceRepo>();
 
 var app = builder.Build();
 
