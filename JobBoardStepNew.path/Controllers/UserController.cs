@@ -28,7 +28,7 @@ namespace JobBoardStepNew.path.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Index(UserCreateViewModel userCreate)
+        public IActionResult Create(UserCreateViewModel userCreate)
         {
             var newuser = repo.NewUser(userCreate);
             repo.Create(newuser);
@@ -42,6 +42,11 @@ namespace JobBoardStepNew.path.Controllers
             ViewBag.infor = new SelectList(repo.InfroList(), "Id", "Name");
             ViewBag.usertype = new SelectList(repo.UserTypeList(), "UserTypeId", "UserTypeName");
             return View(model);
+        }
+        [HttpPost]
+        public IActionResult Edit()
+        {
+            var model = repo.GetById(0);    
         }
     }
 }

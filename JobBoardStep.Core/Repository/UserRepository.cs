@@ -39,11 +39,13 @@ namespace JobBoardStep.Core.Repository
 
         public List<InformationTranslate> InfroList()
         {
-            throw new NotImplementedException();
+            return context.InformationTranslates.ToList();
         }
 
         public User NewUser(UserCreateViewModel newuser)
         {
+            InformationTranslate information = context.InformationTranslates.FirstOrDefault(item => item.Id.Equals(newuser.InforTranId));
+
             User newuser1 = new User
             {
                 UserId = newuser.UserId,
@@ -56,14 +58,15 @@ namespace JobBoardStep.Core.Repository
                 CreateDate = newuser.CreateDate,
                 RegionId = newuser.RegionId,
                 UserTypeId = newuser.UserTypeId,
-                InformatTrId = newuser.InforTranId
+                InformatTrId = newuser.InforTranId,
+                InformationId = information.InformationId
             };
             return newuser1;
         }
 
         public List<Region> RegionList()
         {
-            throw new NotImplementedException();
+            return context.Regions.ToList();
         }
 
         public void Update(User user)
@@ -103,7 +106,7 @@ namespace JobBoardStep.Core.Repository
 
         public List<UserType> UserTypeList()
         {
-            throw new NotImplementedException();
+            return context.UserTypes.ToList();
         }
     }
 }
