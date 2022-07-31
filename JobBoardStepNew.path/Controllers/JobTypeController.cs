@@ -52,9 +52,19 @@ namespace JobBoardStepNew.path.Controllers
             repository.Delete(id);
             return RedirectToAction(nameof(List));
         }
-        public IActionResult List()
+        public IActionResult List(int pg = 1)
         {   var data = repository.GetAll();
-            return View(data);  
+            const int pageSize = 5;
+            if (pg < 1)
+                pg = 1;
+            int recsCount = data.Count();
+
+            var pager = new Pager(recsCount, pg, pageSize);
+            int recSkip = (pg - 1) * pageSize;
+
+            var data1 = data.Skip(recSkip).Take(pager.PageSize).ToList();
+            this.ViewBag.Pager = pager;
+            return View(data1);  
         }
     }
 }
