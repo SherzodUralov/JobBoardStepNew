@@ -57,11 +57,21 @@ namespace JobBoardStepNew.path.Controllers
             }
             return RedirectToAction("List");
         }
-        
-        public ViewResult List()
+
+        public IActionResult List(int pg = 1)
         {
-            var model = repo.GetCategory();
-            return View(model);
+            var data = repo.GetCategory();
+            const int pageSize = 5;
+            if (pg < 1)
+                pg = 1;
+            int recsCount = data.Count();
+
+            var pager = new Pager(recsCount, pg, pageSize);
+            int recSkip = (pg - 1) * pageSize;
+
+            var data1 = data.Skip(recSkip).Take(pager.PageSize).ToList();
+            this.ViewBag.Pager = pager;
+            return View(data1);
         }
     }
 }
