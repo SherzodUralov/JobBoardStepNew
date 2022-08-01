@@ -26,10 +26,10 @@ namespace JobBoardStep.Core.Repository
         public Job CreateNew(JobCreateViewModel jobcreate)
         {
             
-            JobCategory jobCat = context.JobCategories.FirstOrDefault(x => x.Id.Equals(jobcreate.JobCateId));
-            JobType jobType = context.JobTypes.FirstOrDefault(x => x.Id.Equals(jobcreate.JobTypeId));
-            Experience exper = context.Experiences.FirstOrDefault(x => x.Id.Equals(jobcreate.ExperienceId));
-            User user = context.Users.FirstOrDefault(x => x.UserId.Equals(jobcreate.UserId));
+            JobCategoryTranslate jobCat = context.JobCategoryTranslates.FirstOrDefault(x => x.Id.Equals(jobcreate.JobCateTrId));
+            JobTypeTranslate jobType = context.JobTypeTranslates.FirstOrDefault(x => x.Id.Equals(jobcreate.JobTypeTrId));
+            ExperienceTranslate exper = context.ExperienceTranslates.FirstOrDefault(x => x.Id.Equals(jobcreate.ExperienceTrId));
+         
             Job newjob = new Job()
             {
                 JobId = jobcreate.JobId,
@@ -37,9 +37,12 @@ namespace JobBoardStep.Core.Repository
                 Description = jobcreate.Description,
                 CareateDate = jobcreate.CareateDate,
                 UpdateDate = jobcreate.UpdateDate,
-                JobCateId = jobcreate.JobCateId,
-                JobTypeId = jobcreate.JobTypeId,
-                ExperienceId = jobcreate.ExperienceId,
+                JobCatTId = jobcreate.JobCateTrId,
+                JobCateId = jobCat.JobCatId,
+                JobTypeTId = jobcreate.JobTypeTrId,
+                JobTypeId = jobType.JobTypeId,
+                ExperTId = jobcreate.ExperienceTrId,
+                ExperienceId = exper.ExperienceId,
                 UserId = jobcreate.UserId
             };
             return newjob;
