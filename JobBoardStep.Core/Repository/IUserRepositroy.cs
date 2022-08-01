@@ -20,6 +20,8 @@ namespace JobBoardStep.Core.Repository
         List<Region> RegionList();
         List<UserType> UserTypeList();
         User NewUser(UserCreateViewModel newuser);
+        UserEditViewModel UpdateUser(User updateuser);
+        User ExsingUser(User exstinguser, UserEditViewModel user);
 
 
     }

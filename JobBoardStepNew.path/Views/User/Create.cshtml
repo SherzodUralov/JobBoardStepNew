@@ -1,36 +1,43 @@
 ﻿@model UserCreateViewModel
 <form asp-controller="User" asp-action="Create" method="post" enctype="multipart/form-data">
   <div class="form-row">
-      <div class="row">
-           <div class="form-group col-md-4">
+    <div class="row">
+     <div class="form-group col-md-4">
       <label asp-for="FirstName" class="form-label">FirstName</label>
       <input asp-for="FirstName" class="form-control" id="inputEmail4" placeholder="FirstName">
+      <span asp-validation-for="FirstName" class="text-danger"></span>
     </div>
     <div class="form-group col-md-4">
       <label asp-for="LastName" class="form-label">LastName</label>
       <input asp-for="LastName" class="form-control" id="inputEmail4" placeholder="LastName">
+      <span asp-validation-for="LastName" class="text-danger"></span>
     </div>
      <div class="form-group col-md-4">
       <label asp-for="MiddleName" class="form-label">MiddleName</label>
       <input asp-for="MiddleName" class="form-control" id="inputEmail4" placeholder="MiddleName">
+      <span asp-validation-for="MiddleName" class="text-danger"></span>
     </div>
   </div>
   <div class="row">
       <div class="form-group col-md-3">
       <label asp-for="Email" class="form-label">Email</label>
-      <input asp-for="Email" type="email" class="form-control" id="inputPassword4" placeholder="Email">
+      <input asp-for="Email" type="email" class="form-control" id="inputPassword4" placeholder="Email"> 
+      <span asp-validation-for="Email" class="text-danger"></span>
     </div>
     <div class="form-group col-md-3">
     <label asp-for="PassportNumber" class="form-label">PassportNumber</label>
     <input asp-for="PassportNumber" class="form-control" id="inputAddress" placeholder="PassportNumber">
+    <span asp-validation-for="PassportNumber" class="text-danger"></span>
   </div>
   <div class="form-group col-md-3">
     <label asp-for="BirthDate" class="form-label">BirthDate</label>
     <input asp-for="BirthDate" class="form-control" id="inputAddress2" placeholder="BirthDate">
+    <span asp-validation-for="BirthDate" class="text-danger"></span>
   </div>
    <div class="form-group col-md-3">
     <label asp-for="CreateDate" class="form-label">CreateDate</label>
     <input asp-for="CreateDate" class="form-control" id="inputAddress2" placeholder="CreateDate">
+    <span asp-validation-for="CreateDate" class="text-danger"></span>
   </div>
   </div>
   </div>
@@ -40,18 +47,21 @@
       <select asp-for="RegionId" class="form-control" asp-items="@ViewBag.region">
         <option selected>Choose...</option>
       </select>
+      <span asp-validation-for="RegionId" class="text-danger"></span>
     </div>
     <div class="form-group col-md-4">
       <label  asp-for="UserTypeId">UserType</label>
       <select asp-for="UserTypeId" class="form-control" asp-items="@ViewBag.usertype">
         <option selected>Choose...</option>
       </select>
+      <span asp-validation-for="UserTypeId" class="text-danger"></span>
     </div>
      <div class="form-group col-md-3">
       <label asp-for="InforTranId" class="form-label">Information</label>
       <select asp-for="InforTranId" class="form-control" asp-items="@ViewBag.infor">
         <option selected>Choose...</option>
       </select>
+      <span asp-validation-for="InforTranId" class="text-danger"></span>
     </div>
   </div>
   <div class="mt-4">

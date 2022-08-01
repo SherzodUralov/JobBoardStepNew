@@ -21,6 +21,7 @@ namespace JobBoardStep.Core.Repository
         public void Create(Information information)
         {
             context.Information.Add(information);
+
             context.SaveChanges();
         }
 
@@ -30,6 +31,7 @@ namespace JobBoardStep.Core.Repository
             if (infor != null)
             {
                 context.Information.Remove(infor);
+
                 context.SaveChanges();
             }
         }
@@ -37,28 +39,41 @@ namespace JobBoardStep.Core.Repository
         public IList<InforListViewModel> GetAll()
         {
             var model = (from t in context.InformationTranslates
+
                          join I in context.Information
+
                          on t.InformationId equals I.Id
+
                          join l in context.Languages
+
                          on t.LanguageId equals l.Id
+
                          select new InforListViewModel
                          {
                              Id = I.Id,
+
                              InforName = t.Name,
+
                              LangName = l.LanguageName,
+
                              CreateDate = I.CreateDate,
+
                              UpdateDate = I.UpdateDate,
+
                              InformationStatus = I.InformationStatus
                          }
 
                 ).ToList();
+
             return model;
         }
 
         public Information GetById(int id)
         {
             return context.Information
+
                 .Include(e => e.InformationTranslates)
+
                 .FirstOrDefault(a => a.Id.Equals(id));
         }
 
@@ -78,13 +93,16 @@ namespace JobBoardStep.Core.Repository
         public void List(Information information)
         {
             List<InformationTranslate> list = context.InformationTranslates.Where(a => a.InformationId == information.Id).ToList();
+
             context.InformationTranslates.RemoveRange(list);
+
             context.SaveChanges();
         }
 
         public void Update(Information information)
         {
             context.Information.Update(information);
+
             context.SaveChanges();
         }
     }

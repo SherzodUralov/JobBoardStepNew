@@ -20,11 +20,49 @@ namespace JobBoardStep.Core.Repository
         public void Create(User user)
         {
             context.Users.Add(user);
+
             context.SaveChanges();
         }
 
         public void Delete(int id)
         {
+            var user = context.Users.Find(id);
+
+            if (user != null)
+            {
+                context.Users.Remove(user);
+
+                context.SaveChanges();
+            }
+        }
+
+        public User ExsingUser(User exstinguser, UserEditViewModel user)
+        {
+            InformationTranslate infor = context.InformationTranslates.FirstOrDefault(item => item.Id.Equals(user.InforTranId));
+
+            exstinguser.FirstName = user.FirstName;
+
+            exstinguser.LastName = user.LastName;
+
+            exstinguser.MiddleName = user.MiddleName;
+
+            exstinguser.Email = user.Email;
+
+            exstinguser.PassportNumber = user.PassportNumber;
+
+            exstinguser.BirthDate = user.BirthDate;
+
+            exstinguser.CreateDate = user.CreateDate;
+
+            exstinguser.RegionId = user.RegionId;
+
+            exstinguser.UserTypeId = user.UserTypeId;
+
+            exstinguser.InformatTrId = user.InforTranId;
+
+            exstinguser.InformationId = infor.InformationId;
+
+            return exstinguser;
         }
 
         public IEnumerable<User> GetAll()
@@ -49,16 +87,27 @@ namespace JobBoardStep.Core.Repository
             User newuser1 = new User
             {
                 UserId = newuser.UserId,
+
                 FirstName = newuser.FirstName,
+
                 LastName = newuser.LastName,
+
                 MiddleName = newuser.MiddleName,
+
                 Email = newuser.Email,
+
                 PassportNumber = newuser.PassportNumber,
+
                 BirthDate = newuser.BirthDate,
+
                 CreateDate = newuser.CreateDate,
+
                 RegionId = newuser.RegionId,
+
                 UserTypeId = newuser.UserTypeId,
+
                 InformatTrId = newuser.InforTranId,
+
                 InformationId = information.InformationId
             };
             return newuser1;
@@ -71,36 +120,87 @@ namespace JobBoardStep.Core.Repository
 
         public void Update(User user)
         {
-            throw new NotImplementedException();
+            context.Users.Update(user);
+
+            context.SaveChanges();
+        }
+
+        public UserEditViewModel UpdateUser(User updateuser)
+        {
+            UserEditViewModel newupdate = new UserEditViewModel
+            {
+                UserId = updateuser.UserId,
+
+                FirstName = updateuser.FirstName,
+
+                LastName = updateuser.LastName,
+
+                MiddleName = updateuser.MiddleName,
+
+                Email = updateuser.Email,
+
+                PassportNumber = updateuser.PassportNumber,
+
+                BirthDate = updateuser.BirthDate,
+
+                CreateDate = updateuser.CreateDate,
+
+                RegionId = updateuser.RegionId,
+
+                UserTypeId = (int)updateuser.UserTypeId,
+
+                InforTranId = updateuser.InformatTrId
+            };
+
+            return newupdate;
         }
 
         public IList<UserListViewModel> UserList()
         {
             var model = (from u in context.Users
+
                          join it in context.Information
+
                          on u.InformationId equals it.Id
+
                          join itt in context.InformationTranslates
+
                          on it.Id equals itt.InformationId
+
                          join ut in context.UserTypes
+
                          on u.UserTypeId equals ut.UserTypeId
+
                          join r in context.Regions
+
                          on u.RegionId equals r.Id
 
                          select new UserListViewModel
                          {
                              UserId = u.UserId,
+
                              FirstName = u.FirstName,
+
                              LastName = u.LastName,
+
                              MiddleName = u.MiddleName,
+
                              Email = u.Email,
+
                              PassportNumber = u.PassportNumber,
+
                              BirthDate = u.BirthDate,
+
                              CreateDate = u.CreateDate,
+
                              InformatTName = itt.Name,
+
                              UserType = ut.UserTypeName,
+
                              Region = r.Name
                          }
                          ).ToList();
+
             return model;
         }
 
