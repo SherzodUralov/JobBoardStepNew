@@ -21,13 +21,13 @@ namespace JobBoardStep.Core.ViewModel
         [Required]
         public string Description { get; set; }
         [Required]
-        public int JobTypeId { get; set; }
+        public int JobTypeTrId { get; set; }
         [Required]
-        public int ExperienceId { get; set; }
+        public int ExperienceTrId { get; set; }
         [Required]
         public int UserId { get; set; }
         [Required]
-        public int JobCateId { get; set; }
+        public int JobCateTrId { get; set; }
      
       
 

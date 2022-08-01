@@ -64,7 +64,10 @@ namespace JobBoardStepNew.path.Controllers
 
             return View(newuser);
         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 44137601c534052559f769555f5979de664b0b0a
         [HttpPost]
         public IActionResult Edit(UserEditViewModel user)
         {
