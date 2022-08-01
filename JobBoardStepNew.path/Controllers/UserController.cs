@@ -14,14 +14,14 @@ namespace JobBoardStepNew.path.Controllers
         {
             this.repo = repo;
         }
-        public ViewResult List() 
+        public ViewResult List()
         {
             var model = repo.UserList();
 
             return View(model);
         }
         [HttpGet]
-        public ViewResult Create() 
+        public ViewResult Create()
         {
             ViewBag.region = new SelectList(repo.RegionList(), "Id", "Name");
 
@@ -50,7 +50,7 @@ namespace JobBoardStepNew.path.Controllers
             return View(); 
         }
         [HttpGet]
-        public ViewResult Edit(int id) 
+        public ViewResult Edit(int id)
         {
             var model = repo.GetById(id);
 
@@ -64,6 +64,14 @@ namespace JobBoardStepNew.path.Controllers
 
             return View(newuser);
         }
+<<<<<<< HEAD
+        //[HttpPost]
+        //public IActionResult Edit()
+        //{
+        //    var model = repo.GetById(0);    
+        //}
+
+=======
         [HttpPost]
         public IActionResult Edit(UserEditViewModel user)
         {
@@ -81,5 +89,7 @@ namespace JobBoardStepNew.path.Controllers
 
             return RedirectToAction("List");
         }
+>>>>>>> 37d60d738f3f1037f791f632167784ff92b618f8
     }
+
 }
