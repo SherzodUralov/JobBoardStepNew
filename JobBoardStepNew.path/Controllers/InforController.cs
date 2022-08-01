@@ -48,6 +48,7 @@ namespace JobBoardStepNew.path.Controllers
             ViewBag.lang = new SelectList(x, "Id", "LanguageName");
 
             return View(information);
+
         }
         [HttpPost]
         public IActionResult Edit(Information information)

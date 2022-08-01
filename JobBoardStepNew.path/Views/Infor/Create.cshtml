@@ -48,6 +48,7 @@
                 <div class="mb-3 col-md-9">
                     <label asp-for="CreateDate" class="form-label">CreateDate</label>
                     <input asp-for="CreateDate" class="form-control"/>
+
                 </div>
                 <div class="mb-3 col-md-9">
                     <label asp-for="UpdateDate" class="form-label">UpdateDate</label>
@@ -81,6 +82,10 @@ function DeleteItem(btn) {
 
     $(btn).closest('tr').remove();
 }
+
+$(document).ready(function() {
+$("#ApplicantForm").validate();
+});
 
          function AddItem(btn){
     var table = document.getElementById('exptable')
