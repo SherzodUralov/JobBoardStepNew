@@ -34,11 +34,20 @@ namespace JobBoardStepNew.path.Controllers
         [HttpPost]
         public IActionResult Create(UserCreateViewModel userCreate)
         {
-            var newuser = repo.NewUser(userCreate);
+            if (ModelState.IsValid)
+            {
+                var newuser = repo.NewUser(userCreate);
 
-            repo.Create(newuser);
+                repo.Create(newuser);
 
-            return RedirectToAction("List");
+                return RedirectToAction("List");
+            }
+            ViewBag.region = new SelectList(repo.RegionList(), "Id", "Name");
+
+            ViewBag.infor = new SelectList(repo.InfroList(), "Id", "Name");
+
+            ViewBag.usertype = new SelectList(repo.UserTypeList(), "UserTypeId", "UserTypeName");
+            return View(); 
         }
         [HttpGet]
         public ViewResult Edit(int id) 

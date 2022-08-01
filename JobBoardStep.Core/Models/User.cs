@@ -20,7 +20,7 @@ namespace JobBoardStep.Core.Models
         [Required]
         public string MiddleName { get; set; }
         [Required]
-        [RegularExpression(@"\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b")]
+        [RegularExpression(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*", ErrorMessage = "email is faield")]
         public string Email { get; set; }
         [Required]
         public string PassportNumber { get; set; }
