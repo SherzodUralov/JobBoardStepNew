@@ -369,7 +369,8 @@ namespace JobBoardStep.Core.Migrations
                     b.Property<int>("RegionId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserTypeId")
+                    b.Property<int?>("UserTypeId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("UserId");

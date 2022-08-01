@@ -64,14 +64,7 @@ namespace JobBoardStepNew.path.Controllers
 
             return View(newuser);
         }
-<<<<<<< HEAD
-        //[HttpPost]
-        //public IActionResult Edit()
-        //{
-        //    var model = repo.GetById(0);    
-        //}
 
-=======
         [HttpPost]
         public IActionResult Edit(UserEditViewModel user)
         {
@@ -89,7 +82,7 @@ namespace JobBoardStepNew.path.Controllers
 
             return RedirectToAction("List");
         }
->>>>>>> 37d60d738f3f1037f791f632167784ff92b618f8
+
     }
 
 }

@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JobBoardStep.Core.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220730140709_JobNewStep")]
+    [Migration("20220801130751_JobNewStep")]
     partial class JobNewStep
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -371,7 +371,8 @@ namespace JobBoardStep.Core.Migrations
                     b.Property<int>("RegionId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserTypeId")
+                    b.Property<int?>("UserTypeId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("UserId");
