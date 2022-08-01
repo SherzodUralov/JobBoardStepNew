@@ -1,0 +1,33 @@
+﻿@model List<JobListViewModel>
+@{
+    ViewBag.Title = "Job List";
+} 
+@*<div class="card-deck">
+    @foreach (var staff in Model)
+    {
+        var photoFilePath = "~/images/" + ("download.png");
+    <div class="card m-3" style="min-width:18rem;max-width:16.5%;">
+        <div class="card-header">
+            <h4>@staff.JobCatName @staff.JobTypeName</h4>
+        </div>
+        <img class="card-img-top" src="@photoFilePath" asp-append-version="true" /> 
+        <div class="card-footer text-center">
+            <a asp-controller="home" asp-action="Details" asp-route-Id="@staff.JobId" class="btn btn-primary m-1">View</a>
+            <a href="#" class="btn btn-primary m-1">Edit</a>
+            <a href="#" class="btn btn-danger m-1">Delete</a>
+        </div>
+    </div>
+    }
+</div>*@
+<div class="container-fluid">
+  <h2>Card Classes</h2>
+  <p>The card class is suitible for both images and notes:</p>
+  <div class="card" style="width:300px">
+    <img src="img_avatar1.png" alt="Image" style="width:100%">
+    <div class="card-body">
+      <h4 class="card-title">John Doe</h4>
+      <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
+      <a href="#" class="btn btn-primary">See Profile</a>
+    </div>
+  </div>
+</div>

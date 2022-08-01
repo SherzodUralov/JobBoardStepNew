@@ -14,13 +14,13 @@ namespace JobBoardStepNew.path.Controllers
         {
             this.repo = repo;
         }
-        public ViewResult List() 
+        public ViewResult List()
         {
             var model = repo.UserList();
             return View(model);
         }
         [HttpGet]
-        public ViewResult Create() 
+        public ViewResult Create()
         {
             ViewBag.region = new SelectList(repo.RegionList(), "Id", "Name");
             ViewBag.infor = new SelectList(repo.InfroList(), "Id", "Name");
@@ -35,7 +35,7 @@ namespace JobBoardStepNew.path.Controllers
             return RedirectToAction("List");
         }
         [HttpGet]
-        public ViewResult Edit(int id) 
+        public ViewResult Edit(int id)
         {
             var model = repo.GetById(id);
             ViewBag.region = new SelectList(repo.RegionList(), "Id", "Name");
@@ -43,10 +43,12 @@ namespace JobBoardStepNew.path.Controllers
             ViewBag.usertype = new SelectList(repo.UserTypeList(), "UserTypeId", "UserTypeName");
             return View(model);
         }
-        [HttpPost]
-        public IActionResult Edit()
-        {
-            var model = repo.GetById(0);    
-        }
+        //[HttpPost]
+        //public IActionResult Edit()
+        //{
+        //    var model = repo.GetById(0);    
+        //}
+
     }
+
 }
