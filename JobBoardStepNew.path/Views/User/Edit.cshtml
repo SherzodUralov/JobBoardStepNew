@@ -1,5 +1,6 @@
 ﻿@model UserEditViewModel
 <form asp-controller="User" asp-action="Edit" method="post" enctype="multipart/form-data">
+    <input hidden asp-for="UserId" />
   <div class="form-row">
       <div class="row">
            <div class="form-group col-md-4">

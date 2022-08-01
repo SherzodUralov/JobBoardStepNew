@@ -17,36 +17,60 @@ namespace JobBoardStepNew.path.Controllers
         public ViewResult List() 
         {
             var model = repo.UserList();
+
             return View(model);
         }
         [HttpGet]
         public ViewResult Create() 
         {
             ViewBag.region = new SelectList(repo.RegionList(), "Id", "Name");
+
             ViewBag.infor = new SelectList(repo.InfroList(), "Id", "Name");
+
             ViewBag.usertype = new SelectList(repo.UserTypeList(), "UserTypeId", "UserTypeName");
+
             return View();
         }
         [HttpPost]
         public IActionResult Create(UserCreateViewModel userCreate)
         {
             var newuser = repo.NewUser(userCreate);
+
             repo.Create(newuser);
+
             return RedirectToAction("List");
         }
         [HttpGet]
         public ViewResult Edit(int id) 
         {
             var model = repo.GetById(id);
+
+            var newuser = repo.UpdateUser(model);
+
             ViewBag.region = new SelectList(repo.RegionList(), "Id", "Name");
+
             ViewBag.infor = new SelectList(repo.InfroList(), "Id", "Name");
+
             ViewBag.usertype = new SelectList(repo.UserTypeList(), "UserTypeId", "UserTypeName");
-            return View(model);
+
+            return View(newuser);
         }
         [HttpPost]
-        public IActionResult Edit()
+        public IActionResult Edit(UserEditViewModel user)
         {
-            var model = repo.GetById(0);    
+            User exsitnguser = repo.GetById(user.UserId);
+
+            var model = repo.ExsingUser(exsitnguser, user);
+
+            repo.Update(model);
+
+            return RedirectToAction("List");
+        }
+        public IActionResult Delete(int id) 
+        {
+            repo.Delete(id);
+
+            return RedirectToAction("List");
         }
     }
 }
