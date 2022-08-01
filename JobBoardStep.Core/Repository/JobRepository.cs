@@ -48,9 +48,56 @@ namespace JobBoardStep.Core.Repository
             return newjob;
         }
 
+        public void Delete(int id)
+        {
+            var data = context.Jobs.Find(id);
+            if (data != null)
+            {
+                context.Jobs.Remove(data);
+                context.SaveChanges();
+            }
+         }
+
+        public JobEditViewModel EditJob(Job jobedit)
+        {
+            JobEditViewModel jobEditView = new JobEditViewModel()
+            {
+                JobId = jobedit.JobId,
+                Salary = jobedit.Salary,
+                CareateDate = jobedit.CareateDate,
+                UpdateDate = jobedit.UpdateDate,
+                Description = jobedit.Description,
+                ExperienceTrId = jobedit.ExperTId,
+                JobCateTrId = jobedit.JobCatTId,
+                JobTypeTrId = jobedit.JobTypeTId,
+                UserId = jobedit.UserId
+            };
+            return jobEditView;
+        }
+
         public List<ExperienceTranslate> ETList()
         {
            return context.ExperienceTranslates.ToList();
+        }
+
+        public Job exsEdit(Job job, JobEditViewModel jobEditView)
+        {
+            ExperienceTranslate exper = context.ExperienceTranslates.FirstOrDefault(x => x.Id.Equals(jobEditView.ExperienceTrId));
+            JobTypeTranslate jobType = context.JobTypeTranslates.FirstOrDefault(x => x.Id.Equals(jobEditView.JobTypeTrId));
+            JobCategoryTranslate jobCat = context.JobCategoryTranslates.FirstOrDefault(x => x.Id.Equals(jobEditView.JobCateTrId));
+            job.Salary = jobEditView.Salary;
+            job.CareateDate = jobEditView.CareateDate;
+            job.UpdateDate = jobEditView.UpdateDate;
+            job.Description = jobEditView.Description;
+            job.ExperTId = jobEditView.ExperienceTrId;
+            job.ExperienceId = exper.ExperienceId;
+            job.JobCatTId = jobEditView.JobCateTrId;
+            job.JobCateId = jobCat.JobCatId;
+            job.JobTypeTId = jobEditView.JobTypeTrId;
+            job.JobTypeId = jobType.JobTypeId;
+            job.UserId = jobEditView.UserId;
+            return job;
+
         }
 
         public Job GetById(int id)
@@ -102,6 +149,12 @@ namespace JobBoardStep.Core.Repository
         public List<JobTypeTranslate> JTTList()
         {
             return context.JobTypeTranslates.ToList();
+        }
+
+        public void Update(Job job)
+        {
+            context.Jobs.Update(job);
+            context.SaveChanges();
         }
 
         public List<User> UserGet()

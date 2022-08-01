@@ -1,4 +1,5 @@
-﻿using JobBoardStep.Core.Repository;
+﻿using JobBoardStep.Core.Models;
+using JobBoardStep.Core.Repository;
 using JobBoardStep.Core.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -38,5 +39,34 @@ namespace JobBoardStepNew.path.Controllers
             var data = repository.JobList();
             return View(data);
         }
+
+        [HttpGet]
+        public ViewResult Edit(int id)
+        {
+            var model = repository.GetById(id);
+            var newModel = repository.EditJob(model);
+            ViewBag.jobcategory = new SelectList(repository.JCTList(), "Id", "JobCatName");
+            ViewBag.jobtype = new SelectList(repository.JTTList(), "Id", "Name");
+            ViewBag.exper = new SelectList(repository.ETList(), "Id", "Name");
+            ViewBag.user = new SelectList(repository.UserGet(), "UserId", "FirstName");
+            return View(newModel);
+        }
+        [HttpPost]
+        public IActionResult Edit(JobEditViewModel job)
+        {
+            Job exsitngjob = repository.GetById(job.UserId);
+
+            var model = repository.exsEdit(exsitngjob, job);
+
+            repository.Update(model);
+
+            return RedirectToAction("List");
+        }
+        public IActionResult Delete(int id)
+        {
+            repository.Delete(id);
+            return RedirectToAction(nameof(List));
+        }
+
     }
 }
