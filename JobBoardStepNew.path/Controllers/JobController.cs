@@ -1,6 +1,7 @@
 ﻿using JobBoardStep.Core.Models;
 using JobBoardStep.Core.Repository;
 using JobBoardStep.Core.ViewModel;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -67,6 +68,14 @@ namespace JobBoardStepNew.path.Controllers
             repository.Delete(id);
             return RedirectToAction(nameof(List));
         }
+        //Language
+        [HttpPost]
+        public IActionResult CultureManagement(string culture, string returnUrl)
+        {
+            Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName, CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                new CookieOptions { Expires = DateTimeOffset.Now.AddDays(30) });
 
+            return LocalRedirect(returnUrl);
+        }
     }
 }
