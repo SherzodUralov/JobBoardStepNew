@@ -7,10 +7,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 });
+
 builder.Services.AddScoped<IInformationRepo, InformationRepo>();
 builder.Services.AddScoped<IUserRepositroy, UserRepository>();
 builder.Services.AddScoped<IJobCategoryRepository, JobCategoryRepository>();

@@ -42,5 +42,6 @@ namespace JobBoardStep.Core.Models
         [ForeignKey("InformationTranslate")]
         public int InformatTrId { get; set; }
         public List<Application>? Applications { get; set; }
+        public List<RoleMap>? RoleMaps { get; set; } = new List<RoleMap>();
     }
 }
