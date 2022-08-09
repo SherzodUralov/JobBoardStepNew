@@ -22,6 +22,8 @@ namespace JobBoardStep.Core.ViewModel
         [RegularExpression(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*", ErrorMessage ="email is faield")]
         public string Email { get; set; }
         [Required]
+        public string Password { get; set; }
+        [Required]
         public string PassportNumber { get; set; }
         [Required]
         public DateTime BirthDate { get; set; }

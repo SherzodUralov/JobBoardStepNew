@@ -1,5 +1,6 @@
 using JobBoardStep.Core.Context;
 using JobBoardStep.Core.Repository;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -32,6 +33,14 @@ builder.Services.Configure<RequestLocalizationOptions>(
 builder.Services.AddControllersWithViews();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                 .AddCookie(options =>
+                 {
+                     options.LoginPath = "/User/Login";
+                     options.AccessDeniedPath = "/User/Denied";
+                     options.ExpireTimeSpan = TimeSpan.FromSeconds(30);
+                 });
+
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
@@ -42,7 +51,8 @@ builder.Services.AddScoped<IUserRepositroy, UserRepository>();
 builder.Services.AddScoped<IJobCategoryRepository, JobCategoryRepository>();
 builder.Services.AddScoped<IJobTypeRepository, JobTypeRepository>();
 builder.Services.AddScoped<IExperienceRepo, ExperienceRepo>();
-builder.Services.AddScoped<IJobRepository,JobRepository>(); 
+builder.Services.AddScoped<IJobRepository,JobRepository>();
+builder.Services.AddScoped<IRoleMapRepo, RoleMapRepo>();
 
 var app = builder.Build();
 
@@ -59,7 +69,9 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
+
 //<Language>
     app.UseRequestLocalization(app.Services.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
 

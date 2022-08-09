@@ -274,9 +274,11 @@ namespace JobBoardStep.Core.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     BirthDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    InformationId = table.Column<int>(type: "int", nullable: false),
+                    PasswordHash = table.Column<byte[]>(type: "longblob", nullable: false),
+                    PasswordSalt = table.Column<byte[]>(type: "longblob", nullable: false),
+                    InformationId = table.Column<int>(type: "int", nullable: true),
                     RegionId = table.Column<int>(type: "int", nullable: false),
-                    UserTypeId = table.Column<int>(type: "int", nullable: false),
+                    UserTypeId = table.Column<int>(type: "int", nullable: true),
                     InformatTrId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -286,8 +288,7 @@ namespace JobBoardStep.Core.Migrations
                         name: "FK_Users_Information_InformationId",
                         column: x => x.InformationId,
                         principalTable: "Information",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Users_InformationTranslates_InformatTrId",
                         column: x => x.InformatTrId,
@@ -304,8 +305,7 @@ namespace JobBoardStep.Core.Migrations
                         name: "FK_Users_UserTypes_UserTypeId",
                         column: x => x.UserTypeId,
                         principalTable: "UserTypes",
-                        principalColumn: "UserTypeId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "UserTypeId");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 

@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JobBoardStep.Core.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220809134908_InatialCreated")]
+    [Migration("20220809142706_InatialCreated")]
     partial class InatialCreated
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -393,7 +393,7 @@ namespace JobBoardStep.Core.Migrations
                     b.Property<int>("InformatTrId")
                         .HasColumnType("int");
 
-                    b.Property<int>("InformationId")
+                    b.Property<int?>("InformationId")
                         .HasColumnType("int");
 
                     b.Property<string>("LastName")
@@ -408,11 +408,18 @@ namespace JobBoardStep.Core.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<byte[]>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("longblob");
+
+                    b.Property<byte[]>("PasswordSalt")
+                        .IsRequired()
+                        .HasColumnType("longblob");
+
                     b.Property<int>("RegionId")
                         .HasColumnType("int");
 
                     b.Property<int?>("UserTypeId")
-                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("UserId");
@@ -626,9 +633,7 @@ namespace JobBoardStep.Core.Migrations
 
                     b.HasOne("JobBoardStep.Core.Models.Information", "Information")
                         .WithMany("Users")
-                        .HasForeignKey("InformationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("InformationId");
 
                     b.HasOne("JobBoardStep.Core.Models.Region", "Region")
                         .WithMany("Users")
@@ -638,9 +643,7 @@ namespace JobBoardStep.Core.Migrations
 
                     b.HasOne("JobBoardStep.Core.Models.UserType", "UserType")
                         .WithMany("Users")
-                        .HasForeignKey("UserTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserTypeId");
 
                     b.Navigation("Information");
 
