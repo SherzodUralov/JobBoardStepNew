@@ -56,6 +56,16 @@ namespace JobBoardStep.Core.Context
               .HasOne(x => x.Information)
               .WithMany(t => t.InformationTranslates)
               .HasForeignKey(w => w.InformationId);
+
+            modelBuilder.Entity<RoleMap>()
+               .HasOne(x => x.Role)
+               .WithMany(t => t.RoleMaps)
+               .HasForeignKey(w => w.RoleId);
+
+            modelBuilder.Entity<RoleMap>()
+                .HasOne(x => x.User)
+                .WithMany(t => t.RoleMaps)
+                .HasForeignKey(w => w.UserId);
         }
 
         public DbSet<User> Users { get; set; }
@@ -72,5 +82,7 @@ namespace JobBoardStep.Core.Context
         public DbSet<Language> Languages { get; set; }
         public DbSet<Region> Regions { get; set; }
         public DbSet<UserType> UserTypes { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<RoleMap> RoleMaps { get; set; }
     }
 }

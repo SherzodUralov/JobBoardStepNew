@@ -14,10 +14,11 @@ namespace JobBoardStep.Core.Models
         [Required]
         public int ApplicationId { get; set; }
         [Required]
-        public DateTime CreateDate { get; set; }
+        public DateTime CreateDate { get; set; }= DateTime.Now;
         [Required]        
-        public DateTime UpdateDate { get; set; }
+        public DateTime? UpdateDate { get; set; }
         public bool ApplicationStatus { get; set; }
+        public string? FilePath { get; set; }
         public Job Job { get; set; }
         [ForeignKey("Job")]
         public int JobId { get; set; }

@@ -1,6 +1,7 @@
 ﻿using JobBoardStep.Core.Context;
 using JobBoardStep.Core.Models;
 using JobBoardStep.Core.ViewModel;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -84,6 +85,10 @@ namespace JobBoardStep.Core.Repository
         {
             InformationTranslate information = context.InformationTranslates.FirstOrDefault(item => item.Id.Equals(newuser.InforTranId));
 
+            byte[] passwordHash, passwordSalt;
+
+            CreatePassworHash(newuser.Password, out passwordHash, out passwordSalt);
+
             User newuser1 = new User
             {
                 UserId = newuser.UserId,
@@ -95,6 +100,10 @@ namespace JobBoardStep.Core.Repository
                 MiddleName = newuser.MiddleName,
 
                 Email = newuser.Email,
+
+                PasswordHash = passwordHash,
+
+                PasswordSalt = passwordSalt,
 
                 PassportNumber = newuser.PassportNumber,
 
@@ -113,6 +122,15 @@ namespace JobBoardStep.Core.Repository
             return newuser1;
         }
 
+        public void CreatePassworHash(string Password, out byte[] passwordHash, out byte[] passwordSalt)
+        {
+            using (var hmac = new System.Security.Cryptography.HMACSHA512())
+            {
+                passwordSalt = hmac.Key;
+
+                passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(Password));
+            }
+        }
         public List<Region> RegionList()
         {
             return context.Regions.ToList();
@@ -204,9 +222,60 @@ namespace JobBoardStep.Core.Repository
             return model;
         }
 
+        public async Task<User> UserReturn(LoginViewModel model)
+        {
+            return await context.Users.FirstOrDefaultAsync(x => x.Email == model.Email);
+
+        }
+
+        public async Task<bool> VerifyPassword(string Password, byte[] passworHash, byte[] passwordSalt)
+        {
+            using (var hmac = new System.Security.Cryptography.HMACSHA512(passwordSalt))
+            {
+                var computedhash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(Password));
+                for (int i = 0; i < computedhash.Length; i++)
+                {
+                    if (computedhash[i] != passworHash[i])
+                        return false;
+                }
+
+            }
+            return true;
+        }
+      
         public List<UserType> UserTypeList()
         {
             return context.UserTypes.ToList();
+        }
+
+        public IEnumerable<MapIndexViewModel> gets()
+        {
+            var model = (from u in context.Users
+                         join m in context.RoleMaps
+                         on u.UserId equals m.UserId
+                         join r in context.Roles
+                         on m.RoleId equals r.Id
+                         where r.RoleName == "Superadmin"
+                         select new MapIndexViewModel
+                         {
+                             UserName = u.Email
+                         });
+            return model.ToArray();
+        }
+
+        public IEnumerable<MapIndexViewModel> getss()
+        {
+            var model = (from u in context.Users
+                         join m in context.RoleMaps
+                         on u.UserId equals m.UserId
+                         join r in context.Roles
+                         on m.RoleId equals r.Id
+                         where r.RoleName == "admin"
+                         select new MapIndexViewModel
+                         {
+                             UserName = u.Email
+                         });
+            return model.ToArray();
         }
     }
 }

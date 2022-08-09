@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JobBoardStep.Core.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220801130751_JobNewStep")]
-    partial class JobNewStep
+    [Migration("20220809142706_InatialCreated")]
+    partial class InatialCreated
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,10 +33,14 @@ namespace JobBoardStep.Core.Migrations
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<string>("FilePath")
+                        .HasColumnType("longtext");
+
                     b.Property<int>("JobId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("UpdateDate")
+                    b.Property<DateTime?>("UpdateDate")
+                        .IsRequired()
                         .HasColumnType("datetime(6)");
 
                     b.Property<int>("UserId")
@@ -330,6 +334,42 @@ namespace JobBoardStep.Core.Migrations
                     b.ToTable("Regions");
                 });
 
+            modelBuilder.Entity("JobBoardStep.Core.Models.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("RoleName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Roles");
+                });
+
+            modelBuilder.Entity("JobBoardStep.Core.Models.RoleMap", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("RoleMaps");
+                });
+
             modelBuilder.Entity("JobBoardStep.Core.Models.User", b =>
                 {
                     b.Property<int>("UserId")
@@ -353,7 +393,7 @@ namespace JobBoardStep.Core.Migrations
                     b.Property<int>("InformatTrId")
                         .HasColumnType("int");
 
-                    b.Property<int>("InformationId")
+                    b.Property<int?>("InformationId")
                         .HasColumnType("int");
 
                     b.Property<string>("LastName")
@@ -368,11 +408,18 @@ namespace JobBoardStep.Core.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<byte[]>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("longblob");
+
+                    b.Property<byte[]>("PasswordSalt")
+                        .IsRequired()
+                        .HasColumnType("longblob");
+
                     b.Property<int>("RegionId")
                         .HasColumnType("int");
 
                     b.Property<int?>("UserTypeId")
-                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("UserId");
@@ -557,6 +604,25 @@ namespace JobBoardStep.Core.Migrations
                     b.Navigation("Language");
                 });
 
+            modelBuilder.Entity("JobBoardStep.Core.Models.RoleMap", b =>
+                {
+                    b.HasOne("JobBoardStep.Core.Models.Role", "Role")
+                        .WithMany("RoleMaps")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("JobBoardStep.Core.Models.User", "User")
+                        .WithMany("RoleMaps")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Role");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("JobBoardStep.Core.Models.User", b =>
                 {
                     b.HasOne("JobBoardStep.Core.Models.InformationTranslate", "InformationTranslate")
@@ -567,9 +633,7 @@ namespace JobBoardStep.Core.Migrations
 
                     b.HasOne("JobBoardStep.Core.Models.Information", "Information")
                         .WithMany("Users")
-                        .HasForeignKey("InformationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("InformationId");
 
                     b.HasOne("JobBoardStep.Core.Models.Region", "Region")
                         .WithMany("Users")
@@ -579,9 +643,7 @@ namespace JobBoardStep.Core.Migrations
 
                     b.HasOne("JobBoardStep.Core.Models.UserType", "UserType")
                         .WithMany("Users")
-                        .HasForeignKey("UserTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserTypeId");
 
                     b.Navigation("Information");
 
@@ -661,11 +723,18 @@ namespace JobBoardStep.Core.Migrations
                     b.Navigation("Users");
                 });
 
+            modelBuilder.Entity("JobBoardStep.Core.Models.Role", b =>
+                {
+                    b.Navigation("RoleMaps");
+                });
+
             modelBuilder.Entity("JobBoardStep.Core.Models.User", b =>
                 {
                     b.Navigation("Applications");
 
                     b.Navigation("Jobs");
+
+                    b.Navigation("RoleMaps");
                 });
 
             modelBuilder.Entity("JobBoardStep.Core.Models.UserType", b =>

@@ -21,26 +21,29 @@ namespace JobBoardStep.Core.Models
         public string MiddleName { get; set; }
         [Required]
         [RegularExpression(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*", ErrorMessage = "email is faield")]
-        public string Email { get; set; }
+        public string? Email { get; set; }
         [Required]
-        public string PassportNumber { get; set; }
+        public string? PassportNumber { get; set; }
         [Required]
         public DateTime BirthDate { get; set; }
         [Required]
-        public DateTime CreateDate { get; set; }
-        public List<Job> Jobs { get; set; }
-        public Information Information { get; set; }
+        public DateTime CreateDate { get; set; }= DateTime.Now;
+        public byte[] PasswordHash { get; set; }
+        public byte[] PasswordSalt { get; set; }
+        public List<Job>? Jobs { get; set; }
+        public Information? Information { get; set; }
         [ForeignKey("Information")]
-        public int InformationId { get; set; }
-        public Region Region { get; set; }
+        public int? InformationId { get; set; }
+        public Region? Region { get; set; }
         [ForeignKey("Region")]
         public int RegionId { get; set; }
-        public UserType UserType { get; set; }
+        public UserType? UserType { get; set; }
         [ForeignKey("UserType")]
         public int? UserTypeId { get; set; }
-        public InformationTranslate InformationTranslate{ get; set; }
+        public InformationTranslate? InformationTranslate{ get; set; }
         [ForeignKey("InformationTranslate")]
         public int InformatTrId { get; set; }
         public List<Application>? Applications { get; set; }
+        public List<RoleMap>? RoleMaps { get; set; } = new List<RoleMap>();
     }
 }

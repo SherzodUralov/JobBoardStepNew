@@ -11,17 +11,36 @@ namespace JobBoardStep.Core.Repository
     public interface IUserRepositroy
     {
         User GetById(int id);
+
         IEnumerable<User> GetAll();
+
         void Create(User user);
+
         void Update(User user);
+
         void Delete(int id);
+
         IList<UserListViewModel> UserList();
+
         List<InformationTranslate> InfroList();
+
         List<Region> RegionList();
+
         List<UserType> UserTypeList();
+
         User NewUser(UserCreateViewModel newuser);
+
         UserEditViewModel UpdateUser(User updateuser);
+
         User ExsingUser(User exstinguser, UserEditViewModel user);
+
+        Task<User> UserReturn(LoginViewModel model);
+
+        Task<bool> VerifyPassword(string Password, byte[] passworHash, byte[] passwordSalt);
+
+        IEnumerable<MapIndexViewModel> gets();
+
+        IEnumerable<MapIndexViewModel> getss();
 
 
     }

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace JobBoardStep.Core.Migrations
 {
-    public partial class JobNewStep : Migration
+    public partial class InatialCreated : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -107,6 +107,21 @@ namespace JobBoardStep.Core.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Regions", x => x.Id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Roles",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    RoleName = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Roles", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -259,9 +274,11 @@ namespace JobBoardStep.Core.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     BirthDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    InformationId = table.Column<int>(type: "int", nullable: false),
+                    PasswordHash = table.Column<byte[]>(type: "longblob", nullable: false),
+                    PasswordSalt = table.Column<byte[]>(type: "longblob", nullable: false),
+                    InformationId = table.Column<int>(type: "int", nullable: true),
                     RegionId = table.Column<int>(type: "int", nullable: false),
-                    UserTypeId = table.Column<int>(type: "int", nullable: false),
+                    UserTypeId = table.Column<int>(type: "int", nullable: true),
                     InformatTrId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -271,8 +288,7 @@ namespace JobBoardStep.Core.Migrations
                         name: "FK_Users_Information_InformationId",
                         column: x => x.InformationId,
                         principalTable: "Information",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Users_InformationTranslates_InformatTrId",
                         column: x => x.InformatTrId,
@@ -289,8 +305,7 @@ namespace JobBoardStep.Core.Migrations
                         name: "FK_Users_UserTypes_UserTypeId",
                         column: x => x.UserTypeId,
                         principalTable: "UserTypes",
-                        principalColumn: "UserTypeId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "UserTypeId");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -363,6 +378,33 @@ namespace JobBoardStep.Core.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "RoleMaps",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    RoleId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RoleMaps", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_RoleMaps_Roles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "Roles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_RoleMaps_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "Applications",
                 columns: table => new
                 {
@@ -371,6 +413,8 @@ namespace JobBoardStep.Core.Migrations
                     CreateDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     ApplicationStatus = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    FilePath = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     JobId = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -478,6 +522,16 @@ namespace JobBoardStep.Core.Migrations
                 column: "LanguageId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_RoleMaps_RoleId",
+                table: "RoleMaps",
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RoleMaps_UserId",
+                table: "RoleMaps",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Users_InformationId",
                 table: "Users",
                 column: "InformationId");
@@ -504,7 +558,13 @@ namespace JobBoardStep.Core.Migrations
                 name: "Applications");
 
             migrationBuilder.DropTable(
+                name: "RoleMaps");
+
+            migrationBuilder.DropTable(
                 name: "Jobs");
+
+            migrationBuilder.DropTable(
+                name: "Roles");
 
             migrationBuilder.DropTable(
                 name: "ExperienceTranslates");
