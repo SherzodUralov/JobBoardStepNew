@@ -20,4 +20,8 @@
     <ProjectReference Include="..\JobBoardStep.Core\JobBoardStep.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\admin\" />
+  </ItemGroup>
+
 </Project>

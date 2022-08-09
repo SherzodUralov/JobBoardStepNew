@@ -1,23 +1,57 @@
-﻿<!DOCTYPE html>
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer 
+@inject Microsoft.Extensions.Options.IOptions<Microsoft.AspNetCore.Builder.RequestLocalizationOptions> locOptions 
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
+   @* <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
-
     <title>@ViewData["Title"] - JobBoardStepNew.path</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/JobBoardStepNew.path.styles.css" asp-append-version="true" />
-
-    
-    
-
-
+    <link rel="stylesheet" href="~/JobBoardStepNew.path.styles.css" asp-append-version="true" />*@
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!--Login-->
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    <meta name="robots" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--Login-->
+       <meta
+      name="description"
+      content="GetSkills  : GetSkills Online Learning Admin Bootstrap 5 Template"
+    />
+    <meta
+      property="og:title"
+      content="GetSkills  : GetSkills Online Learning  Admin Bootstrap 5 Template"
+    />
+    <meta
+      property="og:description"
+      content="GetSkills  : GetSkills Online Learning  Admin Bootstrap 5 Template"
+    />
+    <meta
+      property="og:image"
+      content="https://getskills.dexignzone.com/xhtml/social-image.png"
+    />
+    <meta name="format-detection" content="telephone=no" />
+<!--Login end-->
+    <title>Virtual Bemor Admin</title>
+    <link href="~/admin/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet" />
+    <!-- Datatable listlanguage -->
+    <link
+      href="~/admin/vendor/datatables/css/jquery.dataTables.min.css"
+      rel="stylesheet"
+    />
+    <!--listLang-->
+    <link href="~/admin/css/style.css" rel="stylesheet" />      
+    <!--Login-->
+        <!-- FAVICONS ICON -->
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png" />  
 </head>
-<body>
+@*<body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
@@ -28,12 +62,12 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                 @*       <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>*@
+                        </li>
                          <li class="nav-link">
                             <partial name="_Culture" />
                         </li>
@@ -57,6 +91,494 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>*@
+<body>
+
+ 
+    <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+      <div class="lds-ripple">
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <!--*******************
+        Preloader end
+    ********************-->
+
+    <!--**********************************
+        Main wrapper start
+    ***********************************-->
+    <div id="main-wrapper" >
+      <!--**********************************
+            Nav header start
+        ***********************************-->
+      <div class="nav-header">
+        <a href="index.html" class="brand-logo">
+          <h3 class="text-white">Virtual</h3>
+        </a>
+        <div class="nav-control">
+          <div class="hamburger">
+            <span class="line"></span><span class="line"></span
+            ><span class="line"></span>
+          </div>
+        </div>
+      </div>
+      <!--**********************************
+            Nav header end
+        ***********************************-->
+
+      <!--**********************************
+            Header start
+        ***********************************-->
+      <div class="header">
+        <div class="header-content">
+          <nav class="navbar navbar-expand">
+            <div class="collapse navbar-collapse justify-content-between">
+              <div class="navbar-nav header-right">
+                <div class="nav-item d-flex align-items-center"></div>
+                <div class="dlab-side-menu">
+                  <div class="search-coundry d-flex align-items-center"></div>
+                  <ul>
+                    <li class="nav-item dropdown header-profile">
+                      <a
+                        class="nav-link"
+                        href="javascript:void(0);"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                      >
+                        <img src="~/admin/images/profile/pic1.jpg" width="20" alt="" />
+                      </a>
+                      <div class="dropdown-menu dropdown-menu-end">
+                        <a
+                          href="./app-profile.html"
+                          class="dropdown-item ai-icon"
+                        >
+                          <svg
+                            id="icon-user2"
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="text-primary"
+                            width="18"
+                            height="18"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          >
+                            <path
+                              d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"
+                            ></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                          </svg>
+                          <span class="ms-2">Profile </span>
+                        </a>
+                        <a
+                          href="./email-inbox.html"
+                          class="dropdown-item ai-icon"
+                        >
+                          <svg
+                            id="icon-inbox1"
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="text-success"
+                            width="18"
+                            height="18"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          >
+                            <path
+                              d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                            ></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                          </svg>
+                          <span class="ms-2">Inbox </span>
+                        </a>
+                        <a
+                          href="./page-login.html"
+                          class="dropdown-item ai-icon"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="text-danger"
+                            width="18"
+                            height="18"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          >
+                            <path
+                              d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"
+                            ></path>
+                            <polyline points="16 17 21 12 16 7"></polyline>
+                            <line x1="21" y1="12" x2="9" y2="12"></line>
+                          </svg>
+                          <span class="ms-2">Logout </span>
+                        </a>
+                      </div>
+                    </li>
+                    <li class="nav-item mt-4">
+                      <div class="search-coundry d-flex align-items-center">
+                        <img src="~/admin/images/United.png" alt="" />
+                        @*<select
+                          class="default-select dashboard-select image-select"
+                        >
+                          <option data-display="Eng">Eng</option>
+                          <option value="2">Af</option>
+                          <option value="2">Al</option>  *@                       
+                        @*  <option ><partial name="_Culture" /></option>                         
+                        </select>*@
+                    <ul class="navbar-nav flex-grow-1">
+                       
+                         <li class="nav-link">
+                            <partial name="_Culture" />
+                        </li>
+                    </ul>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+
+      <!--**********************************
+            Header end ti-comment-alt
+        ***********************************-->
+  </div>
+  
+
+          <!--**********************************
+            Sidebar start
+        ***********************************-->
+      <div class="dlabnav">
+        <div class="dlabnav-scroll">
+          <ul class="metismenu" id="menu">
+            <li>
+              <a
+                class="has-arrow"
+                href="javascript:void(0);"
+                aria-expanded="false"
+              >
+                <i class="bi bi-grid"></i>
+                <span class="nav-text">Dashboard</span>
+              </a>
+              <ul aria-expanded="false">
+                <li><a href="index.html">Dashboard Light</a></li>
+                <li><a href="index-2.html">Dashboard Dark</a></li>
+                <li><a href="schedule.html">schedule</a></li>
+                <li><a href="instructors.html">Instructors</a></li>
+                <li><a href="message.html">Message</a></li>
+                <li><a href="activity.html">Activity</a></li>
+                <li><a href="profile.html">Profile</a></li>
+              </ul>
+            </li>
+            <li>
+              <a
+                class="has-arrow"
+                href="javascript:void(0);"
+                aria-expanded="false"
+              >
+                <i class="bi bi-flag"></i>
+                <span class="nav-text">Tillar</span>
+              </a>
+              <ul aria-expanded="false">
+                <li><a asp-controller="Home" asp-action="ListLanguage">Tillar Ro'yxati</a></li>
+                <li><a asp-controller="Home" asp-action="AddLanguage" >Til Qo'shish</a></li>
+              </ul>
+            </li>
+            <li>
+              <a
+                class="has-arrow"
+                href="javascript:void(0);"
+                aria-expanded="false"
+              >
+                <i class="bi bi-book"></i>
+
+                <span class="nav-text">Courses</span>
+              </a>
+              <ul aria-expanded="false">
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="course-details-1.html">Course Details 1</a></li>
+                <li><a href="course-details-2.html">Course Details 2</a></li>
+              </ul>
+            </li>
+            <li>
+              <a
+                class="has-arrow"
+                href="javascript:void(0);"
+                aria-expanded="false"
+              >
+                <i class="bi bi-people"></i>
+
+                <span class="nav-text">Instructor</span>
+              </a>
+              <ul aria-expanded="false">
+                <li><a href="instructor-dashboard.html">Dashboard</a></li>
+                <li><a href="instructor-courses.html">Courses</a></li>
+                <li><a href="instructor-schedule.html">Schedule</a></li>
+                <li><a href="instructor-students.html">Students</a></li>
+                <li><a href="instructor-resources.html">Resources</a></li>
+                <li><a href="instructor-transactions.html">Transactions</a></li>
+                <li><a href="instructor-liveclass.html">Live class</a></li>
+              </ul>
+            </li>
+            <li>
+              <a
+                class="has-arrow"
+                href="javascript:void(0);"
+                aria-expanded="false"
+              >
+                <i class="bi bi-info-circle"></i>
+                <span class="nav-text">Apps</span>
+              </a>
+              <ul aria-expanded="false">
+                <li><a href="./app-profile.html">Profile</a></li>
+                <li><a href="./post-details.html">Post Details</a></li>
+                <li>
+                  <a
+                    class="has-arrow"
+                    href="javascript:void(0);"
+                    aria-expanded="false"
+                    >Email</a
+                  >
+                  <ul aria-expanded="false">
+                    <li><a href="./email-compose.html">Compose</a></li>
+                    <li><a href="./email-inbox.html">Inbox</a></li>
+                    <li><a href="./email-read.html">Read</a></li>
+                  </ul>
+                </li>
+                <li><a href="./app-calender.html">Calendar</a></li>
+                <li>
+                  <a
+                    class="has-arrow"
+                    href="javascript:void(0);"
+                    aria-expanded="false"
+                    >Shop</a
+                  >
+                  <ul aria-expanded="false">
+                    <li><a href="./ecom-product-grid.html">Product Grid</a></li>
+                    <li><a href="./ecom-product-list.html">Product List</a></li>
+                    <li>
+                      <a href="./ecom-product-detail.html">Product Details</a>
+                    </li>
+                    <li><a href="./ecom-product-order.html">Order</a></li>
+                    <li><a href="./ecom-checkout.html">Checkout</a></li>
+                    <li><a href="./ecom-invoice.html">Invoice</a></li>
+                    <li><a href="./ecom-customers.html">Customers</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a
+                class="has-arrow"
+                href="javascript:void(0);"
+                aria-expanded="false"
+              >
+                <i class="bi bi-pie-chart"></i>
+                <span class="nav-text">Charts</span>
+              </a>
+              <ul aria-expanded="false">
+                <li><a href="./chart-flot.html">Flot</a></li>
+                <li><a href="./chart-morris.html">Morris</a></li>
+                <li><a href="./chart-chartjs.html">Chartjs</a></li>
+                <li><a href="./chart-chartist.html">Chartist</a></li>
+                <li><a href="./chart-sparkline.html">Sparkline</a></li>
+                <li><a href="./chart-peity.html">Peity</a></li>
+              </ul>
+            </li>
+            <li>
+              <a
+                class="has-arrow"
+                href="javascript:void(0);"
+                aria-expanded="false"
+              >
+                <i class="bi bi-star"></i>
+                <span class="nav-text">Bootstrap</span>
+              </a>
+              <ul aria-expanded="false">
+                <li><a href="./ui-accordion.html">Accordion</a></li>
+                <li><a href="./ui-alert.html">Alert</a></li>
+                <li><a href="./ui-badge.html">Badge</a></li>
+                <li><a href="./ui-button.html">Button</a></li>
+                <li><a href="./ui-modal.html">Modal</a></li>
+                <li><a href="./ui-button-group.html">Button Group</a></li>
+                <li><a href="./ui-list-group.html">List Group</a></li>
+                <li><a href="./ui-card.html">Cards</a></li>
+                <li><a href="./ui-carousel.html">Carousel</a></li>
+                <li><a href="./ui-dropdown.html">Dropdown</a></li>
+                <li><a href="./ui-popover.html">Popover</a></li>
+                <li><a href="./ui-progressbar.html">Progressbar</a></li>
+                <li><a href="./ui-tab.html">Tab</a></li>
+                <li><a href="./ui-typography.html">Typography</a></li>
+                <li><a href="./ui-pagination.html">Pagination</a></li>
+                <li><a href="./ui-grid.html">Grid</a></li>
+              </ul>
+            </li>
+            <li>
+              <a
+                class="has-arrow"
+                href="javascript:void(0);"
+                aria-expanded="false"
+              >
+                <i class="bi bi-heart"></i>
+                <span class="nav-text">Plugins</span>
+              </a>
+              <ul aria-expanded="false">
+                <li><a href="./uc-select2.html">Select 2</a></li>
+                <li><a href="./uc-nestable.html">Nestedable</a></li>
+                <li><a href="./uc-noui-slider.html">Noui Slider</a></li>
+                <li><a href="./uc-sweetalert.html">Sweet Alert</a></li>
+                <li><a href="./uc-toastr.html">Toastr</a></li>
+                <li><a href="./map-jqvmap.html">Jqv Map</a></li>
+                <li><a href="./uc-lightgallery.html">Light Gallery</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="widget-basic.html" class="" aria-expanded="false">
+                <i class="bi bi-gear-wide"></i>
+                <span class="nav-text">Widget</span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="has-arrow"
+                href="javascript:void(0);"
+                aria-expanded="false"
+              >
+                <i class="bi bi-file-earmark-check"></i>
+                <span class="nav-text">Forms</span>
+              </a>
+              <ul aria-expanded="false">
+                <li><a href="./form-element.html">Form Elements</a></li>
+                <li><a href="./form-wizard.html">Wizard</a></li>
+                <li><a href="./form-ckeditor.html">CkEditor</a></li>
+                <li><a href="form-pickers.html">Pickers</a></li>
+                <li><a href="form-validation.html">Form Validate</a></li>
+              </ul>
+            </li>
+            <li>
+              <a
+                class="has-arrow"
+                href="javascript:void(0);"
+                aria-expanded="false"
+              >
+                <i class="bi bi-file-earmark-spreadsheet"></i>
+                <span class="nav-text">Table</span>
+              </a>
+              <ul aria-expanded="false">
+                <li><a href="table-bootstrap-basic.html">Bootstrap</a></li>
+                <li><a href="table-datatable-basic.html">Datatable</a></li>
+              </ul>
+            </li>
+            <li>
+              <a
+                class="has-arrow"
+                href="javascript:void(0);"
+                aria-expanded="false"
+              >
+                <i class="bi bi-file-earmark-break"></i>
+                <span class="nav-text">Pages</span>
+              </a>
+              <ul aria-expanded="false">
+                <li><a href="./page-login.html">Login</a></li>
+                <li><a href="./page-register.html">Register</a></li>
+                <li>
+                  <a
+                    class="has-arrow"
+                    href="javascript:void(0);"
+                    aria-expanded="false"
+                    >Error</a
+                  >
+                  <ul aria-expanded="false">
+                    <li><a href="./page-error-400.html">Error 400</a></li>
+                    <li><a href="./page-error-403.html">Error 403</a></li>
+                    <li><a href="./page-error-404.html">Error 404</a></li>
+                    <li><a href="./page-error-500.html">Error 500</a></li>
+                    <li><a href="./page-error-503.html">Error 503</a></li>
+                  </ul>
+                </li>
+                <li><a href="./page-lock-screen.html">Lock Screen</a></li>
+                <li><a href="./empty-page.html">Empty Page</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+   
+      <!--**********************************
+            Sidebar end
+        ***********************************-->
+          
+      <!--**********************************
+            Content body start
+        ***********************************-->
+         <div class="content-body">
+                 <div class="container">
+              <main role="main" class="pb-3">
+            @RenderBody()
+              </main>
+         </div>
+        <!-- row -->
+        <div class="container-fluid"></div>
+         
+      </div>
+      <!--**********************************
+            Content body end
+        ***********************************-->
+
+      <!--**********************************
+           Support ticket button start
+        ***********************************-->
+
+      <!--**********************************
+           Support ticket button end
+        ***********************************-->
+  
+    <!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <!-- Required vendors -->
+   
+  
+    <!--Layout **********-->
+    
+        <script src="~/admin/vendor/global/global.min.js"></script>
+        <script src="~/admin/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+        <script src="~/admin/js/custom.js"></script>
+        <script src="~/admin/js/dlabnav-init.js"></script>
+        <script src="~/admin/js/demo.js"></script>
+        <!-- ************* End Layout -->
+        <!--Language **********-->
+         <script src="~/admin/vendor/chart.js/Chart.bundle.min.js"></script>
+    <!-- Apex Chart -->
+    <script src="~/admin/vendor/apexchart/apexchart.js"></script>
+
+    <!-- Datatable -->
+    <script src="~/admin/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="~/admin/js/plugins-init/datatables.init.js"></script>
+      <!-- ************Language end-->
+
+   @* <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>*@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
