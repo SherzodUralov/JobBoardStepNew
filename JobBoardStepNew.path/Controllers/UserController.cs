@@ -34,13 +34,13 @@ namespace JobBoardStepNew.path.Controllers
             return View();
         }
 
-        [HttpGet("Login")]
+        [HttpGet]
         public ViewResult Login()
         {
             return View();
         }
 
-        [HttpPost("Login")]
+        [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             var user = await repo.UserReturn(model);
