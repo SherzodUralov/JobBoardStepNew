@@ -133,7 +133,7 @@
         ***********************************-->
       <div class="header">
         <div class="header-content">
-          <nav class="navbar navbar-expand">
+         @* <nav class="navbar navbar-expand">
             <div class="collapse navbar-collapse justify-content-between">
               <div class="navbar-nav header-right">
                 <div class="nav-item d-flex align-items-center"></div>
@@ -227,14 +227,14 @@
                     <li class="nav-item mt-4">
                       <div class="search-coundry d-flex align-items-center">
                         <img src="~/admin/images/United.png" alt="" />
-                        @*<select
+                        <select
                           class="default-select dashboard-select image-select"
                         >
                           <option data-display="Eng">Eng</option>
                           <option value="2">Af</option>
-                          <option value="2">Al</option>  *@                       
-                        @*  <option ><partial name="_Culture" /></option>                         
-                        </select>*@
+                          <option value="2">Al</option>                      
+                          <option ><partial name="_Culture" /></option>                         
+                        </select>
                     <ul class="navbar-nav flex-grow-1">
                        
                          <li class="nav-link">
@@ -242,12 +242,19 @@
                         </li>
                     </ul>
                       </div>
-                    </li>
+                   </li>
                   </ul>
                 </div>
               </div>
             </div>
-          </nav>
+          </nav>*@
+                    <img src="~/admin/images/United.png" alt="" />
+                    <ul class="navbar-nav flex-grow-1 ">
+                       
+                         <li class="nav-link">
+                            <partial name="_Culture" />
+                        </li>
+                    </ul>
         </div>
       </div>
 
