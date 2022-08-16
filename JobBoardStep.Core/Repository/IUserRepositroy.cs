@@ -28,7 +28,7 @@ namespace JobBoardStep.Core.Repository
 
         List<UserType> UserTypeList();
 
-        User NewUser(UserCreateViewModel newuser);
+        User NewUser(string UniqueFileName,UserCreateViewModel newuser);
 
         UserEditViewModel UpdateUser(User updateuser);
 
@@ -41,6 +41,10 @@ namespace JobBoardStep.Core.Repository
         IEnumerable<MapIndexViewModel> gets();
 
         IEnumerable<MapIndexViewModel> getss();
+
+        Task<User> changereturn(ChangeModel model);
+
+        Task<User> CreateChangeAsync(User user, ChangeModel model);
 
 
     }
