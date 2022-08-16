@@ -30,6 +30,7 @@ namespace JobBoardStep.Core.Models
         public DateTime CreateDate { get; set; }= DateTime.Now;
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
+        public string? PhotoFilePath { get; set; }
         public List<Job>? Jobs { get; set; }
         public Information? Information { get; set; }
         [ForeignKey("Information")]

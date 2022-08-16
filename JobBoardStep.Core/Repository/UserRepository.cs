@@ -81,7 +81,7 @@ namespace JobBoardStep.Core.Repository
             return context.InformationTranslates.ToList();
         }
 
-        public User NewUser(UserCreateViewModel newuser)
+        public User NewUser(string UniqueFileName, UserCreateViewModel newuser)
         {
             InformationTranslate information = context.InformationTranslates.FirstOrDefault(item => item.Id.Equals(newuser.InforTranId));
 
@@ -110,6 +110,8 @@ namespace JobBoardStep.Core.Repository
                 BirthDate = newuser.BirthDate,
 
                 CreateDate = newuser.CreateDate,
+                
+                PhotoFilePath = UniqueFileName,
 
                 RegionId = newuser.RegionId,
 
@@ -276,6 +278,31 @@ namespace JobBoardStep.Core.Repository
                              UserName = u.Email
                          });
             return model.ToArray();
+        }
+
+        public async Task<User> changereturn(ChangeModel model)
+        {
+            return await context.Users.Where(x => x.Email == model.Email).FirstOrDefaultAsync();
+        }
+
+        public async Task<User> CreateChangeAsync(User user, ChangeModel model)
+        {
+
+            byte[] passwordHash, passwordSalt;
+
+            CreatePassworHash(model.NewPassword, out passwordHash, out passwordSalt);
+
+            user.FirstName = user.FirstName;
+            user.LastName = user.LastName;
+            user.MiddleName = user.MiddleName;
+            user.Email = user.Email;
+            user.PassportNumber = user.PassportNumber;
+            user.BirthDate = user.BirthDate;
+            user.CreateDate = user.CreateDate;
+            user.PasswordHash = passwordHash;
+            user.PasswordSalt = passwordSalt;
+
+            return user;
         }
     }
 }

@@ -21,8 +21,8 @@ namespace JobBoardStepNew.path.Controllers
         [HttpGet]
         public ViewResult Create()
         {
-            ViewData["role"] = new SelectList(repo.listrole(), "RoleId", "RoleName");
-            ViewData["user"] = new SelectList(repo.listuser(), "Id", "UserName");
+            ViewData["role"] = new SelectList(repo.listrole(), "Id", "RoleName");
+            ViewData["user"] = new SelectList(repo.listuser(), "UserId", "Email");
             return View();
         }
         [HttpPost]
@@ -30,7 +30,7 @@ namespace JobBoardStepNew.path.Controllers
         {
             await repo.CreateAsync(model);
 
-            return RedirectToAction("Index", "RoleMaping");
+            return RedirectToAction("Index", "RoleMap");
         }
     }
 }

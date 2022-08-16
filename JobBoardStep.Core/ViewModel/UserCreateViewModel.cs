@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -29,6 +30,7 @@ namespace JobBoardStep.Core.ViewModel
         public DateTime BirthDate { get; set; }
         [Required]
         public DateTime CreateDate { get; set; }
+        public IFormFile? PhotoFile { get; set; }
         public int RegionId { get; set; }
         public int UserTypeId { get; set; }
         public int InforTranId { get; set; }

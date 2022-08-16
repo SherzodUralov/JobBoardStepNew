@@ -12,10 +12,36 @@ namespace JobBoardStepNew.path.Controllers
     public class UserController : Controller
     {
         private readonly IUserRepositroy repo;
+        private readonly IWebHostEnvironment webHost;
 
-        public UserController(IUserRepositroy repo)
+        public UserController(IUserRepositroy repo, IWebHostEnvironment webHost)
         {
             this.repo = repo;
+
+            this.webHost = webHost;
+        }
+        [HttpGet]
+        public ViewResult ChangePassword() 
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> ChangePassword(ChangeModel model)
+        {
+            var user = await repo.changereturn(model);
+            if (user == null)
+                return null;
+
+
+            var verif = await repo.VerifyPassword(model.OldPassword, user.PasswordHash, user.PasswordSalt);
+            if (!verif)
+                return null;
+
+            var changeupdate = await repo.CreateChangeAsync(user,model);
+
+            repo.Update(changeupdate);
+
+            return RedirectToAction("List");
         }
         public ViewResult List()
         {
@@ -53,7 +79,7 @@ namespace JobBoardStepNew.path.Controllers
 
             HttpSiginAsync(user);
 
-            return RedirectToAction("Index", "Account");
+            return RedirectToAction("List");
 
         }
 
@@ -73,7 +99,9 @@ namespace JobBoardStepNew.path.Controllers
         {
             if (ModelState.IsValid)
             {
-                var newuser = repo.NewUser(userCreate);
+                string UniqueFileName = ProccsesUploadFolder(userCreate);
+
+                var newuser = repo.NewUser(UniqueFileName,userCreate);
 
                 repo.Create(newuser);
 
@@ -159,6 +187,23 @@ namespace JobBoardStepNew.path.Controllers
 
             HttpContext.SignInAsync(claimsPrinsipal);
         }
+
+        private string ProccsesUploadFolder(UserCreateViewModel user) 
+        {
+            string uniqueFileName = string.Empty;
+
+            if (user.PhotoFile != null)
+            {
+                string uploadfolder = Path.Combine(webHost.WebRootPath, "Images");
+
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + user.PhotoFile.Name;
+
+                string imageFilePath = Path.Combine(uploadfolder, uniqueFileName);
+
+                user.PhotoFile.CopyTo(new FileStream(imageFilePath, FileMode.Create));
+            }
+            return uniqueFileName;
+        } 
 
     }
 
