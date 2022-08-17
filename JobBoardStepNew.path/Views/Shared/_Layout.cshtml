@@ -331,7 +331,18 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <form method="post" asp-controller="User" asp-action="Logout">
+                                             <button type="submit" class="nav-link btn btn-link py-0"
+                                                   style="width:auto">
+                                                  Logout @User.Identity.Name
+                                              </button>
+                                        </form>
+                                    }
+                                </span>
                                 <img class="img-profile rounded-circle"
                                     src="~/Admin2//img/undraw_profile.svg">
                             </a>
