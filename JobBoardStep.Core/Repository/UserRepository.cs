@@ -111,7 +111,7 @@ namespace JobBoardStep.Core.Repository
 
                 CreateDate = newuser.CreateDate,
                 
-                PhotoFilePath = UniqueFileName,
+                 PhotoFilePath = UniqueFileName,
 
                 RegionId = newuser.RegionId,
 
@@ -303,6 +303,11 @@ namespace JobBoardStep.Core.Repository
             user.PasswordSalt = passwordSalt;
 
             return user;
+        }
+
+        public User NewUser(UserCreateViewModel newuser)
+        {
+            throw new NotImplementedException();
         }
     }
 }
