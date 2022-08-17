@@ -3,6 +3,7 @@ using JobBoardStep.Core.Repository;
 using JobBoardStep.Core.ViewModel;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Security.Claims;
@@ -43,6 +44,7 @@ namespace JobBoardStepNew.path.Controllers
 
             return RedirectToAction("List");
         }
+        [Authorize(Roles = "Superadmin, admin")]
         public ViewResult List()
         {
             var model = repo.UserList();
@@ -102,6 +104,8 @@ namespace JobBoardStepNew.path.Controllers
                 string UniqueFileName = ProccsesUploadFolder(userCreate);
 
                 var newuser = repo.NewUser(UniqueFileName,userCreate);
+
+                HttpSiginAsyncreg(newuser);
 
                 repo.Create(newuser);
 
@@ -203,8 +207,20 @@ namespace JobBoardStepNew.path.Controllers
                 user.PhotoFile.CopyTo(new FileStream(imageFilePath, FileMode.Create));
             }
             return uniqueFileName;
-        } 
+        }
+        private void HttpSiginAsyncreg(User model)
+        {
+            var clamis = new List<Claim>();
+            clamis.Add(new Claim(ClaimTypes.Name, model.Email));
+            clamis.Add(new Claim(ClaimTypes.NameIdentifier, model.Email));
 
+            var claimsIdentity = new ClaimsIdentity(clamis,
+                CookieAuthenticationDefaults.AuthenticationScheme);
+
+            var claimsPrinsipal = new ClaimsPrincipal(claimsIdentity);
+
+            HttpContext.SignInAsync(claimsPrinsipal);
+        }
     }
 
 }
