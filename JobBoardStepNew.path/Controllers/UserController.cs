@@ -3,6 +3,7 @@ using JobBoardStep.Core.Repository;
 using JobBoardStep.Core.ViewModel;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Security.Claims;
@@ -143,6 +144,15 @@ namespace JobBoardStepNew.path.Controllers
             repo.Update(model);
 
             return RedirectToAction("List");
+        }
+        //Language
+        [HttpPost]
+        public IActionResult CultureManagement(string culture, string returnUrl)
+        {
+            Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName, CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                new CookieOptions { Expires = DateTimeOffset.Now.AddDays(30) });
+
+            return LocalRedirect(returnUrl);
         }
         public IActionResult Delete(int id) 
         {

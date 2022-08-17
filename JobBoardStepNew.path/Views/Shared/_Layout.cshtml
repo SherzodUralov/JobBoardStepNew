@@ -64,7 +64,11 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Components:</h6>
                         <a class="collapse-item" asp-controller="User" asp-action="List">Users</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
+                        <a class="collapse-item" asp-controller="JobCategory" asp-action="List">JobCategory</a>
+                        <a class="collapse-item" asp-controller="Exper" asp-action="List">Experience</a>
+                        <a class="collapse-item" asp-controller="Infor" asp-action="List">Informations</a>
+                        <a class="collapse-item" asp-controller="Job" asp-action="List">Job</a>
+                        <a class="collapse-item" asp-controller="JobType" asp-action="List">JobType</a>                     
                     </div>
                 </div>
             </li>
@@ -204,13 +208,14 @@
                         </li>
 
                         <!-- Nav Item - Alerts -->
-                        <li class="nav-item dropdown no-arrow mx-1">
+                        <li class="nav-item dropdown no-arrow mx-1">                           
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
-                                <!-- Counter - Alerts -->
+                                <!-- Counter - Alerts -->                                
                                 <span class="badge badge-danger badge-counter">3+</span>
                             </a>
+                             <partial name="_Culture" />
                             <!-- Dropdown - Alerts -->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="alertsDropdown">

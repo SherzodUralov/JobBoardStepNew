@@ -1,4 +1,5 @@
-﻿@model UserCreateViewModel
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer 
+@model UserCreateViewModel
 @{
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
@@ -18,37 +19,37 @@
                     <div class="col-lg-7">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                                <h1 class="h4 text-gray-900 mb-4">@localizer["Create an Account!"]</h1>
                             </div>
                             <form asp-controller="User" asp-action="Create" method="post" enctype="multipart/form-data">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input asp-for="FirstName" type="text" class="form-control form-control-user" id="exampleFirstName"
-                                            placeholder="First Name">
+                                            placeholder="@localizer["First Name"]">
                                     </div>
                                     <div class="col-sm-6">
                                         <input asp-for="LastName" type="text" class="form-control form-control-user" id="exampleLastName"
-                                            placeholder="Last Name">
+                                            placeholder="@localizer["Last Name"]">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                      <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input asp-for="MiddleName" type="text" class="form-control form-control-user" id="exampleFirstName"
-                                            placeholder="Middle Name">
+                                            placeholder="@localizer["Middle Name"]">
                                     </div>
                                     <div class="col-sm-6">
                                         <input asp-for="PassportNumber" type="text" class="form-control form-control-user"
-                                            id="exampleRepeatPassword" placeholder="Passport Number">
+                                            id="exampleRepeatPassword" placeholder="@localizer["Passport Number"]">
                                     </div>
                                 </div>
                                  <div class="form-group">
                                      <input asp-for="Email" type="email" class="form-control form-control-user" id="exampleInputEmail"
-                                        placeholder="Email Address">
+                                        placeholder="@localizer["Email Address"]">
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input asp-for="Password" type="password" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="Password">
+                                            id="exampleInputPassword" placeholder="@localizer["Password"]">
                                     </div>
                                      <div class="col-sm-6 ">
                                         <input asp-for="BirthDate" class="form-control form-control-user"
@@ -62,7 +63,7 @@
                                     </div>
                                      <div class="col-sm-6">
                                         <select asp-for="UserTypeId" asp-items="@ViewBag.usertype" class="form-control form-control-user">
-                                                <option selected>User type select...</option>
+                                                <option selected>@localizer["User type select..."]</option>
                                         </select>
                                     </div>
                                 </div>
@@ -70,35 +71,35 @@
                                     <div class="custom-file">
                                         <input asp-for="PhotoFile" class="form-control custom-file-input form-control-user"
                                             id="fileupload" placeholder="User Type">
-                                            <label class="custom-file-label">Choose file ...</label>
+                                            <label class="custom-file-label">@localizer["Choose file ..."]</label>
                                         </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                             <select asp-for="RegionId" asp-items="@ViewBag.region" class="form-control form-control-user">
-                                                <option selected>Region select...</option>
+                                                <option selected>@localizer["Region select..."]</option>
                                             </select>
                                     </div>
                                     <div class="col-sm-6">
                                         <select asp-for="InforTranId" asp-items="@ViewBag.infor" class="form-control form-control-user">
-                                                <option selected>Information select...</option>
+                                                <option selected>@localizer["Information select..."]</option>
                                         </select>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-user btn-block">
-                                     Register Account
+                                     @localizer["Register Account"]
                                 </button>
                                 <hr>
                                 <a href="index.html" class="btn btn-google btn-user btn-block">
-                                    <i class="fab fa-google fa-fw"></i> Register with Google
+                                    <i class="fab fa-google fa-fw"></i> @localizer["Register with Google"]
                                 </a>
                             </form>
                             <hr>
                             <div class="text-center">
-                                <a class="small" asp-controller="User" asp-action="ChangePassword">Forgot Password?</a>
+                                <a class="small" asp-controller="User" asp-action="ChangePassword">@localizer["Forgot Password"]</a>
                             </div>
                             <div class="text-center">
-                                <a class="small" asp-controller="User" asp-action="Login">Already have an account? Login!</a>
+                                <a class="small" asp-controller="User" asp-action="Login">@localizer["Already have an account? Login!"]</a>
                             </div>
                         </div>
                     </div>
