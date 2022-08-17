@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JobBoardStep.Core.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220817051519_photofilepath")]
+    [Migration("20220817080708_photofilepath")]
     partial class photofilepath
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

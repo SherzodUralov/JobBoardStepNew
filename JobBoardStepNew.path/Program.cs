@@ -17,12 +17,13 @@ builder.Services.Configure<RequestLocalizationOptions>(
     {
         var supportedCulteres = new List<CultureInfo>
         {
+            
+            new CultureInfo("ru"),
             new CultureInfo("en"),
-            new CultureInfo("uz"),
-            new CultureInfo("ru")
+            new CultureInfo("uz")
 
         };
-        opt.DefaultRequestCulture = new RequestCulture("uz");
+        opt.DefaultRequestCulture = new RequestCulture("eng");
         opt.SupportedCultures = supportedCulteres;
         opt.SupportedUICultures = supportedCulteres;
     });

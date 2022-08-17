@@ -4,6 +4,7 @@ using JobBoardStep.Core.ViewModel;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Security.Claims;
@@ -117,6 +118,15 @@ namespace JobBoardStepNew.path.Controllers
 
             ViewBag.usertype = new SelectList(repo.UserTypeList(), "UserTypeId", "UserTypeName");
             return View(); 
+        }
+        //Language
+        [HttpPost]
+        public IActionResult CultureManagement(string culture, string returnUrl)
+        {
+            Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName, CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                new CookieOptions { Expires = DateTimeOffset.Now.AddSeconds(3)});
+
+            return LocalRedirect(returnUrl);
         }
         [HttpGet]
         public ViewResult Edit(int id)
