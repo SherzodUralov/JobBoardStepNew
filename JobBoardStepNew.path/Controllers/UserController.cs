@@ -3,7 +3,7 @@ using JobBoardStep.Core.Repository;
 using JobBoardStep.Core.ViewModel;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Security.Claims;
@@ -44,6 +44,7 @@ namespace JobBoardStepNew.path.Controllers
 
             return RedirectToAction("List");
         }
+        [Authorize(Roles = "Superadmin, admin")]
         public ViewResult List()
         {
             var model = repo.UserList();
@@ -104,6 +105,8 @@ namespace JobBoardStepNew.path.Controllers
 
                 var newuser = repo.NewUser(UniqueFileName,userCreate);
 
+                HttpSiginAsyncreg(newuser);
+
                 repo.Create(newuser);
 
                 return RedirectToAction("List");
@@ -144,15 +147,6 @@ namespace JobBoardStepNew.path.Controllers
             repo.Update(model);
 
             return RedirectToAction("List");
-        }
-        //Language
-        [HttpPost]
-        public IActionResult CultureManagement(string culture, string returnUrl)
-        {
-            Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName, CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
-                new CookieOptions { Expires = DateTimeOffset.Now.AddDays(30) });
-
-            return LocalRedirect(returnUrl);
         }
         public IActionResult Delete(int id) 
         {
@@ -213,8 +207,20 @@ namespace JobBoardStepNew.path.Controllers
                 user.PhotoFile.CopyTo(new FileStream(imageFilePath, FileMode.Create));
             }
             return uniqueFileName;
-        } 
+        }
+        private void HttpSiginAsyncreg(User model)
+        {
+            var clamis = new List<Claim>();
+            clamis.Add(new Claim(ClaimTypes.Name, model.Email));
+            clamis.Add(new Claim(ClaimTypes.NameIdentifier, model.Email));
 
+            var claimsIdentity = new ClaimsIdentity(clamis,
+                CookieAuthenticationDefaults.AuthenticationScheme);
+
+            var claimsPrinsipal = new ClaimsPrincipal(claimsIdentity);
+
+            HttpContext.SignInAsync(claimsPrinsipal);
+        }
     }
 
 }
