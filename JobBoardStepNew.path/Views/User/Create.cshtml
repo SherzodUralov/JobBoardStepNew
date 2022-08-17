@@ -1,96 +1,110 @@
-﻿
-@model UserCreateViewModel
-<form asp-controller="User" asp-action="Create" method="post" enctype="multipart/form-data">
-  <div class="form-row">
-    <div class="row">
-     <div class="form-group col-md-4">
-      <label asp-for="FirstName" class="form-label">FirstName</label>
-      <input asp-for="FirstName" class="form-control" id="inputEmail4" placeholder="FirstName">
-      <span asp-validation-for="FirstName" class="text-danger"></span>
-    </div>
-    <div class="form-group col-md-4">
-      <label asp-for="LastName" class="form-label">LastName</label>
-      <input asp-for="LastName" class="form-control" id="inputEmail4" placeholder="LastName">
-      <span asp-validation-for="LastName" class="text-danger"></span>
-    </div>
-     <div class="form-group col-md-4">
-      <label asp-for="MiddleName" class="form-label">MiddleName</label>
-      <input asp-for="MiddleName" class="form-control" id="inputEmail4" placeholder="MiddleName">
-      <span asp-validation-for="MiddleName" class="text-danger"></span>
-    </div>
-  </div>
-  <div class="row">
-      <div class="form-group col-md-3">
-      <label asp-for="Email" class="form-label">Email</label>
-      <input asp-for="Email" type="email" class="form-control" id="inputPassword4" placeholder="Email"> 
-      <span asp-validation-for="Email" class="text-danger"></span>
-    </div>
-     <div class="form-group col-md-3">
-      <label asp-for="Password" class="form-label">Password</label>
-      <input asp-for="Password" type="password" class="form-control" id="inputPassword4" placeholder="Email"> 
-      <span asp-validation-for="Password" class="text-danger"></span>
-    </div>
-    <div class="form-group col-md-2">
-    <label asp-for="PassportNumber" class="form-label">PassportNumber</label>
-    <input asp-for="PassportNumber" class="form-control" id="inputAddress" placeholder="PassportNumber">
-    <span asp-validation-for="PassportNumber" class="text-danger"></span>
-  </div>
-  <div class="form-group col-md-2">
-    <label asp-for="BirthDate" class="form-label">BirthDate</label>
-    <input asp-for="BirthDate" class="form-control" id="inputAddress2" placeholder="BirthDate">
-    <span asp-validation-for="BirthDate" class="text-danger"></span>
-  </div>
-   <div class="form-group col-md-2">
-    <label asp-for="CreateDate" class="form-label">CreateDate</label>
-    <input asp-for="CreateDate" class="form-control" id="inputAddress2" placeholder="CreateDate">
-    <span asp-validation-for="CreateDate" class="text-danger"></span>
-  </div>
-  </div>
-  </div>
-  <div class="form-row">
-      <div class="form-group col-md-4">
-      <label asp-for="RegionId" class="form-label">Region</label>
-      <select asp-for="RegionId" class="form-control" asp-items="@ViewBag.region">
-        <option selected>Choose...</option>
-      </select>
-      <span asp-validation-for="RegionId" class="text-danger"></span>
-    </div>
-    <div class="form-group col-md-4">
-      <label  asp-for="UserTypeId">UserType</label>
-      <select asp-for="UserTypeId" class="form-control" asp-items="@ViewBag.usertype">
-        <option selected>Choose...</option>
-      </select>
-      <span asp-validation-for="UserTypeId" class="text-danger"></span>
-    </div>
-    <div class="row">
-         <div class="form-group col-md-3">
-      <label asp-for="InforTranId" class="form-label">Information</label>
-      <select asp-for="InforTranId" class="form-control" asp-items="@ViewBag.infor">
-        <option selected>Choose...</option>
-      </select>
-      <span asp-validation-for="InforTranId" class="text-danger"></span>
-    </div>
-     <div class="form-group col-md-3 mt-4">
-                <img src="~/Images/user.png"
+﻿@model UserCreateViewModel
+@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+@*d-none d-lg-block bg-register-image*@
+<div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-5">
+                         <img src="~/Images/png-clipart-computer-icons-person-blog-person-icon-rectangle-logo.png"
                      asp-append-version="true"
-                     style="width: 150px; height: 150px;"
-                     class="rounded-circle"
+                     style="width: 500px; height: 750px;"
+                     class="rounded"
                      id="preview"
                      />
-     </div>
-    </div>
-      <div class="form-group col-md-5">
-                <label asp-for="PhotoFile" class="form-label">Photo</label>
-                <div class="custom-file">
-                    <input asp-for="PhotoFile" class="form-control custom-file-input" id="fileupload" />
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                            </div>
+                            <form asp-controller="User" asp-action="Create" method="post" enctype="multipart/form-data">
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input asp-for="FirstName" type="text" class="form-control form-control-user" id="exampleFirstName"
+                                            placeholder="First Name">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input asp-for="LastName" type="text" class="form-control form-control-user" id="exampleLastName"
+                                            placeholder="Last Name">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                     <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input asp-for="MiddleName" type="text" class="form-control form-control-user" id="exampleFirstName"
+                                            placeholder="Middle Name">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input asp-for="PassportNumber" type="text" class="form-control form-control-user"
+                                            id="exampleRepeatPassword" placeholder="Passport Number">
+                                    </div>
+                                </div>
+                                 <div class="form-group">
+                                     <input asp-for="Email" type="email" class="form-control form-control-user" id="exampleInputEmail"
+                                        placeholder="Email Address">
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input asp-for="Password" type="password" class="form-control form-control-user"
+                                            id="exampleInputPassword" placeholder="Password">
+                                    </div>
+                                     <div class="col-sm-6 ">
+                                        <input asp-for="BirthDate" class="form-control form-control-user"
+                                            id="exampleInputPassword" placeholder="Birth Date">
+                                    </div>
+                                </div>
+                                 <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input asp-for="CreateDate" class="form-control form-control-user"
+                                            id="exampleRepeatPassword" placeholder="Create Date">
+                                    </div>
+                                     <div class="col-sm-6">
+                                        <select asp-for="UserTypeId" asp-items="@ViewBag.usertype" class="form-control form-control-user">
+                                                <option selected>User type select...</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="custom-file">
+                                        <input asp-for="PhotoFile" class="form-control custom-file-input form-control-user"
+                                            id="fileupload" placeholder="User Type">
+                                            <label class="custom-file-label">Choose file ...</label>
+                                        </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                            <select asp-for="RegionId" asp-items="@ViewBag.region" class="form-control form-control-user">
+                                                <option selected>Region select...</option>
+                                            </select>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <select asp-for="InforTranId" asp-items="@ViewBag.infor" class="form-control form-control-user">
+                                                <option selected>Information select...</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-user btn-block">
+                                     Register Account
+                                </button>
+                                <hr>
+                                <a href="index.html" class="btn btn-google btn-user btn-block">
+                                    <i class="fab fa-google fa-fw"></i> Register with Google
+                                </a>
+                            </form>
+                            <hr>
+                            <div class="text-center">
+                                <a class="small" asp-controller="User" asp-action="ChangePassword">Forgot Password?</a>
+                            </div>
+                            <div class="text-center">
+                                <a class="small" asp-controller="User" asp-action="Login">Already have an account? Login!</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-     </div>
-  </div>
-  <div class="mt-4">
-  <button asp-controller="User" asp-action="List" class="btn btn-success ">back</button>
-  <button type="submit" class="btn btn-primary">Create</button>
-  </div>
-</form>
+            </div>
+        </div>
 @section Scripts {
 <script>
      $(document).ready(function () {
@@ -99,7 +113,7 @@
                 $(this).next('.custom-file-label').html(filname);
             });
         });
-         $(function () {
+        $(function () {
             $("#fileupload").change(function (event) {
                 var x = URL.createObjectURL(event.target.files[0]);
                 $("#preview").attr("src", x);
