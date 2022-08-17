@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <Folder Include="Views\admin\" />
+    <Folder Include="wwwroot\css\" />
   </ItemGroup>
 
 </Project>
