@@ -20,7 +20,7 @@ namespace JobBoardStep.Core.Repository
 
         void Delete(int id);
 
-        IList<UserListViewModel> UserList();
+        IList<UserListViewModel> UserList(string lang);
 
         List<InformationTranslate> InfroList(string lang);
 

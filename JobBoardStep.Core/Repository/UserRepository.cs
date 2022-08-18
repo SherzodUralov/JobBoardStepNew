@@ -180,8 +180,12 @@ namespace JobBoardStep.Core.Repository
             return newupdate;
         }
 
-        public IList<UserListViewModel> UserList()
+        public IList<UserListViewModel> UserList(string lang)
         {
+            if (lang == null)
+            {
+                lang = "en";
+            }
             var model = (from u in context.Users
 
                          join it in context.Information
@@ -198,7 +202,9 @@ namespace JobBoardStep.Core.Repository
 
                          join r in context.Regions
 
-                         on u.RegionId equals r.Id
+                         on u.RegionId equals r.Id                          
+
+                         where itt.Language.LanguageName == lang
 
                          select new UserListViewModel
                          {

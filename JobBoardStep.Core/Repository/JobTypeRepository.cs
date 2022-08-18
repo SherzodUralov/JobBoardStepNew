@@ -46,6 +46,7 @@ namespace JobBoardStep.Core.Repository
                          {
                              Id = JT.Id,
                              JobTypeName = JTT.Name,
+                             LangName=L.LanguageName,
                              CreateDate = JT.CareateDate,
                              UpdateDate = JT.UpdateDate,
                              JobTypeStatus = JT.JobTypeStatus

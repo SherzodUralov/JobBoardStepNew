@@ -258,6 +258,13 @@ button,
 select {
   text-transform: none;
 }
+    select:focus {
+        outline: 0 !important;
+    }
+
+    select:change {
+        outline: 0 !important;
+    }
 
 [role="button"] {
   cursor: pointer;
@@ -265,7 +272,8 @@ select {
 
 select {
   word-wrap: normal;
-}
+  background: 0 !important;
+ }
 
 button,
 [type="button"],

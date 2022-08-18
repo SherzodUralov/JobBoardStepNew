@@ -39,7 +39,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
                  {
                      options.LoginPath = "/User/Login";
                      options.AccessDeniedPath = "/User/Denied";
-                     options.ExpireTimeSpan = TimeSpan.FromSeconds(30);
+                     options.ExpireTimeSpan = TimeSpan.FromSeconds(200);
                  });
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>

@@ -18,20 +18,20 @@
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
-                    <tr>
+                    <tr style="text-align:center">
                         <th>T/R</th>
                         <th>Name</th>
                         <th>Language</th>
                         <th>CreateDate</th>
                         <th>UpdateDate</th>
-                       
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
                         intson += 1;
-                        <tr>
+                        <tr style="text-align:center">
                             <td>
                                 @intson
                             </td>

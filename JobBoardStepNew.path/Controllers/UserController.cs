@@ -50,7 +50,8 @@ namespace JobBoardStepNew.path.Controllers
         [Authorize(Roles = "Superadmin, admin")]
         public ViewResult List()
         {
-            var model = repo.UserList();
+            var modelsession = HttpContext.Session.GetString("language");
+            var model = repo.UserList(modelsession);
 
             return View(model);
         }

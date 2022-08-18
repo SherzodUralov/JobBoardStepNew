@@ -56,9 +56,9 @@
                     <label asp-for="UpdateDate" class="form-label">UpdateDate</label>
                     <input asp-for="UpdateDate" class="form-control" />
                 </div>
-                 <div class="mb-3 col-md-9">
-                    <label asp-for="ExperienceStatus" class="form-label">InformationStatus</label>
-                    <input asp-for="ExperienceStatus" class="form-control" />
+                <div class="mb-3 col-md-9 form-check form-check-inline">
+                      <input class="form-check-input" type="checkbox" id="inlineCheckbox" asp-for="ExperienceStatus">
+                      <label class="form-check-label" asp-for="ExperienceStatus">ExperienceStatus</label>
                 </div>
                 
                 <div class="mb-3 col-md-9">
