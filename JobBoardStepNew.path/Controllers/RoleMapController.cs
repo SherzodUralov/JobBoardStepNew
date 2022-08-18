@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace JobBoardStepNew.path.Controllers
 {
+    
     public class RoleMapController : Controller
     {
         private readonly IRoleMapRepo repo;

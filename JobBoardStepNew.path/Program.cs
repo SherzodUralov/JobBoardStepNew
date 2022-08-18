@@ -23,7 +23,7 @@ builder.Services.Configure<RequestLocalizationOptions>(
             new CultureInfo("uz")
 
         };
-        opt.DefaultRequestCulture = new RequestCulture("eng");
+        opt.DefaultRequestCulture = new RequestCulture("en");
         opt.SupportedCultures = supportedCulteres;
         opt.SupportedUICultures = supportedCulteres;
     });

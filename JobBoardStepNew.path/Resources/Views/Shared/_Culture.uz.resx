@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="en" xml:space="preserve">
-    <value>en</value>
+    <value>eng</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>Uy</value>
@@ -127,9 +127,9 @@
     <value>Maxfiylik</value>
   </data>
   <data name="ru" xml:space="preserve">
-    <value>ru</value>
+    <value>rus</value>
   </data>
   <data name="uz" xml:space="preserve">
-    <value>uz</value>
+    <value>uzb</value>
   </data>
 </root>

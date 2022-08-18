@@ -124,7 +124,7 @@ namespace JobBoardStepNew.path.Controllers
         public IActionResult CultureManagement(string culture, string returnUrl)
         {
             Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName, CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
-                new CookieOptions { Expires = DateTimeOffset.Now.AddSeconds(3)});
+                new CookieOptions { Expires = DateTimeOffset.Now.AddSeconds(30)});
 
             return LocalRedirect(returnUrl);
         }
