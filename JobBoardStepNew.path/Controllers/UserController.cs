@@ -91,9 +91,8 @@ namespace JobBoardStepNew.path.Controllers
         [HttpGet]
         public ViewResult Create()
         {
-            ViewBag.dsds = HttpContext.Session.GetString("language");
+            var model = HttpContext.Session.GetString("language");
 
-            var model = ViewBag.dsds;
 
             ViewBag.region = new SelectList(repo.RegionList(), "Id", "Name");
 
