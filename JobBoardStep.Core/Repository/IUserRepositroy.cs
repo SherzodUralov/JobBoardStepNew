@@ -22,7 +22,7 @@ namespace JobBoardStep.Core.Repository
 
         IList<UserListViewModel> UserList();
 
-        List<InformationTranslate> InfroList();
+        List<InformationTranslate> InfroList(string lang);
 
         List<Region> RegionList();
 
