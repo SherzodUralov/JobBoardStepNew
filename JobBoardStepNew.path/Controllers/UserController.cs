@@ -15,6 +15,7 @@ namespace JobBoardStepNew.path.Controllers
     {
         private readonly IUserRepositroy repo;
         private readonly IWebHostEnvironment webHost;
+       
 
         public UserController(IUserRepositroy repo, IWebHostEnvironment webHost)
         {
@@ -22,6 +23,7 @@ namespace JobBoardStepNew.path.Controllers
 
             this.webHost = webHost;
         }
+
         [HttpGet]
         public ViewResult ChangePassword() 
         {
@@ -85,13 +87,17 @@ namespace JobBoardStepNew.path.Controllers
             return RedirectToAction("List");
 
         }
-
+        public string ism;
         [HttpGet]
         public ViewResult Create()
         {
+            ViewBag.dsds = HttpContext.Session.GetString("language");
+
+            var model = ViewBag.dsds;
+
             ViewBag.region = new SelectList(repo.RegionList(), "Id", "Name");
 
-            ViewBag.infor = new SelectList(repo.InfroList(), "Id", "Name");
+            ViewBag.infor = new SelectList(repo.InfroList(model), "Id", "Name");
 
             ViewBag.usertype = new SelectList(repo.UserTypeList(), "UserTypeId", "UserTypeName");
 
@@ -114,7 +120,7 @@ namespace JobBoardStepNew.path.Controllers
             }
             ViewBag.region = new SelectList(repo.RegionList(), "Id", "Name");
 
-            ViewBag.infor = new SelectList(repo.InfroList(), "Id", "Name");
+            ViewBag.infor = new SelectList(repo.InfroList(ism), "Id", "Name");
 
             ViewBag.usertype = new SelectList(repo.UserTypeList(), "UserTypeId", "UserTypeName");
             return View(); 
@@ -124,10 +130,22 @@ namespace JobBoardStepNew.path.Controllers
         public IActionResult CultureManagement(string culture, string returnUrl)
         {
             Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName, CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+<<<<<<< HEAD
                 new CookieOptions { Expires = DateTimeOffset.Now.AddSeconds(30)});
+=======
+                new CookieOptions { Expires = DateTimeOffset.Now.AddDays(1)});
+
+            HttpContext.Session.SetString("language", culture);
+
+            
+
+>>>>>>> 873e05b5bd2fb4dc951201016be5de19dcba17e7
 
             return LocalRedirect(returnUrl);
+
+           
         }
+        
         [HttpGet]
         public ViewResult Edit(int id)
         {
@@ -137,7 +155,7 @@ namespace JobBoardStepNew.path.Controllers
 
             ViewBag.region = new SelectList(repo.RegionList(), "Id", "Name");
 
-            ViewBag.infor = new SelectList(repo.InfroList(), "Id", "Name");
+            ViewBag.infor = new SelectList(repo.InfroList(ism), "Id", "Name");
 
             ViewBag.usertype = new SelectList(repo.UserTypeList(), "UserTypeId", "UserTypeName");
 

@@ -76,9 +76,14 @@ namespace JobBoardStep.Core.Repository
             return context.Users.Find(id);
         }
 
-        public List<InformationTranslate> InfroList()
+        public List<InformationTranslate> InfroList(string lang)
         {
-            return context.InformationTranslates.ToList();
+            if (lang == null)
+            {
+                lang = "en";
+            }
+
+            return context.InformationTranslates.Where(x => x.Language.LanguageName.Equals(lang)).ToList();
         }
 
         public User NewUser(string UniqueFileName, UserCreateViewModel newuser)

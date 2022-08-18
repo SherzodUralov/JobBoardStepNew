@@ -18,9 +18,9 @@ builder.Services.Configure<RequestLocalizationOptions>(
         var supportedCulteres = new List<CultureInfo>
         {
             
-            new CultureInfo("ru"),
-            new CultureInfo("en"),
-            new CultureInfo("uz")
+            new CultureInfo("rus"),
+            new CultureInfo("eng"),
+            new CultureInfo("uzb")
 
         };
         opt.DefaultRequestCulture = new RequestCulture("en");
@@ -40,6 +40,13 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
                      options.LoginPath = "/User/Login";
                      options.AccessDeniedPath = "/User/Denied";
                      options.ExpireTimeSpan = TimeSpan.FromSeconds(30);
+                 });
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+                 {
+                     options.Cookie.Name = ".NetEscapades.Session";
+                     options.IdleTimeout = TimeSpan.FromMinutes(30);
+                     options.Cookie.IsEssential = true;
                  });
 
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -76,15 +83,16 @@ app.UseAuthorization();
 //<Language>
     app.UseRequestLocalization(app.Services.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
 
-  //var supportedCultres = new[] { "en", "fr", "es" };
-  //var localizationOptions = new RequestLocalizationOptions().SetDefaultCulture(supportedCultres[0])
-  //.AddSupportedCultures(supportedCultres)
-  //.AddSupportedUICultures(supportedCultres);  
-  // app.UseRequestLocalization(localizationOptions);
+//var supportedCultres = new[] { "en", "fr", "es" };
+//var localizationOptions = new RequestLocalizationOptions().SetDefaultCulture(supportedCultres[0])
+//.AddSupportedCultures(supportedCultres)
+//.AddSupportedUICultures(supportedCultres);  
+// app.UseRequestLocalization(localizationOptions);
 
 
 //</Language>
 
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",
