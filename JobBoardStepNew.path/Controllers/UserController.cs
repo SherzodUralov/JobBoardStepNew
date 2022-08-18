@@ -130,16 +130,9 @@ namespace JobBoardStepNew.path.Controllers
         public IActionResult CultureManagement(string culture, string returnUrl)
         {
             Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName, CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
-<<<<<<< HEAD
-                new CookieOptions { Expires = DateTimeOffset.Now.AddSeconds(30)});
-=======
                 new CookieOptions { Expires = DateTimeOffset.Now.AddDays(1)});
-
             HttpContext.Session.SetString("language", culture);
 
-            
-
->>>>>>> 873e05b5bd2fb4dc951201016be5de19dcba17e7
 
             return LocalRedirect(returnUrl);
 
