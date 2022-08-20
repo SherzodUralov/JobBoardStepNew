@@ -15,9 +15,9 @@ namespace JobBoardStep.Core.Models
         [Required]
         public string LanguageName { get; set; }
         public bool LanguageStatus { get; set; }
-        public List<JobTypeTranslate> JobTypeTranslates { get; set; }
-        public List<InformationTranslate> InformationTranslates { get; set; }
-        public List<ExperienceTranslate> ExperienceTranslates { get; set; }
-        public List<JobCategoryTranslate> JobCategoryTranslates { get; set; }
+        public List<JobTypeTranslate>? JobTypeTranslates { get; set; }
+        public List<InformationTranslate>? InformationTranslates { get; set; }
+        public List<ExperienceTranslate>? ExperienceTranslates { get; set; }
+        public List<JobCategoryTranslate>? JobCategoryTranslates { get; set; }
     }
 }

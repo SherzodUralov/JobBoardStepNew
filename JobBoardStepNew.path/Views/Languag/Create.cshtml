@@ -1,0 +1,19 @@
+﻿@model Language
+<form asp-controller="Languag" asp-action="Create" method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div class="mb-3 col-sm-6">
+         <label asp-for="LanguageName" class="form-label">Name</label>
+         <input asp-for="LanguageName" class="form-control" id="exampleInputEmail1">
+        </div>
+    </div>
+    <div class="row">
+         <div class="mb-3 ml-3 form-check">
+         <input asp-for="LanguageStatus" type="checkbox" class="form-check-input" id="exampleCheck1">
+         <label asp-for="LanguageStatus" class="form-check-label" for="exampleCheck1">status</label>
+        </div>
+    </div>
+    <div class="row">
+        <button asp-controller="Languag" asp-action="Index" class="btn btn-danger ml-3">Back</button>
+        <button type="submit" class="btn btn-primary ml-2">Submit</button>
+    </div>
+</form>

@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Language>
+@{
+    int son = 0;
+}
+<p>
+    <a asp-controller="Languag" asp-action="Create" class="text-danger">Create New</a>
+</p>
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by name: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+            <input type="submit" value="Search" class="btn btn-default" /> |
+            <a asp-action="Index">Back to Full List</a>
+        </p>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                T/r
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["FirstNameSortParm"]">@Html.DisplayNameFor(model => model.LanguageName)</a>
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                Actoins
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+            son += 1;
+            <tr>
+            <td>
+               @son
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LanguageName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => item.LanguageStatus)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new {  id = item.Id  }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
