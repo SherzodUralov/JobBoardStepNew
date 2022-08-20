@@ -1,8 +1,129 @@
-﻿@model List<UserListViewModel>
+﻿@model IList<UserListViewModel>
 @{
     int intson = 0;
+     Pager pager = new Pager();
+    int pageNo = 0;
+    if (ViewBag.Pager != null)
+    {
+        pager = ViewBag.Pager;
+        pageNo = pager.CurrentPage;
+    }
 }
-     <div class="card shadow mb-4">
+
+<p>
+    <a asp-controller="User" asp-action="Create" class="text-danger">Create New</a>
+</p>
+<form asp-action="List" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by name: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+            <input type="submit" value="Search" class="btn btn-default" /> |
+            <a asp-action="List">Back to Full List</a>
+        </p>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>T/R</th>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>Email</th>
+            <th>BirthDate</th>
+            <th>CreateDate</th>
+            <th>Region</th>
+            <th>UserType</th>
+            <th>InformatTName</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+            intson += 1;
+            <tr>
+            <td>
+               @intson
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => item.Email)
+            </td>
+                        <td>
+                @Html.DisplayFor(modelitem => item.BirthDate)
+            </td>
+                        <td>
+                @Html.DisplayFor(modelitem => item.CreateDate)
+            </td>
+                        <td>
+                @Html.DisplayFor(modelitem => item.Region)
+            </td>
+                        <td>
+                @Html.DisplayFor(modelitem => item.UserType)
+            </td>
+                        <td>
+                @Html.DisplayFor(modelitem => item.InformatTName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.UserId }) |
+                @Html.ActionLink("Details", "Details", new {  id = item.UserId  }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.UserId })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<div class="container">
+        @if (pager.TotalPages > 0)
+        {
+            <ul class="pagination justify-content-end">
+
+            @if (pager.CurrentPage > 1)
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-controller="User" asp-action="List" asp-route-pg="1">Frist</a>
+                </li>
+                <li>
+                      <a class="page-link" asp-controller="User" asp-action="List" asp-route-pg="@(pager.CurrentPage - 1)">Previous</a>
+                </li>
+            }
+
+                @for (int pge = pager.StartPage; pge < pager.EndPage; pge++)
+                {
+                    <li class="page-item @(pge == pager.CurrentPage ? "active" : "" )">
+                        <a class="page-link" asp-controller="User" asp-action="List" asp-route-pg="@pge">@pge</a>
+                    </li>
+                }
+                 @if (pager.CurrentPage < pager.TotalPages)
+                {
+                    
+                    <li class="page-item">
+                        <a class="page-link" asp-controller="User" asp-action="List" asp-route-pg="@(pager.CurrentPage + 1)">Next</a>
+                    </li>
+                      <li class="page-item">
+                        <a class="page-link" asp-controller="User" asp-action="List" asp-route-pg="@pager.TotalPages">Last</a>
+                    </li>
+
+                }
+            </ul>
+        }
+</div>
+
+
+
+
+
+
+
+
+
+
+    @* <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
                         </div>
@@ -54,3 +175,4 @@
                             </div>
                         </div>
                     </div>
+*@

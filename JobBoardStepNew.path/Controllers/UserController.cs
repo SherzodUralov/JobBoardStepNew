@@ -48,12 +48,26 @@ namespace JobBoardStepNew.path.Controllers
             return RedirectToAction("List");
         }
         [Authorize(Roles = "Superadmin, admin")]
-        public ViewResult List()
+        public ViewResult List(int pg = 1, string searchString  = "")
         {
+            
             var modelsession = HttpContext.Session.GetString("language");
             var model = repo.UserList(modelsession);
-
-            return View(model);
+            ViewData["CurrentFilter"] = searchString;
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                model = model.Where(x => x.FirstName.Contains(searchString)).ToList();
+            }
+            const int pageSize = 5;
+            if (pg < 1)
+                pg = 1;
+            int recsCount = model.Count();
+            var pager = new Pager(recsCount, pg, pageSize);
+            int recSkip = (pg - 1) * pageSize;
+            var madel = model.Skip(recSkip).Take(pager.PageSize).ToList();
+            this.ViewBag.Pager = pager;
+        
+            return View(madel);
         }
         public async Task<IActionResult> Logout()
         {

@@ -2,6 +2,7 @@
 using JobBoardStep.Core.Models;
 using JobBoardStep.Core.ViewModel;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,12 @@ namespace JobBoardStep.Core.Repository
     public class UserRepository : IUserRepositroy
     {
         private readonly AppDbContext context;
+        private readonly IMemoryCache memoryCache;
 
-        public UserRepository(AppDbContext context)
+        public UserRepository(AppDbContext context, IMemoryCache memoryCache)
         {
             this.context = context;
+            this.memoryCache = memoryCache;
         }
         public void Create(User user)
         {
@@ -202,7 +205,7 @@ namespace JobBoardStep.Core.Repository
 
                          join r in context.Regions
 
-                         on u.RegionId equals r.Id                          
+                         on u.RegionId equals r.Id
 
                          where itt.Language.LanguageName == lang
 
@@ -231,8 +234,21 @@ namespace JobBoardStep.Core.Repository
                              Region = r.Name
                          }
                          ).ToList();
+            IList<UserListViewModel> user;
+            if (!memoryCache.TryGetValue("Users", out user))
+            {
+                var cacheexper = new MemoryCacheEntryOptions()
+                {
+                    AbsoluteExpiration = DateTimeOffset.Now.AddMinutes(2),
+                    Priority = CacheItemPriority.High,
+                    SlidingExpiration = TimeSpan.FromSeconds(20)
+                };
+                // deleteCache("Employees");
+                memoryCache.Set("Users", model, cacheexper);
+            }
+            user = memoryCache.Get("Users") as IList<UserListViewModel>;
 
-            return model;
+            return user;
         }
 
         public async Task<User> UserReturn(LoginViewModel model)
