@@ -94,7 +94,6 @@ namespace JobBoardStepNew.path.Controllers
         {
             var model = HttpContext.Session.GetString("language");
 
-
             ViewBag.region = new SelectList(repo.RegionList(), "Id", "Name");
 
             ViewBag.infor = new SelectList(repo.InfroList(model), "Id", "Name");
