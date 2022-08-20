@@ -182,12 +182,19 @@ namespace JobBoardStep.Core.Repository
 
             return newupdate;
         }
-
+        public void deleteCache(string user) 
+        {
+            memoryCache.Remove(user);
+        }
         public IList<UserListViewModel> UserList(string lang)
         {
             if (lang == null)
             {
                 lang = "en";
+            }
+            else if (lang != null)
+            {
+                deleteCache("Users");
             }
             var model = (from u in context.Users
 
@@ -243,7 +250,6 @@ namespace JobBoardStep.Core.Repository
                     Priority = CacheItemPriority.High,
                     SlidingExpiration = TimeSpan.FromSeconds(20)
                 };
-                // deleteCache("Employees");
                 memoryCache.Set("Users", model, cacheexper);
             }
             user = memoryCache.Get("Users") as IList<UserListViewModel>;
