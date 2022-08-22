@@ -75,9 +75,13 @@ namespace JobBoardStep.Core.Repository
             return jobEditView;
         }
 
-        public List<ExperienceTranslate> ETList()
+        public List<ExperienceTranslate> ETList(string lang)
         {
-           return context.ExperienceTranslates.ToList();
+            if (lang == null)
+            {
+                lang = "en";
+            }
+           return context.ExperienceTranslates.Where(x => x.Language.LanguageName == lang).ToList();
         }
 
         public Job exsEdit(Job job, JobEditViewModel jobEditView)
@@ -105,14 +109,21 @@ namespace JobBoardStep.Core.Repository
             return context.Jobs.Find(id);
         }
 
-        public List<JobCategoryTranslate> JCTList()
+        public List<JobCategoryTranslate> JCTList(string lang)
         {
-            return context.JobCategoryTranslates.ToList();
+            if (lang == null)
+            {
+                lang = "en";
+            }
+            return context.JobCategoryTranslates.Where(x => x.Language.LanguageName == lang).ToList();
         }
 
-        public IList<JobListViewModel> JobList()
+        public IList<JobListViewModel> JobList(string lang)
         {
-
+            if (lang == null)
+            {
+                lang = "en";
+            }
             var model = (from J in context.Jobs
                          join JC in context.JobCategories
                          on J.JobCateId equals JC.Id
@@ -128,6 +139,9 @@ namespace JobBoardStep.Core.Repository
                          on E.Id equals ET.ExperienceId
                          join U in context.Users
                          on J.UserId equals U.UserId
+                         where JCT.Language.LanguageName == lang
+                         where JTT.Language.LanguageName == lang
+                         where ET.Language.LanguageName == lang
                          select new JobListViewModel
                          {
                              JobId = J.JobId,
@@ -146,9 +160,9 @@ namespace JobBoardStep.Core.Repository
 
         }
 
-        public List<JobTypeTranslate> JTTList()
+        public List<JobTypeTranslate> JTTList(string lang)
         {
-            return context.JobTypeTranslates.ToList();
+            return context.JobTypeTranslates.Where(x => x.Language.LanguageName == lang).ToList();
         }
 
         public void Update(Job job)

@@ -22,9 +22,10 @@ namespace JobBoardStepNew.path.Controllers
         [HttpGet]
         public ViewResult Create()
         {
-            ViewBag.jobcategory = new SelectList(repository.JCTList(),"Id", "JobCatName");
-            ViewBag.jobtype = new SelectList(repository.JTTList(), "Id", "Name");
-            ViewBag.exper = new SelectList(repository.ETList(), "Id", "Name");
+            var modelsession = HttpContext.Session.GetString("language");
+            ViewBag.jobcategory = new SelectList(repository.JCTList(modelsession),"Id", "JobCatName");
+            ViewBag.jobtype = new SelectList(repository.JTTList(modelsession), "Id", "Name");
+            ViewBag.exper = new SelectList(repository.ETList(modelsession), "Id", "Name");
             ViewBag.user = new SelectList(repository.UserGet(), "UserId", "FirstName");
             return View();
         }
@@ -35,20 +36,31 @@ namespace JobBoardStepNew.path.Controllers
             repository.Create(data);
             return RedirectToAction(nameof(List));
         }
-        public IActionResult List()
+        public IActionResult List(int pg = 1)
         {
-            var data = repository.JobList();
-            return View(data);
+            var modelsession = HttpContext.Session.GetString("language");
+            var data = repository.JobList(modelsession);
+            const int pageSize = 6;
+            if (pg < 1)
+                pg = 1;
+            int recsCount = data.Count();
+            var pager = new Pager(recsCount, pg, pageSize);
+            int recSkip = (pg - 1) * pageSize;
+            var model = data.Skip(recSkip).Take(pager.PageSize).ToList();
+            this.ViewBag.Pager = pager;
+            return View(model);
         }
+
 
         [HttpGet]
         public ViewResult Edit(int id)
         {
+            var modelsession = HttpContext.Session.GetString("language");
             var model = repository.GetById(id);
             var newModel = repository.EditJob(model);
-            ViewBag.jobcategory = new SelectList(repository.JCTList(), "Id", "JobCatName");
-            ViewBag.jobtype = new SelectList(repository.JTTList(), "Id", "Name");
-            ViewBag.exper = new SelectList(repository.ETList(), "Id", "Name");
+            ViewBag.jobcategory = new SelectList(repository.JCTList(modelsession), "Id", "JobCatName");
+            ViewBag.jobtype = new SelectList(repository.JTTList(modelsession), "Id", "Name");
+            ViewBag.exper = new SelectList(repository.ETList(modelsession), "Id", "Name");
             ViewBag.user = new SelectList(repository.UserGet(), "UserId", "FirstName");
             return View(newModel);
         }
@@ -73,7 +85,8 @@ namespace JobBoardStepNew.path.Controllers
         public IActionResult CultureManagement(string culture, string returnUrl)
         {
             Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName, CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
-                new CookieOptions { Expires = DateTimeOffset.Now.AddDays(30) });
+                       new CookieOptions { Expires = DateTimeOffset.Now.AddDays(1) });
+            HttpContext.Session.SetString("language", culture);
 
             return LocalRedirect(returnUrl);
         }
