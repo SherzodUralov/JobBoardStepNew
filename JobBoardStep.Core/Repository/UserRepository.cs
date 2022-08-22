@@ -119,7 +119,7 @@ namespace JobBoardStep.Core.Repository
 
                 CreateDate = newuser.CreateDate,
                 
-                 PhotoFilePath = UniqueFileName,
+                PhotoFilePath = UniqueFileName,
 
                 RegionId = newuser.RegionId,
 
