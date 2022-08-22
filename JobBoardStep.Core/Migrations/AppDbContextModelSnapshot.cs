@@ -374,21 +374,23 @@ namespace JobBoardStep.Core.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("BirthDate")
+                    b.Property<DateTime?>("BirthDate")
                         .HasColumnType("datetime(6)");
 
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("InformatTrId")
+                    b.Property<string>("Gender")
+                        .HasColumnType("longtext");
+
+                    b.Property<int?>("InformatTrId")
                         .HasColumnType("int");
 
                     b.Property<int?>("InformationId")
@@ -399,11 +401,9 @@ namespace JobBoardStep.Core.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("MiddleName")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("PassportNumber")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<byte[]>("PasswordHash")
@@ -414,10 +414,13 @@ namespace JobBoardStep.Core.Migrations
                         .IsRequired()
                         .HasColumnType("longblob");
 
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("longtext");
+
                     b.Property<string>("PhotoFilePath")
                         .HasColumnType("longtext");
 
-                    b.Property<int>("RegionId")
+                    b.Property<int?>("RegionId")
                         .HasColumnType("int");
 
                     b.Property<int?>("UserTypeId")
@@ -628,9 +631,7 @@ namespace JobBoardStep.Core.Migrations
                 {
                     b.HasOne("JobBoardStep.Core.Models.InformationTranslate", "InformationTranslate")
                         .WithMany("Users")
-                        .HasForeignKey("InformatTrId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("InformatTrId");
 
                     b.HasOne("JobBoardStep.Core.Models.Information", "Information")
                         .WithMany("Users")
@@ -638,9 +639,7 @@ namespace JobBoardStep.Core.Migrations
 
                     b.HasOne("JobBoardStep.Core.Models.Region", "Region")
                         .WithMany("Users")
-                        .HasForeignKey("RegionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RegionId");
 
                     b.HasOne("JobBoardStep.Core.Models.UserType", "UserType")
                         .WithMany("Users")

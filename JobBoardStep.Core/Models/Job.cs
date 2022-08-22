@@ -16,7 +16,7 @@ namespace JobBoardStep.Core.Models
         [Required]  
         public string Salary { get; set; }
         [Required]
-        public DateTime CareateDate { get; set; }
+        public DateTime CareateDate { get; set; } = DateTime.Now;
         [Required]
         public DateTime UpdateDate { get; set; }
         [Required]

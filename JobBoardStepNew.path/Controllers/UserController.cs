@@ -255,6 +255,11 @@ namespace JobBoardStepNew.path.Controllers
 
             HttpContext.SignInAsync(claimsPrinsipal);
         }
+        [HttpGet]
+        public ViewResult Regestir() 
+        {
+            return View();
+        }
     }
 
 }
