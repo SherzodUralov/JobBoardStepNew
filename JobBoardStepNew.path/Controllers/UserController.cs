@@ -56,7 +56,7 @@ namespace JobBoardStepNew.path.Controllers
             ViewData["CurrentFilter"] = searchString;
             if (!string.IsNullOrEmpty(searchString))
             {
-                model = model.Where(x => x.FirstName.Contains(searchString)).ToList();
+                model = model.Where(x => x.FirstName.Contains(searchString.ToUpper())).ToList();
             }
             const int pageSize = 5;
             if (pg < 1)
