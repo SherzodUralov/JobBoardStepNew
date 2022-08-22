@@ -1,6 +1,13 @@
 ﻿@model List<JobListViewModel>
 @{
 	 Layout = "~/Views/Shared/Job/_Layout.cshtml";
+	   Pager pager = new Pager();
+    int pageNo = 0;
+    if (ViewBag.Pager != null)
+    {
+        pager = ViewBag.Pager;
+        pageNo = pager.CurrentPage;
+    }
 }
 <section>
 		<div class="block">
@@ -28,7 +35,22 @@
 				 		</div>
 				 		<div class="job-grid-sec">
 							<div class="row">
+								@foreach (var item in Model)
+							{
 								<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+									<div class="job-grid border">
+										<div class="job-title-sec">
+											<div class="c-logo"> <img src="~/adminJob/images/resource/jg1.png" alt="" /> </div>
+											<h3><a href="job_list_grid.html#" title="">@item.Salary/@item.JobCatName</a></h3>
+											<span>Massimo Artemisis</span>
+											<span class="fav-job"><i class="la la-heart-o"></i></span>
+										</div>
+										<span class="job-lctn">Sacramento, California</span>
+										<a  href="job_list_grid.html#" title="">APPLY NOW</a>
+									</div><!-- JOB Grid -->
+								</div>
+							}
+@*								<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
 									<div class="job-grid border">
 										<div class="job-title-sec">
 											<div class="c-logo"> <img src="~/adminJob/images/resource/jg1.png" alt="" /> </div>
@@ -135,65 +157,76 @@
 										<span class="job-lctn">Sacramento, California</span>
 										<a  href="job_list_grid.html#" title="">APPLY NOW</a>
 									</div><!-- JOB Grid -->
-								</div>
+								</div>*@
 							</div>
 						</div>
 						<div class="pagination">
+							@if (pager.TotalPages > 0)
+						{
 							<ul>
-								<li class="prev"><a href="job_list_grid.html"><i class="la la-long-arrow-left"></i> Prev</a></li>
+								@if (pager.CurrentPage > 1)
+								{
+
+									<li class="prev"><a asp-controller="Job" asp-action="List" asp-route-pg="1"><i class="la la-long-arrow-left"></i> First</a></li>
+									<li class="prev"><a asp-controller="Job" asp-action="List" asp-route-pg="@(pager.CurrentPage - 1)"><i class="la la-long-arrow-left"></i> Previous</a></li>
+								}
+								@for (int pge = pager.StartPage; pge < pager.EndPage; pge++)
+								{
+									<li class="  @(pge == pager.CurrentPage ? "active" : "" )"><a asp-controller="Job" asp-action="List" asp-route-pg="@pge">@pge</a></li>
+								}
+								@if (pager.CurrentPage < pager.TotalPages)
+								{
+										<li class="next"><a asp-controller="Job" asp-action="List" asp-route-pg="@(pager.CurrentPage + 1)">Next <i class="la la-long-arrow-right"></i></a></li>
+										<li class="next"><a  asp-controller="Job" asp-action="List" asp-route-pg="@pager.TotalPages">Last <i class="la la-long-arrow-right"></i></a></li>
+								}
+								@*<li class="prev"><a asp-controller="Job" asp-action="List" asp-route-pg="@(pager.CurrentPage - 1)"><i class="la la-long-arrow-left"></i> Prev</a></li>
 								<li><a href="job_list_grid.html">1</a></li>
 								<li class="active"><a href="job_list_grid.html">2</a></li>
 								<li><a href="job_list_grid.html">3</a></li>
 								<li><span class="delimeter">...</span></li>
 								<li><a href="job_list_grid.html">14</a></li>
-								<li class="next"><a href="job_list_grid.html">Next <i class="la la-long-arrow-right"></i></a></li>
+								<li class="next"><a asp-controller="Job" asp-action="List" asp-route-pg="@(pager.CurrentPage + 1)">Next <i class="la la-long-arrow-right"></i></a></li>*@
 							</ul>
+						}
 						</div><!-- Pagination -->
 				 	</div>
 				 </div>
 			</div>
 		</div>
 	</section>
+	
+@*<div class="container">
+        @if (pager.TotalPages > 0)
+        {
+            <ul class="pagination justify-content-end">
 
+            @if (pager.CurrentPage > 1)
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-controller="User" asp-action="List" asp-route-pg="1">Frist</a>
+                </li>
+                <li>
+                      <a class="page-link" asp-controller="User" asp-action="List" asp-route-pg="@(pager.CurrentPage - 1)">Previous</a>
+                </li>
+            }
 
+                @for (int pge = pager.StartPage; pge < pager.EndPage; pge++)
+                {
+                    <li class="page-item @(pge == pager.CurrentPage ? "active" : "" )">
+                        <a class="page-link" asp-controller="User" asp-action="List" asp-route-pg="@pge">@pge</a>
+                    </li>
+                }
+                 @if (pager.CurrentPage < pager.TotalPages)
+                {
+                    
+                    <li class="page-item">
+                        <a class="page-link" asp-controller="User" asp-action="List" asp-route-pg="@(pager.CurrentPage + 1)">Next</a>
+                    </li>
+                      <li class="page-item">
+                        <a class="page-link" asp-controller="User" asp-action="List" asp-route-pg="@pager.TotalPages">Last</a>
+                    </li>
 
-
-
-<div class="card-deck">
-    @foreach (var staff in Model)
-    {
-        var photoFilePath = "~/images/" + ("download.png");
-    <div class="card m-3" style="min-width:18rem;max-width:16.5%;">
-        <div class="card-header">
-            <h4>@staff.JobCatName @staff.JobTypeName</h4>
-        </div>
-        <img class="card-img-top" src="@photoFilePath" asp-append-version="true" /> 
-        <div class="card-footer text-center">
-            <a asp-controller="home" asp-action="Details" asp-route-Id="@staff.JobId" class="btn btn-primary m-1">View</a>
-            <a asp-controller="Job" asp-action="Edit" asp-route-id="@staff.JobId" class="btn btn-primary m-1">Edit</a>
-            <a asp-controller="Job" asp-action="Delete" asp-route-id="@staff.JobId" class="btn btn-danger m-1">Delete</a>
-            <td>
-                                <a href="#" class="btn btn-link btn-sm btn-rounded text-success"><i class="fa fa-edit" aria-hidden="true"></i> View</a>
-                                <a asp-controller="Job" asp-action="Edit" asp-route-id="@staff.JobId" class="btn btn-link btn-sm btn-rounded"><i class="fa fa-edit" aria-hidden="true"></i> Edit</a>
-                                <form class="btn btn-sm-1" asp-controller="Job" asp-action="Delete" asp-route-id="@staff.JobId" method="post">
-                                    <button type="submit" class="btn btn-link btn-rounded text-danger" onclick="return confirm('Are you sure you want to delete this record?');">
-                                        Delete
-                                    </button>
-                                </form>
-                            </td>
-                      </div>
-                      </div>
-    }
-</div>
-@*<div class="container-fluid">
-  <h2>Card Classes</h2>
-  <p>The card class is suitible for both images and notes:</p>
-  <div class="card" style="width:300px">
-    <img src="img_avatar1.png" alt="Image" style="width:100%">
-    <div class="card-body">
-      <h4 class="card-title">John Doe</h4>
-      <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-      <a href="#" class="btn btn-primary">See Profile</a>
-    </div>
-  </div>
+                }
+            </ul>
+        }
 </div>*@
