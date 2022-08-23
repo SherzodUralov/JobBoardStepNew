@@ -119,7 +119,7 @@ namespace JobBoardStep.Core.Repository
 
                 CreateDate = newuser.CreateDate,
                 
-                 PhotoFilePath = UniqueFileName,
+                PhotoFilePath = UniqueFileName,
 
                 RegionId = newuser.RegionId,
 
@@ -169,15 +169,15 @@ namespace JobBoardStep.Core.Repository
 
                 PassportNumber = updateuser.PassportNumber,
 
-                BirthDate = updateuser.BirthDate,
+                BirthDate = (DateTime)updateuser.BirthDate,
 
                 CreateDate = updateuser.CreateDate,
 
-                RegionId = updateuser.RegionId,
+                RegionId = (int)updateuser.RegionId,
 
                 UserTypeId = (int)updateuser.UserTypeId,
 
-                InforTranId = updateuser.InformatTrId
+                InforTranId = (int)updateuser.InformatTrId
             };
 
             return newupdate;
@@ -230,7 +230,7 @@ namespace JobBoardStep.Core.Repository
 
                              PassportNumber = u.PassportNumber,
 
-                             BirthDate = u.BirthDate,
+                             BirthDate = (DateTime)u.BirthDate,
 
                              CreateDate = u.CreateDate,
 

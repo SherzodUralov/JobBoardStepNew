@@ -266,20 +266,26 @@ namespace JobBoardStep.Core.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     LastName = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    MiddleName = table.Column<string>(type: "longtext", nullable: false)
+                    MiddleName = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Email = table.Column<string>(type: "longtext", nullable: false)
+                    Email = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    PassportNumber = table.Column<string>(type: "longtext", nullable: false)
+                    PassportNumber = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BirthDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Gender = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    BirthDate = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     PasswordHash = table.Column<byte[]>(type: "longblob", nullable: false),
                     PasswordSalt = table.Column<byte[]>(type: "longblob", nullable: false),
+                    PhotoFilePath = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     InformationId = table.Column<int>(type: "int", nullable: true),
-                    RegionId = table.Column<int>(type: "int", nullable: false),
+                    RegionId = table.Column<int>(type: "int", nullable: true),
                     UserTypeId = table.Column<int>(type: "int", nullable: true),
-                    InformatTrId = table.Column<int>(type: "int", nullable: false)
+                    InformatTrId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -293,14 +299,12 @@ namespace JobBoardStep.Core.Migrations
                         name: "FK_Users_InformationTranslates_InformatTrId",
                         column: x => x.InformatTrId,
                         principalTable: "InformationTranslates",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Users_Regions_RegionId",
                         column: x => x.RegionId,
                         principalTable: "Regions",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Users_UserTypes_UserTypeId",
                         column: x => x.UserTypeId,

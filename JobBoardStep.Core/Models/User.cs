@@ -13,20 +13,16 @@ namespace JobBoardStep.Core.Models
         [Key]
         [Required]
         public int UserId { get; set; }
-        [Required]
         public string FirstName { get; set; }
-        [Required]
         public string LastName { get; set; }
-        [Required]
-        public string MiddleName { get; set; }
-        [Required]
-        [RegularExpression(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*", ErrorMessage = "email is faield")]
+        public string? MiddleName { get; set; }
+        //[Required]
+        //[RegularExpression(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*", ErrorMessage = "email is faield")]
         public string? Email { get; set; }
-        [Required]
         public string? PassportNumber { get; set; }
-        [Required]
-        public DateTime BirthDate { get; set; }
-        [Required]
+        public string? PhoneNumber { get; set; }
+        public string? Gender { get; set; }
+        public DateTime? BirthDate { get; set; }
         public DateTime CreateDate { get; set; }= DateTime.Now;
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
@@ -37,13 +33,13 @@ namespace JobBoardStep.Core.Models
         public int? InformationId { get; set; }
         public Region? Region { get; set; }
         [ForeignKey("Region")]
-        public int RegionId { get; set; }
+        public int? RegionId { get; set; }
         public UserType? UserType { get; set; }
         [ForeignKey("UserType")]
         public int? UserTypeId { get; set; }
         public InformationTranslate? InformationTranslate{ get; set; }
         [ForeignKey("InformationTranslate")]
-        public int InformatTrId { get; set; }
+        public int? InformatTrId { get; set; }
         public List<Application>? Applications { get; set; }
         public List<RoleMap>? RoleMaps { get; set; } = new List<RoleMap>();
     }
