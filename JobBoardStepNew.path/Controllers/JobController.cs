@@ -90,5 +90,9 @@ namespace JobBoardStepNew.path.Controllers
 
             return LocalRedirect(returnUrl);
         }
+        public ViewResult EmpManage()
+        {
+            return View();
+        }
     }
 }
