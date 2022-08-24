@@ -22,7 +22,6 @@ namespace JobBoardStep.Core.Repository
            context.Jobs.Add(job);
             context.SaveChanges();
         }
-
         public Job CreateNew(JobCreateViewModel jobcreate)
         {
             

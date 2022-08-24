@@ -272,7 +272,7 @@ namespace JobBoardStepNew.path.Controllers
 
                 repo.Create(newuser);
 
-                return RedirectToAction("Job", "List");
+                return RedirectToAction("List", "Job");
             }
 
             return View();
@@ -280,7 +280,7 @@ namespace JobBoardStepNew.path.Controllers
         private void HttpSiginAsyncreg1(User model)
         {
             var clamis = new List<Claim>();
-            clamis.Add(new Claim(ClaimTypes.Name, model.FirstName));
+            clamis.Add(new Claim(ClaimTypes.Name, model.PhoneNumber));
             clamis.Add(new Claim(ClaimTypes.NameIdentifier, model.LastName));
 
             var claimsIdentity = new ClaimsIdentity(clamis,
@@ -290,9 +290,41 @@ namespace JobBoardStepNew.path.Controllers
 
             HttpContext.SignInAsync(claimsPrinsipal);
         }
+		[HttpGet]
         public ViewResult Login1() 
         {
             return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Login1(Login1ViewModel model) 
+        {
+            var user = await repo.UserReturn1(model);
+            if (user == null)
+                return null;
+
+            var verif = await repo.VerifyPassword(model.Password, user.PasswordHash, user.PasswordSalt);
+            if (!verif)
+                return null;
+
+            HttpSiginAsync1(user);
+
+            return RedirectToAction("List", "Job");
+        }
+
+        private void HttpSiginAsync1(User user)
+        {
+            var clamis = new List<Claim>();
+            clamis.Add(new Claim(ClaimTypes.Name, user.FirstName));
+            clamis.Add(new Claim(ClaimTypes.NameIdentifier, user.LastName));
+
+            var claimsIdentity = new ClaimsIdentity(clamis,
+                CookieAuthenticationDefaults.AuthenticationScheme);
+
+            var claimsPrinsipal = new ClaimsPrincipal(claimsIdentity);
+
+
+
+            HttpContext.SignInAsync(claimsPrinsipal);
         }
     }
 

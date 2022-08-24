@@ -352,12 +352,17 @@ namespace JobBoardStep.Core.Repository
 
                 PasswordHash = passworhash,
 
-                PasswordSalt = passworsalt,
-                
-                PhotoFilePath = " "
+                PasswordSalt = passworsalt
             };
 
             return newuser;
         }
-    }
+
+		public async Task<User> UserReturn1(Login1ViewModel model)
+		{
+            var user = await context.Users.FirstOrDefaultAsync(x => x.PhoneNumber.Equals(model.PhoneNamber));
+
+            return user;
+		}
+	}
 }
