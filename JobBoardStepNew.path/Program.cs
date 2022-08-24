@@ -9,7 +9,6 @@ using System.Globalization;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-//<Language>
 builder.Services.AddLocalization(opt => { opt.ResourcesPath = "Resources"; });
 builder.Services.AddMvc().AddViewLocalization(Microsoft.AspNetCore.Mvc.Razor.LanguageViewLocationExpanderFormat.Suffix).AddDataAnnotationsLocalization();
 builder.Services.Configure<RequestLocalizationOptions>(
@@ -29,18 +28,17 @@ builder.Services.Configure<RequestLocalizationOptions>(
     });
 
 
-//</Language>
-
 builder.Services.AddControllersWithViews();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                  .AddCookie(options =>
                  {
-                     options.LoginPath = "/User/Login";
+                     options.LoginPath = "/Admin/Login";
                      options.AccessDeniedPath = "/User/Denied";
                      options.ExpireTimeSpan = TimeSpan.FromSeconds(200);
                  });
+
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
                  {
@@ -81,17 +79,8 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-//<Language>
     app.UseRequestLocalization(app.Services.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
 
-//var supportedCultres = new[] { "en", "fr", "es" };
-//var localizationOptions = new RequestLocalizationOptions().SetDefaultCulture(supportedCultres[0])
-//.AddSupportedCultures(supportedCultres)
-//.AddSupportedUICultures(supportedCultres);  
-// app.UseRequestLocalization(localizationOptions);
-
-
-//</Language>
 
 app.UseSession();
 

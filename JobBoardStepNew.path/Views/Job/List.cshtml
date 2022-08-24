@@ -37,6 +37,15 @@
 							<div class="row">
 								@foreach (var item in Model)
 							{
+								if (item.JobTypeName == " contract" || item.JobTypeName == "shartnoma" || item.JobTypeName == " договор")
+								{
+									ViewData["login"] = "Login";
+								}
+								else
+								{
+									ViewData["login"] = "Login1";
+								}
+
 								<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
 									<div class="job-grid border">
 										<div class="job-title-sec">
@@ -46,118 +55,10 @@
 											<span class="fav-job"><i class="la la-heart-o"></i></span>
 										</div>
 										<span class="job-lctn">Sacramento, California</span>
-										<a  href="job_list_grid.html#" title="">APPLY NOW</a>
+										<a asp-controller="User" asp-action=@ViewBag.login title="">APPLY NOW</a>
 									</div><!-- JOB Grid -->
 								</div>
 							}
-@*								<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-									<div class="job-grid border">
-										<div class="job-title-sec">
-											<div class="c-logo"> <img src="~/adminJob/images/resource/jg1.png" alt="" /> </div>
-											<h3><a href="job_list_grid.html#" title="">Web Designer / Developer</a></h3>
-											<span>Massimo Artemisis</span>
-											<span class="fav-job"><i class="la la-heart-o"></i></span>
-										</div>
-										<span class="job-lctn">Sacramento, California</span>
-										<a  href="job_list_grid.html#" title="">APPLY NOW</a>
-									</div><!-- JOB Grid -->
-								</div>
-								<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-									<div class="job-grid border">
-										<div class="job-title-sec">
-											<div class="c-logo"> <img src="~/adminJob/images/resource/jg2.png" alt="" /> </div>
-											<h3><a href="job_list_grid.html#" title="">Marketing Director</a></h3>
-											<span>Massimo Artemisis</span>
-											<span class="fav-job"><i class="la la-heart-o"></i></span>
-										</div>
-										<span class="job-lctn">Sacramento, California</span>
-										<a  href="job_list_grid.html#" title="">APPLY NOW</a>
-									</div><!-- JOB Grid -->
-								</div>
-								<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-									<div class="job-grid border">
-										<div class="job-title-sec">
-											<div class="c-logo"> <img src="~/adminJob/images/resource/jg3.png" alt="" /> </div>
-											<h3><a href="job_list_grid.html#" title="">Application Developer For Android</a></h3>
-											<span>Altes Bank</span>
-											<span class="fav-job"><i class="la la-heart-o"></i></span>
-										</div>
-										<span class="job-lctn">Sacramento, California</span>
-										<a  href="job_list_grid.html#" title="">APPLY NOW</a>
-									</div><!-- JOB Grid -->
-								</div>
-								<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-									<div class="job-grid border">
-										<div class="job-title-sec">
-											<div class="c-logo"> <img src="~/adminJob/images/resource/jg4.png" alt="" /> </div>
-											<h3><a href="job_list_grid.html#" title="">Web Designer / Developer</a></h3>
-											<span>Massimo Artemisis</span>
-											<span class="fav-job"><i class="la la-heart-o"></i></span>
-										</div>
-										<span class="job-lctn">Sacramento, California</span>
-										<a  href="job_list_grid.html#" title="">APPLY NOW</a>
-									</div><!-- JOB Grid -->
-								</div>
-								<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-									<div class="job-grid border">
-										<div class="job-title-sec">
-											<div class="c-logo"> <img src="~/adminJob/images/resource/jg5.png" alt="" /> </div>
-											<h3><a href="job_list_grid.html#" title="">Web Designer / Developer</a></h3>
-											<span>MediaLab</span>
-											<span class="fav-job"><i class="la la-heart-o"></i></span>
-										</div>
-										<span class="job-lctn">Sacramento, California</span>
-										<a  href="job_list_grid.html#" title="">APPLY NOW</a>
-									</div><!-- JOB Grid -->
-								</div>
-								<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-									<div class="job-grid border">
-										<div class="job-title-sec">
-											<div class="c-logo"> <img src="~/adminJob/images/resource/jg6.png" alt="" /> </div>
-											<h3><a href="job_list_grid.html#" title="">Web Designer / Developer</a></h3>
-											<span>StarHealth</span>
-											<span class="fav-job"><i class="la la-heart-o"></i></span>
-										</div>
-										<span class="job-lctn">Sacramento, California</span>
-										<a  href="job_list_grid.html#" title="">APPLY NOW</a>
-									</div><!-- JOB Grid -->
-								</div>
-								<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-									<div class="job-grid border">
-										<div class="job-title-sec">
-											<div class="c-logo"> <img src="~/adminJob/images/resource/jg7.png" alt="" /> </div>
-											<h3><a href="job_list_grid.html#" title="">Web Designer / Developer</a></h3>
-											<span>Massimo Artemisis</span>
-											<span class="fav-job"><i class="la la-heart-o"></i></span>
-										</div>
-										<span class="job-lctn">Sacramento, California</span>
-										<a  href="job_list_grid.html#" title="">APPLY NOW</a>
-									</div><!-- JOB Grid -->
-								</div>
-								<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-									<div class="job-grid border">
-										<div class="job-title-sec">
-											<div class="c-logo"> <img src="~/adminJob/images/resource/jg8.png" alt="" /> </div>
-											<h3><a href="job_list_grid.html#" title="">Web Designer / Developer</a></h3>
-											<span>MediaLab</span>
-											<span class="fav-job"><i class="la la-heart-o"></i></span>
-										</div>
-										<span class="job-lctn">Sacramento, California</span>
-										<a  href="job_list_grid.html#" title="">APPLY NOW</a>
-									</div><!-- JOB Grid -->
-								</div>
-								<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-									<div class="job-grid border">
-										<div class="job-title-sec">
-											<div class="c-logo"> <img src="~/adminJob/images/resource/jg9.png" alt="" /> </div>
-											<h3><a href="job_list_grid.html#" title="">Web Designer / Developer</a></h3>
-											<span>StarHealth</span>
-											<span class="fav-job"><i class="la la-heart-o"></i></span>
-										</div>
-										<span class="job-lctn">Sacramento, California</span>
-										<a  href="job_list_grid.html#" title="">APPLY NOW</a>
-									</div><!-- JOB Grid -->
-								</div>*@
 							</div>
 						</div>
 						<div class="pagination">
@@ -179,13 +80,6 @@
 										<li class="next"><a asp-controller="Job" asp-action="List" asp-route-pg="@(pager.CurrentPage + 1)">Next <i class="la la-long-arrow-right"></i></a></li>
 										<li class="next"><a  asp-controller="Job" asp-action="List" asp-route-pg="@pager.TotalPages">Last <i class="la la-long-arrow-right"></i></a></li>
 								}
-								@*<li class="prev"><a asp-controller="Job" asp-action="List" asp-route-pg="@(pager.CurrentPage - 1)"><i class="la la-long-arrow-left"></i> Prev</a></li>
-								<li><a href="job_list_grid.html">1</a></li>
-								<li class="active"><a href="job_list_grid.html">2</a></li>
-								<li><a href="job_list_grid.html">3</a></li>
-								<li><span class="delimeter">...</span></li>
-								<li><a href="job_list_grid.html">14</a></li>
-								<li class="next"><a asp-controller="Job" asp-action="List" asp-route-pg="@(pager.CurrentPage + 1)">Next <i class="la la-long-arrow-right"></i></a></li>*@
 							</ul>
 						}
 						</div><!-- Pagination -->
@@ -195,38 +89,3 @@
 		</div>
 	</section>
 	
-@*<div class="container">
-        @if (pager.TotalPages > 0)
-        {
-            <ul class="pagination justify-content-end">
-
-            @if (pager.CurrentPage > 1)
-            {
-                <li class="page-item">
-                    <a class="page-link" asp-controller="User" asp-action="List" asp-route-pg="1">Frist</a>
-                </li>
-                <li>
-                      <a class="page-link" asp-controller="User" asp-action="List" asp-route-pg="@(pager.CurrentPage - 1)">Previous</a>
-                </li>
-            }
-
-                @for (int pge = pager.StartPage; pge < pager.EndPage; pge++)
-                {
-                    <li class="page-item @(pge == pager.CurrentPage ? "active" : "" )">
-                        <a class="page-link" asp-controller="User" asp-action="List" asp-route-pg="@pge">@pge</a>
-                    </li>
-                }
-                 @if (pager.CurrentPage < pager.TotalPages)
-                {
-                    
-                    <li class="page-item">
-                        <a class="page-link" asp-controller="User" asp-action="List" asp-route-pg="@(pager.CurrentPage + 1)">Next</a>
-                    </li>
-                      <li class="page-item">
-                        <a class="page-link" asp-controller="User" asp-action="List" asp-route-pg="@pager.TotalPages">Last</a>
-                    </li>
-
-                }
-            </ul>
-        }
-</div>*@

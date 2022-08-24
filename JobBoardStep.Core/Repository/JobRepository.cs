@@ -165,6 +165,11 @@ namespace JobBoardStep.Core.Repository
             return context.JobTypeTranslates.Where(x => x.Language.LanguageName == lang).ToList();
         }
 
+        public string Login()
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(Job job)
         {
             context.Jobs.Update(job);

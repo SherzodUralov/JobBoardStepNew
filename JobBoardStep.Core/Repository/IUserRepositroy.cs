@@ -30,6 +30,8 @@ namespace JobBoardStep.Core.Repository
 
         User NewUser(string UniqueFileName,UserCreateViewModel newuser);
 
+        User NewUser1(RegestirViewModel model);
+
         UserEditViewModel UpdateUser(User updateuser);
 
         User ExsingUser(User exstinguser, UserEditViewModel user);

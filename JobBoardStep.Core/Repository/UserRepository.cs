@@ -89,49 +89,6 @@ namespace JobBoardStep.Core.Repository
             return context.InformationTranslates.Where(x => x.Language.LanguageName.Equals(lang)).ToList();
         }
 
-        public User NewUser(string UniqueFileName, UserCreateViewModel newuser)
-        {
-            InformationTranslate information = context.InformationTranslates.FirstOrDefault(item => item.Id.Equals(newuser.InforTranId));
-
-            byte[] passwordHash, passwordSalt;
-
-            CreatePassworHash(newuser.Password, out passwordHash, out passwordSalt);
-
-            User newuser1 = new User
-            {
-                UserId = newuser.UserId,
-
-                FirstName = newuser.FirstName,
-
-                LastName = newuser.LastName,
-
-                MiddleName = newuser.MiddleName,
-
-                Email = newuser.Email,
-
-                PasswordHash = passwordHash,
-
-                PasswordSalt = passwordSalt,
-
-                PassportNumber = newuser.PassportNumber,
-
-                BirthDate = newuser.BirthDate,
-
-                CreateDate = newuser.CreateDate,
-                
-                PhotoFilePath = UniqueFileName,
-
-                RegionId = newuser.RegionId,
-
-                UserTypeId = newuser.UserTypeId,
-
-                InformatTrId = newuser.InforTranId,
-
-                InformationId = information.InformationId
-            };
-            return newuser1;
-        }
-
         public void CreatePassworHash(string Password, out byte[] passwordHash, out byte[] passwordSalt)
         {
             using (var hmac = new System.Security.Cryptography.HMACSHA512())
@@ -337,10 +294,70 @@ namespace JobBoardStep.Core.Repository
 
             return user;
         }
-
-        public User NewUser(UserCreateViewModel newuser)
+        public User NewUser(string UniqueFileName, UserCreateViewModel newuser)
         {
-            throw new NotImplementedException();
+            InformationTranslate information = context.InformationTranslates.FirstOrDefault(item => item.Id.Equals(newuser.InforTranId));
+
+            byte[] passwordHash, passwordSalt;
+
+            CreatePassworHash(newuser.Password, out passwordHash, out passwordSalt);
+
+            User newuser1 = new User
+            {
+                UserId = newuser.UserId,
+
+                FirstName = newuser.FirstName,
+
+                LastName = newuser.LastName,
+
+                MiddleName = newuser.MiddleName,
+
+                Email = newuser.Email,
+
+                PasswordHash = passwordHash,
+
+                PasswordSalt = passwordSalt,
+
+                PassportNumber = newuser.PassportNumber,
+
+                BirthDate = newuser.BirthDate,
+
+                CreateDate = newuser.CreateDate,
+
+                PhotoFilePath = UniqueFileName,
+
+                RegionId = newuser.RegionId,
+
+                UserTypeId = newuser.UserTypeId,
+
+                InformatTrId = newuser.InforTranId,
+
+                InformationId = information.InformationId
+            };
+            return newuser1;
+        }
+        public User NewUser1(RegestirViewModel model)
+        {
+            byte[] passworhash, passworsalt;
+
+            CreatePassworHash(model.Password, out passworhash, out passworsalt);
+
+            User newuser = new User
+            {
+                FirstName = model.FirstName,
+
+                LastName = model.LastName,
+
+                PhoneNumber = model.PhoneNumber,
+
+                PasswordHash = passworhash,
+
+                PasswordSalt = passworsalt,
+                
+                PhotoFilePath = " "
+            };
+
+            return newuser;
         }
     }
 }
