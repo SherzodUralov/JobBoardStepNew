@@ -23,7 +23,6 @@ namespace JobBoardStep.Core.Repository
         JobEditViewModel EditJob(Job jobedit);
         Job exsEdit(Job job,JobEditViewModel jobEditView);
 
-        string Login();
 
      
     }

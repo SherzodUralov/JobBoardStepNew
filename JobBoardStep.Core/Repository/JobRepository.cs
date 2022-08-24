@@ -184,5 +184,5 @@ namespace JobBoardStep.Core.Repository
         {
             return context.Users.FirstOrDefault(x => x.Email.Equals(a));
         }
-    }
+	}
 }
