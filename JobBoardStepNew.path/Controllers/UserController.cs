@@ -194,6 +194,7 @@ namespace JobBoardStepNew.path.Controllers
             var clamis = new List<Claim>();
             clamis.Add(new Claim(ClaimTypes.Name, user.Email));
             clamis.Add(new Claim(ClaimTypes.Email, user.Email));
+
             foreach (var item in repo.gets())
             {
 
@@ -257,6 +258,39 @@ namespace JobBoardStepNew.path.Controllers
         }
         [HttpGet]
         public ViewResult Regestir() 
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Regestir(RegestirViewModel model) 
+        {
+            if (ModelState.IsValid)
+            {
+                 var newuser = repo.NewUser1(model);
+
+                HttpSiginAsyncreg1(newuser);
+
+                repo.Create(newuser);
+
+                return RedirectToAction("Job", "List");
+            }
+
+            return View();
+        }
+        private void HttpSiginAsyncreg1(User model)
+        {
+            var clamis = new List<Claim>();
+            clamis.Add(new Claim(ClaimTypes.Name, model.FirstName));
+            clamis.Add(new Claim(ClaimTypes.NameIdentifier, model.LastName));
+
+            var claimsIdentity = new ClaimsIdentity(clamis,
+                CookieAuthenticationDefaults.AuthenticationScheme);
+
+            var claimsPrinsipal = new ClaimsPrincipal(claimsIdentity);
+
+            HttpContext.SignInAsync(claimsPrinsipal);
+        }
+        public ViewResult Login1() 
         {
             return View();
         }

@@ -22,6 +22,8 @@ namespace JobBoardStep.Core.Repository
         List<User> UserGet();
         JobEditViewModel EditJob(Job jobedit);
         Job exsEdit(Job job,JobEditViewModel jobEditView);
+
+        string Login();
      
     }
 }
