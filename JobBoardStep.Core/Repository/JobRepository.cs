@@ -162,6 +162,10 @@ namespace JobBoardStep.Core.Repository
 
         public List<JobTypeTranslate> JTTList(string lang)
         {
+            if (lang == null)
+            {
+                lang = "en";
+            }
             return context.JobTypeTranslates.Where(x => x.Language.LanguageName == lang).ToList();
         }
 
