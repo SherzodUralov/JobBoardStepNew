@@ -49,19 +49,8 @@
 					 					<div class="col-lg-12">
 					 						<span class="pf-title">Description</span>
 					 						<div class="pf-field">
-					 							<textarea asp-for="Description">All:</textarea>
+					 							<textarea class="form-control" id="exampleFormControlTextarea1" asp-for="Description"></textarea>
 					 						</div>
-					 					</div>
-					 					<div class="col-lg-6">
-					 						<span class="pf-title">Email</span>
-					 						<div class="pf-field">
-					 							<input type="text" />
-					 						</div>
-					 					</div>
-					 					<div class="col-lg-6">
-					 						<span class="pf-title">Username</span>
-					 							<select data-placeholder="Please Select Specialism" asp-for="UserId" asp-items="@ViewBag.user" class="chosen">
-												</select>
 					 					</div>
 					 					<div class="col-lg-6">
 					 						<span class="pf-title">Job Type</span>
@@ -93,269 +82,31 @@
 												</select>
 					 						</div>
 					 					</div>
-					 					@*<div class="col-lg-6">
-					 						<span class="pf-title">Gender</span>
-					 						<div class="pf-field">
-					 							<select data-placeholder="Please Select Specialism" class="chosen">
-													<option>Web Development</option>
-													<option>Web Designing</option>
-													<option>Art & Culture</option>
-													<option>Reading & Writing</option>
-												</select>
-					 						</div>
-					 					</div>
-					 					<div class="col-lg-6">
-					 						<span class="pf-title">Industry</span>
-					 						<div class="pf-field">
-					 							<select data-placeholder="Please Select Specialism" class="chosen">
-													<option>Web Development</option>
-													<option>Web Designing</option>
-													<option>Art & Culture</option>
-													<option>Reading & Writing</option>
-												</select>
-					 						</div>
-					 					</div>
-					 					<div class="col-lg-6">
-					 						<span class="pf-title">Qualification</span>
-					 						<div class="pf-field">
-					 							<select data-placeholder="Please Select Specialism" class="chosen">
-													<option>Web Development</option>
-													<option>Web Designing</option>
-													<option>Art & Culture</option>
-													<option>Reading & Writing</option>
-												</select>
-					 						</div>
-					 					</div>*@
+					 				
 					 					<div class="col-lg-12">
 					 						<span class="pf-title">Create Date</span>
 					 						<div class="pf-field">
-					 							<input type="text" asp-for="CareateDate" placeholder="22.08.2022"  class="form-control datepicker" />
+					 							<input  asp-for="CareateDate" placeholder="22.08.2022"  class="form-control datepicker" />
 					 						</div>
 					 					</div>
 					 					<div class="col-lg-12">
 					 						<span class="pf-title">Update Date</span>
 					 						<div class="pf-field">
-					 							<input type="text" asp-for="UpdateDate" placeholder="22.08.2022"  class="form-control datepicker" />
+					 							<input asp-for="UpdateDate" placeholder="22.08.2022"  class="form-control datepicker" />
 					 						</div>
 					 					</div>
-@*					 					<div class="col-lg-12">
-					 						<span class="pf-title">Skill Requirments</span>
-					 						<div class="pf-field">
-						 						<ul class="tags">
-										           <li class="addedTag">Photoshop<span onclick="$(this).parent().remove();" class="tagRemove">x</span><input type="hidden" name="tags[]" value="Web Deisgn"></li>
-							            			<li class="tagAdd taglist">  
-							              				 <input type="text" id="search-field">
-										            </li>
-												</ul>
-											</div>
-					 					</div>*@
-					 					<div class="col-lg-6">
-					 						<span class="pf-title">Country</span>
-					 						<div class="pf-field">
-					 							<select data-placeholder="Please Select Specialism" class="chosen">
-													<option>Web Development</option>
-													<option>Web Designing</option>
-													<option>Art & Culture</option>
-													<option>Reading & Writing</option>
-												</select>
-					 						</div>
-					 					</div>
-					 					<div class="col-lg-6">
-					 						<span class="pf-title">City</span>
-					 						<div class="pf-field">
-					 							<select data-placeholder="Please Select Specialism" class="chosen">
-													<option>Web Development</option>
-													<option>Web Designing</option>
-													<option>Art & Culture</option>
-													<option>Reading & Writing</option>
-												</select>
-					 						</div>
-					 					</div>
-					 					<div class="col-lg-12">
-					 						<span class="pf-title">Complete Address</span>
-					 						<div class="pf-field">
-					 							<textarea>Collins Street West, Victoria 8007, Australia.</textarea>
-					 						</div>
-					 					</div>	
 										<div class="col-lg-12">
 					 						<button type="submit">Job Post</button>
 					 					</div>
+										 <br />
 					 				</div>
 					 			</form>
 					 		</div>
-@*					 		<div class="contact-edit">
-					 			<form>
-					 				<div class="row">
-					 					<div class="col-lg-6">
-					 						<span class="pf-title">Find On Map</span>
-					 						<div class="pf-field">
-					 							<input type="text" placeholder="Collins Street West, Victoria 8007, Australia." />
-					 						</div>
-					 					</div>
-					 					<div class="col-lg-3">
-					 						<span class="pf-title">Latitude</span>
-					 						<div class="pf-field">
-					 							<input type="text" placeholder="41.1589654" />
-					 						</div>
-					 					</div>
-					 					<div class="col-lg-3">
-					 						<span class="pf-title">Longitude</span>
-					 						<div class="pf-field">
-					 							<input type="text" placeholder="21.1589654" />
-					 						</div>
-					 					</div>
-					 					<div class="col-lg-12">
-					 						<a href="employer_post_new.html#" title="" class="srch-lctn">Search Location</a>
-					 					</div>
-					 					<div class="col-lg-12">
-					 						<span class="pf-title">Maps</span>
-					 						<div class="pf-map">
-					 							<div id="map_div"></div>
-					 						</div>
-					 					</div>
-					 					<div class="col-lg-12">
-					 						<button type="submit">Job Post</button>
-					 					</div>
-					 				</div>
-					 			</form>
-					 		</div>*@
+
 					 	</div>
 					</div>
 				 </div>
 			</div>
 		</div>
 	</section>
-@*    <div class="section section-padding">
-        <div class="container">
-            <div class="row">
-                <div class="create-job-form col-lg-10 mx-auto">
-                    <form action="Create">
-                        <div class="row mb-n3">
-                            <div class="col-md-6 col-12 mb-3">
-                                <label for="jobTitle">Job Title</label>
-                                <input type="text" id="jobTitle" placeholder="e.g. web design">
-                            </div>
-                            <div class="col-md-6 col-12 mb-3">
-                                <label for="applicationDeadline">Application Deadline</label>
-                                <input type="text" id="applicationDeadline" placeholder="12/24/2022">
-                            </div>
-                            <div class="col-md-6 col-12 mb-3">
-                                <label for="jobType">Job Type</label>
-                                <select id="jobType">
-                                    <option value="type1">Full Time</option>
-                                    <option value="type2">Part Time</option>
-                                    <option value="type3">Freelance</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6 col-12 mb-3">
-                                <label for="jobCategory">Job Category</label>
-                                <select id="jobCategory">
-                                    <option value="type1">Web Design</option>
-                                    <option value="type2">Ui Ux Design</option>
-                                    <option value="type3">WordPress Developer</option>
-                                    <option value="type4">React Developer</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6 col-12 mb-3">
-                                <label for="salaryRange">Salary Range</label>
-                                <input type="text" id="salaryRange" placeholder="5k-8k">
-                            </div>
-                            <div class="col-md-6 col-12 mb-3">
-                                <label for="jobGender">Gender</label>
-                                <select id="jobGender">
-                                    <option value="type1">Any</option>
-                                    <option value="type2">Male</option>
-                                    <option value="type3">Female</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6 col-12 mb-3">
-                                <label for="jobExperience">Experience</label>
-                                <select id="jobExperience">
-                                    <option value="type1">1 Year to 2 Year</option>
-                                    <option value="type2">2 Year to 3 Year</option>
-                                    <option value="type3">3 Year to 4 Year</option>
-                                    <option value="type4">4 Year to 5 Year</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6 col-12 mb-3">
-                                <label for="jobEducation">Education</label>
-                                <select id="jobEducation">
-                                    <option>Postdoc</option>
-                                    <option>Ph.D.</option>
-                                    <option>Master</option>
-                                    <option>Bachelor</option>
-                                </select>
-                            </div>
-                            <div class="col-12 mb-3">
-                                <label for="jobDescription">Description</label>
-                                <textarea id="jobDescription" rows="5"></textarea>
-                            </div>
-                            <div class="col-12 mb-3">
-                                <button type="submit" class="btn btn-primary px-5">Post Job</button>
-                            </div>
-                        </div>
-                        <div class="row"></div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>*@
-@*<form asp-controller="Job" asp-action="Create" method="post" enctype="multipart/form-data">
-  <div class="form-row">
-     
-  <div class="row">
-      <div class="form-group col-md-3">
-      <label asp-for="Salary" class="form-label">@localizer["Salary"]</label>
-      <input asp-for="Salary" type="text" class="form-control" id="inputPassword4" placeholder="@localizer["Salary"]">
-    </div>
-     <div class="form-group col-md-3">
-      <label asp-for="Description" class="form-label">Desc</label>
-      <input asp-for="Description" type="text" class="form-control" id="inputPassword4" placeholder="Descrip">
-    </div>
-   
 
-  <div class="form-group col-md-3">
-      <label asp-for="JobTypeTrId" class="form-label">@localizer["JobType"]</label>
-      <select asp-for="JobTypeTrId" class="form-control" asp-items="@ViewBag.jobType">
-        <option selected>@localizer["Choose"]...</option>
-      </select>
-    </div>
-
-  <div class="form-group col-md-3">
-    <label asp-for="CareateDate" class="form-label">@localizer["CreateDate"]</label>
-    <input asp-for="CareateDate" class="form-control" id="inputAddress2" placeholder="@localizer["CreateDate"]">
-  </div>
-   <div class="form-group col-md-3">
-    <label asp-for="UpdateDate" class="form-label">@localizer["UpdateDate"]</label>
-    <input asp-for="UpdateDate" class="form-control" id="inputAddress2" placeholder="@localizer["UpdateDate"]">
-  </div>
-  </div>
-   <div class="row">
-        <div class="form-group col-md-4">
-      <label asp-for="JobCateTrId" class="form-label">@localizer["JobCategory"]</label>
-      <select asp-for="JobCateTrId" class="form-control" asp-items="@ViewBag.jobCategory">
-        <option selected>@localizer["Choose"]...</option>
-      </select>
-    </div>
-     <div class="form-group col-md-4">
-      <label asp-for="ExperienceTrId" class="form-label">@localizer["Experience"]</label>
-      <select asp-for="ExperienceTrId" class="form-control" asp-items="@ViewBag.exper">
-        <option selected>@localizer["Choose"]...</option>
-      </select>
-    </div>
-    <div class="form-group col-md-4">
-      <label asp-for="UserId" class="form-label">@localizer["User"]</label>
-      <select asp-for="UserId" class="form-control" asp-items="@ViewBag.user">
-        <option selected>@localizer["Choose"]...</option>
-      </select>
-    </div>
-  </div>
-  </div>
-  <div class="form-row">
- 
-  </div>
-  <div class="mt-4">
-  <button asp-controller="Job" asp-action="List" class="btn btn-success ">@localizer["back"]</button>
-  <button type="submit" class="btn btn-primary">@localizer["Create"]</button>
-  </div>
-</form>*@

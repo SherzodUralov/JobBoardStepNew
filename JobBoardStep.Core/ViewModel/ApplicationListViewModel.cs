@@ -10,12 +10,11 @@ namespace JobBoardStep.Core.ViewModel
     {
 
         public int ApplicationId { get; set; }
-
-        public DateTime CreateDate { get; set; }
-    
-        public DateTime UpdateDate { get; set; }
-        public bool ApplicationStatus { get; set; }      
+        public DateTime CreateDate { get; set; }   
+        public bool ApplicationStatus { get; set; }
+        public string? FilePath { get; set; }
         public string JobCatName { get; set; }  
-        public string UserEmployeerEmail { get; set; }
+        public string Phone { get; set; }
+        public string FirstName { get; set; }
     }
 }

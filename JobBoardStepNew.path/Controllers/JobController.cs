@@ -21,6 +21,7 @@ namespace JobBoardStepNew.path.Controllers
         }
         [HttpGet]
         public ViewResult Create()
+        
         {
             var modelsession = HttpContext.Session.GetString("language");
             ViewBag.jobcategory = new SelectList(repository.JCTList(modelsession),"Id", "JobCatName");
@@ -93,6 +94,11 @@ namespace JobBoardStepNew.path.Controllers
         public ViewResult EmpManage()
         {
             return View();
+        }
+        public IActionResult Data(int id = 4)
+        {
+            var data = repository.GetById(id);
+            return View(data);
         }
     }
 }
