@@ -15,11 +15,6 @@ namespace JobBoardStepNew.path.Controllers
         {
             return View();
         }
-        public IActionResult Create()
-        {
-            var data = repository.GetUsers();
-            ViewBag.data = data;
-            return View();
-        }
+
     }
 }

@@ -19,11 +19,12 @@ namespace JobBoardStep.Core.Repository
         List<JobTypeTranslate> JTTList(string lang);
         List<ExperienceTranslate> ETList(string lang);
         Job GetById(int id);
-        List<User> UserGet();
+        User UserGet(string a);
         JobEditViewModel EditJob(Job jobedit);
         Job exsEdit(Job job,JobEditViewModel jobEditView);
 
         string Login();
+
      
     }
 }

@@ -20,14 +20,18 @@ namespace JobBoardStepNew.path.Controllers
             return View();
         }
         [HttpGet]
-        public ViewResult Create()
-        
+        public ViewResult Create()        
         {
             var modelsession = HttpContext.Session.GetString("language");
             ViewBag.jobcategory = new SelectList(repository.JCTList(modelsession),"Id", "JobCatName");
             ViewBag.jobtype = new SelectList(repository.JTTList(modelsession), "Id", "Name");
             ViewBag.exper = new SelectList(repository.ETList(modelsession), "Id", "Name");
-            ViewBag.user = new SelectList(repository.UserGet(), "UserId", "FirstName");
+            string data = User.Identity.Name;
+
+            var user = repository.UserGet(data);
+
+            ViewBag.user = user.UserId;
+
             return View();
         }
         [HttpPost]
@@ -62,7 +66,7 @@ namespace JobBoardStepNew.path.Controllers
             ViewBag.jobcategory = new SelectList(repository.JCTList(modelsession), "Id", "JobCatName");
             ViewBag.jobtype = new SelectList(repository.JTTList(modelsession), "Id", "Name");
             ViewBag.exper = new SelectList(repository.ETList(modelsession), "Id", "Name");
-            ViewBag.user = new SelectList(repository.UserGet(), "UserId", "FirstName");
+       //     ViewBag.user = new SelectList(repository.UserGet(), "UserId", "FirstName");
             return View(newModel);
         }
         [HttpPost]

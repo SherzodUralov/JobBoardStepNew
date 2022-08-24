@@ -275,7 +275,7 @@
 		</div>
 	</header>
 
-	@*<section class="overlape">
+	<section class="overlape">
 		<div class="block no-padding">
 			<div data-velocity="-.1" style="background: url(adminJob/images/resource/mslider1.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax"></div><!-- PARALLAX BACKGROUND IMAGE -->
 			<div class="container fluid">
@@ -316,7 +316,7 @@
 				</div>
 			</div>
 		</div>
-	</section>*@
+	</section>
 
 	<div class="container">
          @RenderBody()
@@ -411,22 +411,20 @@
 		<h3>User Login</h3>
 		<span>Click To Login With Demo User</span>
 		<div class="select-user">
-			<span><a asp-controller="User" asp-action="Login">Creditalal</a></span>
-			<span>
-		    <select class="form-control">
-				<option>one</option>
-				<option>two</option>
-				<option>thire</option>
-			</select>
-			</span>
+			<span><a asp-controller="User" asp-action="Create">Fulltime</a></span>
+            <span><a asp-action="Login1" asp-controller="User">contract</a></span>
 		</div>
-		<form>
+		<form asp-action="Login" asp-controller="User">
 			<div class="cfield">
 				<input type="text" placeholder="Username" />
 				<i class="la la-user"></i>
 			</div>
 			<div class="cfield">
 				<input type="password" placeholder="********" />
+				<i class="la la-key"></i>
+			</div>
+		    <div class="cfield">
+				<input type="password" placeholder="********1" />
 				<i class="la la-key"></i>
 			</div>
 			<p class="remember-label">

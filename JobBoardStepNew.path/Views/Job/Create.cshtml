@@ -82,6 +82,17 @@
 												</select>
 					 						</div>
 					 					</div>
+@*										 <div class="col-lg-12">
+					 						<span class="pf-title">User</span>
+					 						<div class="pf-field">
+					 							<select data-placeholder="Please Select Specialism" asp-for="UserId" asp-items="@ViewBag.user" class="chosen">
+													<option>choose user...</option>
+												</select>												
+					 						</div>
+					 					</div>*@
+										 <div>
+											 <input asp-for="UserId" type="hidden" value="@ViewBag.user" />
+										 </div>
 					 				
 					 					<div class="col-lg-12">
 					 						<span class="pf-title">Create Date</span>

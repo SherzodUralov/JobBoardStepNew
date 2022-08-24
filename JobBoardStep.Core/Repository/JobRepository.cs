@@ -29,8 +29,8 @@ namespace JobBoardStep.Core.Repository
             JobCategoryTranslate jobCat = context.JobCategoryTranslates.FirstOrDefault(x => x.Id.Equals(jobcreate.JobCateTrId));
             JobTypeTranslate jobType = context.JobTypeTranslates.FirstOrDefault(x => x.Id.Equals(jobcreate.JobTypeTrId));
             ExperienceTranslate exper = context.ExperienceTranslates.FirstOrDefault(x => x.Id.Equals(jobcreate.ExperienceTrId));
-            var data = context.Users.FirstOrDefault(a => a.UserId.Equals(jobcreate.UserId));
-         
+            //User data = context.Users.FirstOrDefault(a => a.UserId.Equals(jobcreate.UserId));
+
             Job newjob = new Job()
             {
                 JobId = jobcreate.JobId,
@@ -44,7 +44,7 @@ namespace JobBoardStep.Core.Repository
                 JobTypeId = jobType.JobTypeId,
                 ExperTId = jobcreate.ExperienceTrId,
                 ExperienceId = exper.ExperienceId,
-                UserId = data.UserId
+                UserId =jobcreate.UserId
             };
             return newjob;
         }
@@ -181,9 +181,9 @@ namespace JobBoardStep.Core.Repository
             context.SaveChanges();
         }
 
-        public List<User> UserGet()
+        public User UserGet(string a)
         {
-            return context.Users.ToList();
+            return context.Users.FirstOrDefault(x => x.Email.Equals(a));
         }
     }
 }

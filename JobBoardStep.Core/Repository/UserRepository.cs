@@ -1,4 +1,5 @@
-﻿using JobBoardStep.Core.Context;
+﻿
+using JobBoardStep.Core.Context;
 using JobBoardStep.Core.Models;
 using JobBoardStep.Core.ViewModel;
 using Microsoft.EntityFrameworkCore;
@@ -198,20 +199,20 @@ namespace JobBoardStep.Core.Repository
                              Region = r.Name
                          }
                          ).ToList();
-            IList<UserListViewModel> user;
-            if (!memoryCache.TryGetValue("Users", out user))
-            {
-                var cacheexper = new MemoryCacheEntryOptions()
-                {
-                    AbsoluteExpiration = DateTimeOffset.Now.AddMinutes(2),
-                    Priority = CacheItemPriority.High,
-                    SlidingExpiration = TimeSpan.FromSeconds(20)
-                };
-                memoryCache.Set("Users", model, cacheexper);
-            }
-            user = memoryCache.Get("Users") as IList<UserListViewModel>;
+            //IList<UserListViewModel> user;
+            //if (!memoryCache.TryGetValue("Users", out user))
+            //{
+            //    var cacheexper = new MemoryCacheEntryOptions()
+            //    {
+            //        AbsoluteExpiration = DateTimeOffset.Now.AddMinutes(2),
+            //        Priority = CacheItemPriority.High,
+            //        SlidingExpiration = TimeSpan.FromSeconds(20)
+            //    };
+            //    memoryCache.Set("Users", model, cacheexper);
+            //}
+            //user = memoryCache.Get("Users") as IList<UserListViewModel>;
 
-            return user;
+            return model;
         }
 
         public async Task<User> UserReturn(LoginViewModel model)
@@ -359,5 +360,7 @@ namespace JobBoardStep.Core.Repository
 
             return newuser;
         }
+
+
     }
 }
