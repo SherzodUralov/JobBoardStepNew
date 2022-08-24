@@ -38,6 +38,8 @@ namespace JobBoardStep.Core.Repository
 
         Task<User> UserReturn(LoginViewModel model);
 
+        Task<User> UserReturn1(Login1ViewModel model);
+
         Task<bool> VerifyPassword(string Password, byte[] passworHash, byte[] passwordSalt);
 
         IEnumerable<MapIndexViewModel> gets();
