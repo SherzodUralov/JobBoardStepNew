@@ -358,6 +358,7 @@ namespace JobBoardStep.Core.Repository
 
             return newuser;
         }
+<<<<<<< HEAD
         public async Task<User> UserReturn1(Login1ViewModel model)
         {
             var user = await context.Users.FirstOrDefaultAsync(x => x.PhoneNumber.Equals(model.PhoneNamber));
@@ -368,6 +369,15 @@ namespace JobBoardStep.Core.Repository
 
     }
 
+=======
+		public async Task<User> UserReturn1(Login1ViewModel model)
+		{
+            var user = await context.Users.FirstOrDefaultAsync(x => x.PhoneNumber.Equals(model.PhoneNamber));
+
+            return user;
+		}
+	}
+>>>>>>> 1c8953f13e2eda981cd949659744cb9af4fa0d14
 }
 
 
