@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JobBoardStep.Core.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220823054445_InatialCreated")]
+    [Migration("20220825145037_InatialCreated")]
     partial class InatialCreated
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
