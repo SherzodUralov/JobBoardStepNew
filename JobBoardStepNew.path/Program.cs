@@ -60,6 +60,7 @@ builder.Services.AddScoped<IExperienceRepo, ExperienceRepo>();
 builder.Services.AddScoped<IJobRepository,JobRepository>();
 builder.Services.AddScoped<IRoleMapRepo, RoleMapRepo>();
 builder.Services.AddScoped<ILanguagRepo, LanguagRepo>();
+builder.Services.AddScoped<IApplicationRepository, ApplicationRepository>();
 
 var app = builder.Build();
 
