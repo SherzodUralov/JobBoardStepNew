@@ -13,6 +13,7 @@ namespace JobBoardStep.Core.ViewModel
         public DateTime UpdateDate { get; set; }
         public bool Status { get; set; }
         public int JobId { get; set; }
+         public string? FilePath { get; set; }
         public int UserId { get; set; }
     }
 }

@@ -99,7 +99,7 @@ namespace JobBoardStepNew.path.Controllers
 
             HttpSiginAsync(user);
 
-            return RedirectToAction("List");
+            return RedirectToAction("Create","App");
 
         }
         public string ism;

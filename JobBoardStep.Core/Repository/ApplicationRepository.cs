@@ -30,7 +30,10 @@ namespace JobBoardStep.Core.Repository
                 UpdateDate = appCreate.UpdateDate,
                 JobId = job.JobId,
                 UserId = user.UserId,
+                FilePath = appCreate.FilePath,
             };
+            contex.Add(app);
+            contex.SaveChanges();
 
         }
 

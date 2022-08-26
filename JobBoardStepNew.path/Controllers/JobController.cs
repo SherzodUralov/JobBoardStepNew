@@ -1,6 +1,7 @@
 ﻿using JobBoardStep.Core.Models;
 using JobBoardStep.Core.Repository;
 using JobBoardStep.Core.ViewModel;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -107,6 +108,8 @@ namespace JobBoardStepNew.path.Controllers
         [HttpGet]
         public IActionResult data(int id)
         {
+            //sessiya aplication create uchun.
+            HttpContext.Session.SetInt32("id", id);
             var da = repository.getById(id);
             return View(da);
         }

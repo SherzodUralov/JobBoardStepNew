@@ -5,6 +5,14 @@
 }
       @foreach (var item in Model)
     {
+							  if (item.JobTypeName == " contract" || item.JobTypeName == "shartnoma" || item.JobTypeName == " договор")
+								{
+									ViewData["login"] = "Login";
+								}
+								else
+								{
+									ViewData["login"] = "Login1";
+								}
       <section>
 		<div class="block">
 			<div class="container">
@@ -58,7 +66,8 @@
 			 					<p><i class="la la-phone"></i> +90 538 963 54 87</p>
 			 					<p><i class="la la-envelope-o"></i> ali.tufan@jobhunt.com</p>
 			 				</div>
-			 				<a href="job_single2.html#" title="" class="apply-job-btn"><i class="la la-paper-plane"></i>Apply for job</a>
+
+			 				<a asp-controller="User" asp-action=@ViewBag.login title="" class="apply-job-btn"><i class="la la-paper-plane"></i>Apply for job</a>
 			 				<a href="job_single2.html#" title="" class="apply-job-linkedin"><i class="fa fa-linkedin"></i>Apply with Linkedin</a>
 			 				<a asp-action="Create" asp-controller="Job" title="" class="viewall-jobs">View all Jobs</a>
 			 			</div><!-- Job Head -->
