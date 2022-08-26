@@ -10,7 +10,7 @@ namespace JobBoardStep.Core.ViewModel
 	public class Login1ViewModel
 	{
 		[Required]
-		public string PhoneNamber { get; set; }
+		public string PhoneOrEmail { get; set; }
 		[Required]
 		public string Password { get; set; }
 	}
