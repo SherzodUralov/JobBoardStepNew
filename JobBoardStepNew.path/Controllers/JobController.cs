@@ -104,5 +104,11 @@ namespace JobBoardStepNew.path.Controllers
             var data = repository.GetById(id);
             return View(data);
         }
+        [HttpGet]
+        public IActionResult data(int id)
+        {
+            var da = repository.getById(id);
+            return View(da);
+        }
     }
 }

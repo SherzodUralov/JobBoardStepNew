@@ -109,6 +109,46 @@ namespace JobBoardStep.Core.Repository
             return context.Jobs.Find(id);
         }
 
+        public IList<JobListViewModel> getById(int id)
+        {
+            var d1 = GetById(id);
+            
+            var model = (from J in context.Jobs
+                         join JC in context.JobCategories
+                         on J.JobCateId equals JC.Id
+                         join JCT in context.JobCategoryTranslates
+                         on JC.Id equals JCT.JobCatId
+                         join JT in context.JobTypes
+                         on J.JobTypeId equals JT.Id
+                         join JTT in context.JobTypeTranslates
+                         on JT.Id equals JTT.JobTypeId
+                         join E in context.Experiences
+                         on J.ExperienceId equals E.Id
+                         join ET in context.ExperienceTranslates
+                         on E.Id equals ET.ExperienceId
+                         join U in context.Users
+                         on J.UserId equals U.UserId
+                         where J.JobId == id
+                         where d1.ExperTId == ET.Id
+                         where  d1.JobCatTId == JCT.Id
+                         where d1.JobTypeTId == JTT.Id
+                         where d1.UserId == U.UserId
+                         select new JobListViewModel
+                         {
+                             JobId = J.JobId,
+                             Salary = J.Salary,
+                             Description = J.Description,
+                             CareateDate = J.CareateDate,
+                             UpdateDate = J.UpdateDate,
+                             JobCatName = JCT.JobCatName,
+                             JobTypeName = JTT.Name,
+                             ExperName = ET.Name,
+                             UserName = U.FirstName
+
+                         }).ToList();
+            return model;
+        }
+
         public List<JobCategoryTranslate> JCTList(string lang)
         {
             if (lang == null)
