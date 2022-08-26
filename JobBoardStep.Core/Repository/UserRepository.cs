@@ -339,6 +339,21 @@ namespace JobBoardStep.Core.Repository
         }
         public User NewUser1(RegestirViewModel model)
         {
+            string Email = "";
+
+            string PhoneNumber = "";
+
+            bool next = model.PhoneOrEmail.Contains('@');
+
+            if (next)
+            {
+                Email = model.PhoneOrEmail;
+            }
+            else 
+            {
+                PhoneNumber = model.PhoneOrEmail;
+            }
+
             byte[] passworhash, passworsalt;
 
             CreatePassworHash(model.Password, out passworhash, out passworsalt);
@@ -348,8 +363,10 @@ namespace JobBoardStep.Core.Repository
                 FirstName = model.FirstName,
 
                 LastName = model.LastName,
+                
+                Email = Email,
 
-                PhoneNumber = model.PhoneNumber,
+                PhoneNumber = PhoneNumber,
 
                 PasswordHash = passworhash,
 

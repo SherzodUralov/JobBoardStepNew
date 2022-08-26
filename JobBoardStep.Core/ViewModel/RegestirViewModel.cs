@@ -14,7 +14,7 @@ namespace JobBoardStep.Core.ViewModel
         [Required]
         public string LastName { get; set; }
         [Required]
-        public string PhoneNumber { get; set; }
+        public string PhoneOrEmail { get; set; }
         [Required]
         public string Password { get; set; }
 
