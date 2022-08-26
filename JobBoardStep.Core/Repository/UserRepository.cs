@@ -378,7 +378,16 @@ namespace JobBoardStep.Core.Repository
 
         public async Task<User> UserReturn1(Login1ViewModel model)
         {
-            var user = await context.Users.FirstOrDefaultAsync(x => x.PhoneNumber.Equals(model.PhoneNamber));
+            User user;
+
+            if (model.PhoneOrEmail.Contains('@'))
+            {
+                 user = await context.Users.FirstOrDefaultAsync(x => x.Email.Equals(model.PhoneOrEmail));
+            }
+            else
+            {
+                 user = await context.Users.FirstOrDefaultAsync(x => x.PhoneNumber.Equals(model.PhoneOrEmail));
+            }
 
             return user;
         }
