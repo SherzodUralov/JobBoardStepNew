@@ -1,10 +1,13 @@
 ﻿using JobBoardStep.Core.Models;
 using JobBoardStep.Core.Repository;
 using JobBoardStep.Core.ViewModel;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Security.Claims;
 
 namespace JobBoardStepNew.path.Controllers
 {
@@ -44,6 +47,8 @@ namespace JobBoardStepNew.path.Controllers
         }
         public IActionResult List(int pg = 1)
         {
+            ViewData["employer"] = "Employer";
+
             var modelsession = HttpContext.Session.GetString("language");
             var data = repository.JobList(modelsession);
             const int pageSize = 6;
@@ -113,5 +118,45 @@ namespace JobBoardStepNew.path.Controllers
             var da = repository.getById(id);
             return View(da);
         }
+        [HttpGet]
+        public ViewResult Register() 
+        {
+            return View();
+        }
+        public async Task<IActionResult> Register(JobRegisterViewModel model) 
+        {
+            if (ModelState.IsValid)
+            {
+                var newuser = repository.NewUser1(model);
+
+                HttpSiginAsyncreg1(newuser);
+
+                await repository.CreateAsync(newuser);
+
+                return  RedirectToAction("Create", "Job");
+            }
+            return View();
+        }
+        private void HttpSiginAsyncreg1(User model)
+        {
+            var clamis = new List<Claim>();
+            if (model.PhoneNumber != null)
+            {
+                clamis.Add(new Claim(ClaimTypes.Name, model.PhoneNumber));
+            }
+            else
+            {
+                clamis.Add(new Claim(ClaimTypes.Name, model.Email));
+            }
+            clamis.Add(new Claim(ClaimTypes.NameIdentifier, model.LastName));
+
+            var claimsIdentity = new ClaimsIdentity(clamis,
+                CookieAuthenticationDefaults.AuthenticationScheme);
+
+            var claimsPrinsipal = new ClaimsPrincipal(claimsIdentity);
+
+            HttpContext.SignInAsync(claimsPrinsipal);
+        }
+
     }
 }

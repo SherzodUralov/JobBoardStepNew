@@ -25,7 +25,7 @@ namespace JobBoardStepNew.path.Controllers
             string data = User.Identity.Name;
             var user = repositoryjob.UserGet(data);
             ViewBag.user = user.UserId;
-          ViewBag.job = HttpContext.Session.GetInt32("id");
+            ViewBag.job = HttpContext.Session.GetInt32("id");
             return View();
         }
         [HttpPost]

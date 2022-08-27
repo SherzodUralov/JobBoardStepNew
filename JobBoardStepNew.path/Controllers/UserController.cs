@@ -272,7 +272,7 @@ namespace JobBoardStepNew.path.Controllers
 
                 repo.Create(newuser);
 
-                return RedirectToAction("Create", "Job");
+                return RedirectToAction("Create", "App");
             }
 
             return View();
@@ -315,7 +315,11 @@ namespace JobBoardStepNew.path.Controllers
 
             HttpSiginAsync1(user);
 
-            return RedirectToAction("Create", "Job");
+            if (user.UserTypeId == 1)
+            {
+                return RedirectToAction("Create", "Job");
+            }
+               return RedirectToAction("Create", "App");
         }
 
         private void HttpSiginAsync1(User user)
