@@ -222,7 +222,18 @@ namespace JobBoardStep.Core.Repository
 
         public User UserGet(string a)
         {
-            return context.Users.FirstOrDefault(x => x.Email.Equals(a));
+            User user;
+
+            if (a.Contains('@'))
+            {
+                user = context.Users.FirstOrDefault(x => x.Email.Equals(a));
+            }
+            else
+            {
+                user = context.Users.FirstOrDefault(x => x.PhoneNumber.Equals(a));    
+            }
+
+            return user;
         }
 	}
 }

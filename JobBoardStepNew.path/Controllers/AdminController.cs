@@ -34,7 +34,7 @@ namespace JobBoardStepNew.path.Controllers
 
             HttpSiginAsync(user);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("List", "User");
         }
         private void HttpSiginAsync(User user)
         {

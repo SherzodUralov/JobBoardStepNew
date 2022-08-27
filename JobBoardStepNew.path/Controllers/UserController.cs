@@ -272,7 +272,7 @@ namespace JobBoardStepNew.path.Controllers
 
                 repo.Create(newuser);
 
-                return RedirectToAction("List", "Job");
+                return RedirectToAction("Create", "Job");
             }
 
             return View();
@@ -280,7 +280,14 @@ namespace JobBoardStepNew.path.Controllers
         private void HttpSiginAsyncreg1(User model)
         {
             var clamis = new List<Claim>();
-            clamis.Add(new Claim(ClaimTypes.Name, model.PhoneNumber));
+            if (model.PhoneNumber != null)
+            {
+                clamis.Add(new Claim(ClaimTypes.Name, model.PhoneNumber));
+            }
+            else
+            {
+                clamis.Add(new Claim(ClaimTypes.Name, model.Email));
+            }
             clamis.Add(new Claim(ClaimTypes.NameIdentifier, model.LastName));
 
             var claimsIdentity = new ClaimsIdentity(clamis,
@@ -308,13 +315,20 @@ namespace JobBoardStepNew.path.Controllers
 
             HttpSiginAsync1(user);
 
-            return RedirectToAction("List", "Job");
+            return RedirectToAction("Create", "Job");
         }
 
         private void HttpSiginAsync1(User user)
         {
             var clamis = new List<Claim>();
-            clamis.Add(new Claim(ClaimTypes.Name, user.FirstName));
+            if (user.PhoneNumber != null)
+            {
+                clamis.Add(new Claim(ClaimTypes.Name, user.PhoneNumber));
+            }
+            else
+            {
+                clamis.Add(new Claim(ClaimTypes.Name, user.Email));
+            }
             clamis.Add(new Claim(ClaimTypes.NameIdentifier, user.LastName));
 
             var claimsIdentity = new ClaimsIdentity(clamis,
