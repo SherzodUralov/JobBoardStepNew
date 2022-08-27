@@ -129,7 +129,7 @@ namespace JobBoardStepNew.path.Controllers
 
                 repo.Create(newuser);
 
-                return RedirectToAction("List");
+                return RedirectToAction("Create", "App");
             }
             ViewBag.region = new SelectList(repo.RegionList(), "Id", "Name");
 
