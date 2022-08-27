@@ -370,7 +370,9 @@ namespace JobBoardStep.Core.Repository
 
                 PasswordHash = passworhash,
 
-                PasswordSalt = passworsalt
+                PasswordSalt = passworsalt,
+
+                UserTypeId = 2
             };
 
             return newuser;

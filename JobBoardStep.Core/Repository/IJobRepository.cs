@@ -23,6 +23,10 @@ namespace JobBoardStep.Core.Repository
         User UserGet(string a);
         JobEditViewModel EditJob(Job jobedit);
         Job exsEdit(Job job,JobEditViewModel jobEditView);
-     
+
+        User NewUser1(JobRegisterViewModel model);
+
+        Task CreateAsync(User user);
+
     }
 }

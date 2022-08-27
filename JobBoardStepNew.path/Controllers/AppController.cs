@@ -24,8 +24,13 @@ namespace JobBoardStepNew.path.Controllers
         {
             string data = User.Identity.Name;
             var user = repositoryjob.UserGet(data);
+<<<<<<< HEAD
           ViewBag.user = user.UserId;
           ViewBag.job = HttpContext.Session.GetInt32("id");
+=======
+            ViewBag.user = user.UserId;
+            ViewBag.job = HttpContext.Session.GetInt32("id");
+>>>>>>> 213d4c381b663af4b3afaa2a35cc0883f0808251
             return View();
         }
         [HttpPost]

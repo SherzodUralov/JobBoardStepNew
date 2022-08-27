@@ -235,5 +235,61 @@ namespace JobBoardStep.Core.Repository
 
             return user;
         }
-	}
+        public User NewUser1(JobRegisterViewModel model)
+        {
+            string Email = "";
+
+            string PhoneNumber = "";
+
+            bool next = model.PhoneOrEmail.Contains('@');
+
+            if (next)
+            {
+                Email = model.PhoneOrEmail;
+            }
+            else
+            {
+                PhoneNumber = model.PhoneOrEmail;
+            }
+
+            byte[] passworhash, passworsalt;
+
+            CreatePassworHash(model.Password, out passworhash, out passworsalt);
+
+            User newuser = new User
+            {
+                FirstName = model.FirstName,
+
+                LastName = model.LastName,
+
+                Email = Email,
+
+                PhoneNumber = PhoneNumber,
+
+                PasswordHash = passworhash,
+
+                PasswordSalt = passworsalt,
+
+                UserTypeId = 1
+            };
+
+            return newuser;
+        }
+        public void CreatePassworHash(string Password, out byte[] passwordHash, out byte[] passwordSalt)
+        {
+            using (var hmac = new System.Security.Cryptography.HMACSHA512())
+            {
+                passwordSalt = hmac.Key;
+
+                passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(Password));
+            }
+        }
+
+        public async Task CreateAsync(User user)
+        {
+                  await context.Users.AddAsync(user);
+
+                  await context.SaveChangesAsync();
+        }
+    }
 }
