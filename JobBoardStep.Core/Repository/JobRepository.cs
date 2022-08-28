@@ -286,7 +286,7 @@ namespace JobBoardStep.Core.Repository
                   await context.SaveChangesAsync();
         }
 
-        public IList<JobListViewModel> JobEmpManageList(string lang,string name)
+        public IList<JobListViewModel> JobEmpManageList(string lang,int id)
         {
             if (lang == null)
             {
@@ -307,7 +307,7 @@ namespace JobBoardStep.Core.Repository
                          on E.Id equals ET.ExperienceId
                          join U in context.Users
                          on J.UserId equals U.UserId
-                         where JCT.Language.LanguageName == lang && JTT.Language.LanguageName == lang && ET.Language.LanguageName == lang && U.FirstName == name
+                         where JCT.Language.LanguageName == lang && JTT.Language.LanguageName == lang && ET.Language.LanguageName == lang && U.UserId == id
                          select new JobListViewModel
                          {
                              JobId = J.JobId,
