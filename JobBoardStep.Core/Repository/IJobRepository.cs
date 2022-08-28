@@ -11,6 +11,7 @@ namespace JobBoardStep.Core.Repository
     public interface IJobRepository
     {
         IList<JobListViewModel> JobList(string lang);
+        IList<JobListViewModel> JobEmpManageList(string lang,string name);
         IList<JobListViewModel> getById(int id);
         void Create(Job job);
         void Update(Job job);

@@ -103,7 +103,11 @@ namespace JobBoardStepNew.path.Controllers
         }
         public ViewResult EmpManage()
         {
-            return View();
+            string user = User.Identity.Name;
+           // var user = repository.UserGet(data);
+            var modelsession = HttpContext.Session.GetString("language");
+            var data = repository.JobEmpManageList(modelsession,user);
+            return View(data);
         }
         public IActionResult Data(int id = 4)
         {

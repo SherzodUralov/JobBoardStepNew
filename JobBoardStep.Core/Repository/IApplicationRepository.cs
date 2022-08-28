@@ -10,7 +10,7 @@ namespace JobBoardStep.Core.Repository
 {
     public interface IApplicationRepository
     {
-        IList<ApplicationListViewModel> GetAll();
+        IList<ApplicationListViewModel> GetAll(int id);
         void Add(AppCreateVMmin appCreate);
     }
 }

@@ -16,9 +16,10 @@ namespace JobBoardStepNew.path.Controllers
             this.repository = repository;
             this.repositoryjob = repositoryjob;
         }
-        public IActionResult Index()
+        public IActionResult List(int id)
         {
-            return View();
+            var data = repository.GetAll(id);
+            return View(data);
         }
         public IActionResult Create()
         {

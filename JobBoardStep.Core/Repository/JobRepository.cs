@@ -128,11 +128,7 @@ namespace JobBoardStep.Core.Repository
                          on E.Id equals ET.ExperienceId
                          join U in context.Users
                          on J.UserId equals U.UserId
-                         where J.JobId == id
-                         where d1.ExperTId == ET.Id
-                         where  d1.JobCatTId == JCT.Id
-                         where d1.JobTypeTId == JTT.Id
-                         where d1.UserId == U.UserId
+                         where J.JobId == id && d1.ExperTId == ET.Id && d1.JobCatTId == JCT.Id && d1.JobTypeTId == JTT.Id && d1.UserId == U.UserId
                          select new JobListViewModel
                          {
                              JobId = J.JobId,
@@ -179,9 +175,7 @@ namespace JobBoardStep.Core.Repository
                          on E.Id equals ET.ExperienceId
                          join U in context.Users
                          on J.UserId equals U.UserId
-                         where JCT.Language.LanguageName == lang
-                         where JTT.Language.LanguageName == lang
-                         where ET.Language.LanguageName == lang
+                         where JCT.Language.LanguageName == lang && JTT.Language.LanguageName == lang && ET.Language.LanguageName == lang
                          select new JobListViewModel
                          {
                              JobId = J.JobId,
@@ -290,6 +284,45 @@ namespace JobBoardStep.Core.Repository
                   await context.Users.AddAsync(user);
 
                   await context.SaveChangesAsync();
+        }
+
+        public IList<JobListViewModel> JobEmpManageList(string lang,string name)
+        {
+            if (lang == null)
+            {
+                lang = "en";
+            }
+            var model = (from J in context.Jobs
+                         join JC in context.JobCategories
+                         on J.JobCateId equals JC.Id
+                         join JCT in context.JobCategoryTranslates
+                         on JC.Id equals JCT.JobCatId
+                         join JT in context.JobTypes
+                         on J.JobTypeId equals JT.Id
+                         join JTT in context.JobTypeTranslates
+                         on JT.Id equals JTT.JobTypeId
+                         join E in context.Experiences
+                         on J.ExperienceId equals E.Id
+                         join ET in context.ExperienceTranslates
+                         on E.Id equals ET.ExperienceId
+                         join U in context.Users
+                         on J.UserId equals U.UserId
+                         where JCT.Language.LanguageName == lang && JTT.Language.LanguageName == lang && ET.Language.LanguageName == lang && U.FirstName == name
+                         select new JobListViewModel
+                         {
+                             JobId = J.JobId,
+                             Salary = J.Salary,
+                             Description = J.Description,
+                             CareateDate = J.CareateDate,
+                             UpdateDate = J.UpdateDate,
+                             JobCatName = JCT.JobCatName,
+                             JobTypeName = JTT.Name,
+                             ExperName = ET.Name,
+                             UserName = U.FirstName
+
+                         }
+                         ).ToList();
+            return model;
         }
     }
 }
