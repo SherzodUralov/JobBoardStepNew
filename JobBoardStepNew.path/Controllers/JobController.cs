@@ -103,6 +103,7 @@ namespace JobBoardStepNew.path.Controllers
         }
         public ViewResult EmpManage()
         {
+
             return View();
         }
         public IActionResult Data(int id = 4)

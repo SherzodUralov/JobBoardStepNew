@@ -319,7 +319,7 @@ namespace JobBoardStepNew.path.Controllers
 
             ViewBag.data = HttpContext.Session.GetInt32("id");
 
-            repo.jobsId(ViewBag.data);
+            var job = repo.jobsId(ViewBag.data); 
 
             if (user.UserTypeId == 1)
             {
