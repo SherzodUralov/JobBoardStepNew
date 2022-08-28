@@ -33,7 +33,8 @@ namespace JobBoardStepNew.path.Controllers
         public IActionResult Create(AppCreateVMmin app)
         {
             repository.Add(app);
-          return  RedirectToAction("List","Job");
+
+            return  RedirectToAction("List","Job");
         }
 
     }
