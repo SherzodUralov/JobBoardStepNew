@@ -21,16 +21,14 @@ namespace JobBoardStep.Core.Repository
 
         public void Add(AppCreateVMmin appCreate)
         {
-            Job job = contex.Jobs.FirstOrDefault(a => a.JobId.Equals(appCreate.JobId));
-            User user = contex.Users.FirstOrDefault(a => a.UserId.Equals(appCreate.UserId));
             Application app = new Application()
             {
                 ApplicationId = appCreate.AplicationId,
                 CreateDate = appCreate.CreateDate,
                 ApplicationStatus = appCreate.Status,
                 UpdateDate = appCreate.UpdateDate,
-                JobId = job.JobId,
-                UserId = user.UserId,
+                JobId = appCreate.JobId,
+                UserId = appCreate.UserId,
                 FilePath = appCreate.FilePath,
             };
             contex.Add(app);
