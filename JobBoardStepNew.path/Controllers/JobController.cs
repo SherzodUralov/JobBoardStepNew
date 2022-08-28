@@ -110,11 +110,6 @@ namespace JobBoardStepNew.path.Controllers
             var data = repository.JobEmpManageList(modelsession, ViewBag.data);
             return View(data);
         }
-        public IActionResult Data(int id = 4)
-        {
-            var data = repository.GetById(id);
-            return View(data);
-        }
         [HttpGet]
         public IActionResult data(int id)
         {
