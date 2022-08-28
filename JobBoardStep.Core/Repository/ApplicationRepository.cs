@@ -1,6 +1,7 @@
 ﻿using JobBoardStep.Core.Context;
 using JobBoardStep.Core.Models;
 using JobBoardStep.Core.ViewModel;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,15 +38,14 @@ namespace JobBoardStep.Core.Repository
 
         }
 
-        public IList<ApplicationListViewModel> GetAll()
+        public IList<ApplicationListViewModel> GetAll(int id)
         {
             var model = (from ap in contex.Applications
                          join j in contex.Jobs
                          on ap.JobId equals j.JobId
                          join u in contex.Users
                          on ap.UserId equals u.UserId
-                         where u.UserId == ap.UserId
-                         where j.JobId == ap.JobId
+                         where u.UserId == ap.UserId && j.JobId == id
                          select new ApplicationListViewModel
                          {
                              ApplicationId = ap.ApplicationId,
