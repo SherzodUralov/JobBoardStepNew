@@ -394,7 +394,20 @@ namespace JobBoardStep.Core.Repository
             return user;
         }
 
+        public IEnumerable<Job> jobsId(int id)
+        {
+            var model = (from j in context.Jobs
+                         join u in context.Users
+                         on j.UserId equals u.UserId
+                         where j.UserId == id
+                         select new Job
+                         {
+                             JobId = j.JobId
+                         }
+                         ).ToList();
 
+            return model;
+        }
     }	
 	
 

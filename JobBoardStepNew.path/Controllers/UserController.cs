@@ -315,9 +315,15 @@ namespace JobBoardStepNew.path.Controllers
 
             HttpSiginAsync1(user);
 
+            HttpContext.Session.SetInt32("id", user.UserId);
+
+            ViewBag.data = HttpContext.Session.GetInt32("id");
+
+            repo.jobsId(ViewBag.data);
+
             if (user.UserTypeId == 1)
             {
-                return RedirectToAction("Create", "Job");
+                return RedirectToAction("EmpManage", "Job");
             }
                return RedirectToAction("Create", "App");
         }

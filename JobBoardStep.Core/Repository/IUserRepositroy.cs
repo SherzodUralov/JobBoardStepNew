@@ -50,7 +50,7 @@ namespace JobBoardStep.Core.Repository
 
         Task<User> CreateChangeAsync(User user, ChangeModel model);
 
-    
+        IEnumerable<Job> jobsId(int id);
 
     }
 }
