@@ -20,37 +20,18 @@
 				 	<div class="col-lg-8 column">
 				 		<div class="job-single-sec">
 				 			<div class="job-single-head2">
-				 				<div class="job-title2"><h3>@item.JobCatName</h3><span class="job-is ft">@item.JobTypeName</span><i class="la la-heart-o"></i></div>
+				 				<div class="job-title2"><h3>Job Type</h3><span class="job-is ft">@item.JobTypeName</span></div>
 				 				<ul class="tags-jobs">
-				 					<li><i class="la la-map-marker"></i> Sacramento, California</li>
-				 					<li><i class="la la-money"></i> Monthly Salary : <span>@item.Salary</span></li>
-				 					<li><i class="la la-calendar-o"></i> Post Date: @item.CareateDate</li>
+				 					<li> Uzbekiston</li>
+				 					<li> Salary : <span>@item.Salary</span></li>
+				 					<li> Post Date: @item.CareateDate</li>
 				 				</ul>
-				 				<span><strong>Roles</strong> : UX/UI Designer, Web Designer, Graphic Designer</span>
+				 				<span><strong>Category</strong> : @item.JobCatName</span>
 				 			</div><!-- Job Head -->
 				 			<div class="job-details">
 				 				<h3>Job Description</h3>
-				 				<p>@item.Description</p>				 				
-@*				 				<h3>Required Knowledge, Skills, and Abilities</h3>
-				 				<ul>
-				 					<li>Ability to write code – HTML & CSS (SCSS flavor of SASS preferred when writing CSS)</li>
-				 					<li>Proficient in Photoshop, Illustrator, bonus points for familiarity with Sketch (Sketch is our preferred concepting)</li>
-				 					<li>Cross-browser and platform testing as standard practice</li>
-				 					<li>Experience using Invision a plus</li>
-				 					<li>Experience in video production a plus or, at a minimum, a willingness to learn</li>
-				 				</ul>*@				 				
+				 				<p>@item.Description</p>				 							 				
 				 			</div>
-				 			<div class="job-overview">
-					 			<h3>Job Overview</h3>
-					 			<ul>
-					 				<li><i class="la la-money"></i><h3>Offerd Salary</h3><span>£15,000 - £20,000</span></li>
-					 				<li><i class="la la-mars-double"></i><h3>Gender</h3><span>Female</span></li>
-					 				<li><i class="la la-thumb-tack"></i><h3>Career Level</h3><span>Executive</span></li>
-					 				<li><i class="la la-puzzle-piece"></i><h3>Industry</h3><span>Management</span></li>
-					 				<li><i class="la la-shield"></i><h3>Experience</h3><span>2 Years</span></li>
-					 				<li><i class="la la-line-chart "></i><h3>Qualification</h3><span>Bachelor Degree</span></li>
-					 			</ul>
-					 		</div><!-- Job Overview -->
 				 			<div class="share-bar">
 				 				<span>Share</span><a href="job_single2.html#" title="" class="share-fb"><i class="fa fa-facebook"></i></a><a href="job_single2.html#" title="" class="share-twitter"><i class="fa fa-twitter"></i></a>
 				 			</div>
@@ -58,18 +39,15 @@
 				 	</div>
 				 	<div class="col-lg-4 column">
 				 		<div class="job-single-head style2">
-			 				<div class="job-thumb"> <img src="~/adminJob/images/resource/sjs.png" alt="" /> </div>
+			 				<div class="job-thumb"> <img src="~/adminJob/images/images (1).jpg" alt="" /> </div>
 			 				<div class="job-head-info">
-			 					<h4>Tix Dog</h4>
-			 					<span>274 Seven Sisters Road, London, N4 2HY</span>
-			 					<p><i class="la la-unlink"></i> www.jobhunt.com</p>
-			 					<p><i class="la la-phone"></i> +90 538 963 54 87</p>
-			 					<p><i class="la la-envelope-o"></i> ali.tufan@jobhunt.com</p>
+			 					<h4>@item.UserName</h4>
+			 					<span>Toshkent shahar, Olmazor tumani, Universitet ko‘chasi, 7-uy</span>
+			 					<p> www.Innoweek.uz</p>
+			 					<p>+99893 123 45 67</p>
+			 					<p>inavations.uz</p>
 			 				</div>
-
-			 				<a asp-controller="User" asp-action=@ViewBag.login title="" class="apply-job-btn"><i class="la la-paper-plane"></i>Apply for job</a>
-			 				<a href="job_single2.html#" title="" class="apply-job-linkedin"><i class="fa fa-linkedin"></i>Apply with Linkedin</a>
-			 				<a asp-action="Create" asp-controller="Job" title="" class="viewall-jobs">View all Jobs</a>
+			 				<a asp-controller="User" asp-action=@ViewBag.login title="" class="apply-job-btn">Apply for job</a>
 			 			</div><!-- Job Head -->
 				 	</div>
 				</div>

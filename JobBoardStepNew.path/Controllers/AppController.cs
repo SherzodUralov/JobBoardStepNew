@@ -11,7 +11,7 @@ namespace JobBoardStepNew.path.Controllers
         private readonly IApplicationRepository repository;
         private readonly IJobRepository repositoryjob;
 
-        public AppController(IApplicationRepository repository,IJobRepository repositoryjob)
+        public AppController(IApplicationRepository repository, IJobRepository repositoryjob)
         {
             this.repository = repository;
             this.repositoryjob = repositoryjob;
@@ -25,8 +25,10 @@ namespace JobBoardStepNew.path.Controllers
         {
             string data = User.Identity.Name;
             var user = repositoryjob.UserGet(data);
-          ViewBag.user = user.UserId;
-          ViewBag.job = HttpContext.Session.GetInt32("id");
+            ViewBag.user = user.UserId;
+            ViewBag.username = user.FirstName;
+            ViewBag.userlast = user.LastName;
+            ViewBag.job = HttpContext.Session.GetInt32("id");
             return View();
         }
         [HttpPost]
@@ -34,8 +36,14 @@ namespace JobBoardStepNew.path.Controllers
         {
             repository.Add(app);
 
-            return  RedirectToAction("List","Job");
+            return RedirectToAction("List", "Job");
         }
+        public IActionResult app404()
+        {
+            return View();
+        }
+
+
 
     }
 }

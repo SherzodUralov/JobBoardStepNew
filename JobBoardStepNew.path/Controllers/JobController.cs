@@ -45,12 +45,17 @@ namespace JobBoardStepNew.path.Controllers
             repository.Create(data);
             return RedirectToAction(nameof(List));
         }
-        public IActionResult List(int pg = 1)
+        public IActionResult List(int pg = 1, string searchString = "")
         {
             ViewData["employer"] = "Employer";
 
             var modelsession = HttpContext.Session.GetString("language");
             var data = repository.JobList(modelsession);
+            ViewData["CurrentFilter"] = searchString;
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                data = data.Where(x => x.Salary.Contains(searchString.ToUpper())).ToList();
+            }
             const int pageSize = 6;
             if (pg < 1)
                 pg = 1;

@@ -14,25 +14,6 @@
 			<div class="container">
 				 <div class="row">
 				 	<div class="col-lg-12">
-				 		<span class="emlthis"><a href="mailto:example.com" title=""><i class="la la-envelope-o"></i> Email me Jobs Like These</a></span>
-				 		<div class="filterbar">
-				 			<h5>98 Jobs & Vacancies</h5>
-				 			<div class="sortby-sec">
-				 				<span>Sort by</span>
-				 				<select data-placeholder="Most Recent" class="chosen">
-									<option>Most Recent</option>
-									<option>Most Recent</option>
-									<option>Most Recent</option>
-									<option>Most Recent</option>
-								</select>
-								<select data-placeholder="20 Per Page" class="chosen">
-									<option>30 Per Page</option>
-									<option>40 Per Page</option>
-									<option>50 Per Page</option>
-									<option>60 Per Page</option>
-								</select>
-				 			</div>
-				 		</div>
 				 		<div class="job-grid-sec">
 							<div class="row">
 								@foreach (var item in Model)
@@ -49,12 +30,12 @@
 								<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
 									<div class="job-grid border">
 										<div class="job-title-sec">
-											<div class="c-logo"> <img src="~/adminJob/images/resource/jg1.png" alt="" /> </div>
-											<h3><a href="job_list_grid.html#" title="">@item.Salary/@item.JobCatName</a></h3>
-											<span>Massimo Artemisis</span>
-											<span class="fav-job"><i class="la la-heart-o"></i></span>
+											<div class="c-logo"> <img src="~/adminJob/images/images.jpg" alt="" /> </div>
+											<h3><a href="job_list_grid.html#" title=""> Salary: @item.Salary</a></h3>
+											<span>Job Type: @item.JobTypeName</span>
+											<span class="fav-job"></span>
 										</div>
-										<span class="job-lctn">Sacramento, California</span>
+										<span class="job-lctn">Category: @item.JobCatName</span>
 										<a asp-controller="Job" asp-action="data" asp-route-id="@item.JobId"  title="">APPLY NOW Details</a>										
 									</div><!-- JOB Grid -->
 								</div>
@@ -68,8 +49,8 @@
 								@if (pager.CurrentPage > 1)
 								{
 
-									<li class="prev"><a asp-controller="Job" asp-action="List" asp-route-pg="1"><i class="la la-long-arrow-left"></i> First</a></li>
-									<li class="prev"><a asp-controller="Job" asp-action="List" asp-route-pg="@(pager.CurrentPage - 1)"><i class="la la-long-arrow-left"></i> Previous</a></li>
+									<li class="prev"><a asp-controller="Job" asp-action="List" asp-route-pg="1"> First</a></li>
+									<li class="prev"><a asp-controller="Job" asp-action="List" asp-route-pg="@(pager.CurrentPage - 1)"> Previous</a></li>
 								}
 								@for (int pge = pager.StartPage; pge < pager.EndPage; pge++)
 								{
@@ -77,8 +58,8 @@
 								}
 								@if (pager.CurrentPage < pager.TotalPages)
 								{
-										<li class="next"><a asp-controller="Job" asp-action="List" asp-route-pg="@(pager.CurrentPage + 1)">Next <i class="la la-long-arrow-right"></i></a></li>
-										<li class="next"><a  asp-controller="Job" asp-action="List" asp-route-pg="@pager.TotalPages">Last <i class="la la-long-arrow-right"></i></a></li>
+										<li class="next"><a asp-controller="Job" asp-action="List" asp-route-pg="@(pager.CurrentPage + 1)">Next </a></li>
+										<li class="next"><a  asp-controller="Job" asp-action="List" asp-route-pg="@pager.TotalPages">Last </a></li>
 								}
 							</ul>
 						}
