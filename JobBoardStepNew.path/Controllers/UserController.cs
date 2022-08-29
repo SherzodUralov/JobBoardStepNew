@@ -320,7 +320,7 @@ namespace JobBoardStepNew.path.Controllers
 
             if (user.UserTypeId == 1)
             {
-                return RedirectToAction("Create", "Job");
+                return RedirectToAction("EmpManage", "Job");
             }
                return RedirectToAction("Create", "App");
         }
