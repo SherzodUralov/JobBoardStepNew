@@ -116,6 +116,7 @@ namespace JobBoardStepNew.path.Controllers
 
             return View();
         }
+        [Authorize]
         [HttpPost]
         public IActionResult Create(UserCreateViewModel userCreate)
         {

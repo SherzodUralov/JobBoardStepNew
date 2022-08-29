@@ -35,7 +35,6 @@ namespace JobBoardStepNew.path.Controllers
                 case "first_name":
                     model = repo.GetAll().OrderBy(x => x.LanguageName);
                     break;
-
                 default:
                     break;
             }

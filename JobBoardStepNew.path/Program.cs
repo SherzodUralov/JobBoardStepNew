@@ -1,6 +1,7 @@
 using JobBoardStep.Core.Context;
 using JobBoardStep.Core.Repository;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -31,13 +32,24 @@ builder.Services.Configure<RequestLocalizationOptions>(
 builder.Services.AddControllersWithViews();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+
+    // options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme; 
+})
                  .AddCookie(options =>
                  {
                      options.LoginPath = "/Admin/Login";
                      options.AccessDeniedPath = "/User/Denied";
                      options.ExpireTimeSpan = TimeSpan.FromSeconds(200);
-                 });
+                 });   //.AddGoogle(options =>
+                 //    {
+                 //    //options.ClientId = "811395501239-m2ec6bl92v5ehs9v8sfrdt26ogh7gc8m.apps.googleusercontent.com";
+                 //    //options.ClientSecret = "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";
+                 //    //options.CallbackPath = "/authn";
+                 //    //options.AuthorizationEndpoint += "?prompt=consent";
+                 //});
 
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
