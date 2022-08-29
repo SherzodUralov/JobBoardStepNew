@@ -43,7 +43,7 @@ namespace JobBoardStep.Core.Repository
                          on ap.JobId equals j.JobId
                          join u in contex.Users
                          on ap.UserId equals u.UserId
-                         where u.UserId == ap.UserId && j.JobId == id
+                         where j.JobId == id
                          select new ApplicationListViewModel
                          {
                              ApplicationId = ap.ApplicationId,
