@@ -54,7 +54,7 @@ namespace JobBoardStepNew.path.Controllers
             ViewData["CurrentFilter"] = searchString;
             if (!string.IsNullOrEmpty(searchString))
             {
-                data = data.Where(x => x.Salary.Contains(searchString.ToUpper())).ToList();
+                data = data.Where(x => x.Salary.Contains(searchString)).ToList();
             }
             const int pageSize = 6;
             if (pg < 1)
