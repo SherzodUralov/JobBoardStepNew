@@ -117,55 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="1" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="Active" xml:space="preserve">
     <value>Active</value>
-  </data>
-  <data name="Category" xml:space="preserve">
-    <value>Category</value>
-  </data>
-  <data name="Change Password" xml:space="preserve">
-    <value>Change Password</value>
-  </data>
-  <data name="choose categories..." xml:space="preserve">
-    <value>choose categories...</value>
-  </data>
-  <data name="choose experience..." xml:space="preserve">
-    <value>choose experience...</value>
-  </data>
-  <data name="choose Jobtype..." xml:space="preserve">
-    <value>choose Jobtype...</value>
   </data>
   <data name="Create Date" xml:space="preserve">
     <value>Create Date</value>
   </data>
-  <data name="Description" xml:space="preserve">
-    <value>Description</value>
+  <data name="FirstName" xml:space="preserve">
+    <value>FirstName</value>
   </data>
-  <data name="Exper" xml:space="preserve">
-    <value>Exper</value>
+  <data name="Increase your skill to &quot;15%&quot;" xml:space="preserve">
+    <value>Increase your skill to "15%"</value>
   </data>
-  <data name="JobType" xml:space="preserve">
-    <value>JobType</value>
-  </data>
-  <data name="Logout" xml:space="preserve">
-    <value>Logout</value>
-  </data>
-  <data name="Manage Jobs" xml:space="preserve">
-    <value>Manage Jobs</value>
-  </data>
-  <data name="Resumes" xml:space="preserve">
-    <value>Resumes</value>
-  </data>
-  <data name="Salary" xml:space="preserve">
-    <value>Salary</value>
+  <data name="LastName" xml:space="preserve">
+    <value>LastName</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
   </data>
-  <data name="Transactions" xml:space="preserve">
-    <value>Transactions</value>
+  <data name="Skills Percentage" xml:space="preserve">
+    <value>Skills Percentage</value>
+  </data>
+  <data name="Specify the status of the application" xml:space="preserve">
+    <value>Specify the status of the application</value>
   </data>
 </root>

@@ -1,4 +1,5 @@
-﻿@model AppCreateVMmin
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@model AppCreateVMmin
 @{
     Layout = "~/Views/Shared/Job/_Application.cshtml";
 }
@@ -9,8 +10,8 @@
 				 	<aside class="col-lg-3 column border-right">
 				 		<div class="widget">
 				 			<div class="skill-perc">
-				 				<h3>Skills Percentage </h3>
-				 				<p>Put value for "Cover Image" field to increase your skill up to "15%"</p>
+				 				<h3>@localizer["Skills Percentage"] </h3>
+				 				<p>@localizer["Increase your skill to 15%"]</p>
 				 				<div class="skills-bar">
 				 					<span>85%</span>
 				 					<div 
@@ -29,28 +30,28 @@
 						 		<div class="resumeadd-form">
 						 			<div class="row">
 										<div class="col-lg-12">
-									    <span class="pf-title">Create Date</span>
+									    <span class="pf-title">@localizer["Create Date"]</span>
 					 					<div class="pf-field">
 											 <input asp-for="CreateDate" placeholder="00-00-0000" type="text"  class="form-control datepicker" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
 					 					</div>
 					 					</div>
 					 					<div class="col-lg-5">
-					 						<span class="pf-title">FirstName</span>
+					 						<span class="pf-title">@localizer["FirstName"]</span>
 					 						<div class="pf-field">					 							
 					 							<input value="@ViewBag.username"  disabled class="form-control" type="text">
 					 						</div>
 					 					</div>
 					 					<div class="col-lg-5">
-					 						<span class="pf-title">LastName</span>
+					 						<span class="pf-title">@localizer["LastName"]</span>
 					 						<div class="pf-field">
 					 							<input value="@ViewBag.userlast"  disabled class="form-control"  type="text">
 					 						</div>
 					 					</div>
 					 					<div class="col-lg-2">
 					 						<p class="remember-label">
-												<input asp-for="Status" type="checkbox" name="cb" id="fgfg" id="invalidCheck" required><label for="fgfg">Active</label>
+												<input asp-for="Status" type="checkbox" name="cb" id="fgfg" id="invalidCheck" required><label for="fgfg">@localizer["Active"]</label>
 												<div class="invalid-feedback">
-                                                Specify the status of the application
+                                                @localizer["Specify the status of the application"]
                                                 </div>
 											</p>
 					 					</div>	
@@ -64,7 +65,7 @@
 											 <input asp-for="UpdateDate" type="hidden" value="00-00-0000" />
 										 </div>
 					 					<div class="col-lg-12">
-					 						 <button type="submit">Save</button>
+					 						 <button type="submit">@localizer["Save"]</button>
 					 					</div>
 						 			</div>
 						 		</div>					 		

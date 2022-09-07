@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer 
+<!DOCTYPE html>
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -82,8 +83,11 @@
 				</div><!-- Logo -->
 				<div class="btn-extars">
 					<ul class="account-btns">
-						<li  class="signup-popup"><a asp-action="Register" asp-controller="Job" title="">Employer Sign Up</a></li>
-						<li class="signin-popup"><a asp-action="Login1" asp-controller="User" title="">Employer Login</a></li>
+						<li  class="signup-popup"><a asp-action="Login" asp-controller="Admin" title="">@localizer["Admin"]</a></li>
+						<li  class="signup-popup"><a asp-action="Register" asp-controller="Job" title="">@localizer["Employer Sign Up"]</a></li>
+						<li class="signin-popup"><a asp-action="Login1" asp-controller="User" title="">@localizer["Employer Login"]</a></li>
+		                <li class="nav-item dropdown"> <partial name="_Culture" /> </li>
+						<li class="signin-popup"> <img src="~/Images/United.png" alt="" /></li>
 					</ul>
 				</div><!-- Btn Extras -->
 
@@ -100,17 +104,17 @@
 						<div class="inner-header wform">
 							<div class="job-search-sec">
 								<div class="job-search">
-									<h4>Explore Thousand Of Jobs With Just Simple Search...</h4>
+									<h4>@localizer["Explore Thousand Of Jobs With Just Simple Search..."]</h4>
 									
 										<form asp-action="List" asp-controller="Job" method="get" class="mx-auto">
 										<div class="row">
 											<div class="col-lg-9">
 												<div class="job-field">
-													<input type="text" name="SearchString" value="@ViewData["currentFilter"]" placeholder="Job title or Salary" />
+													<input type="text" name="SearchString" value="@ViewData["currentFilter"]" placeholder="@localizer["Job title or Salary"]" />
 												</div>
 											</div>
 											<div class="col-lg-2">
-												<button  value="Search" type="submit">Search</button>
+												<button  value="Search" type="submit">@localizer["Search"]</button>
 											</div>
 										</div>
 									</form>

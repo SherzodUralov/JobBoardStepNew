@@ -117,55 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="1" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="Active" xml:space="preserve">
-    <value>Active</value>
-  </data>
   <data name="Category" xml:space="preserve">
     <value>Category</value>
   </data>
-  <data name="Change Password" xml:space="preserve">
-    <value>Change Password</value>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
   </data>
-  <data name="choose categories..." xml:space="preserve">
-    <value>choose categories...</value>
+  <data name="First" xml:space="preserve">
+    <value>First</value>
   </data>
-  <data name="choose experience..." xml:space="preserve">
-    <value>choose experience...</value>
+  <data name="Job Type" xml:space="preserve">
+    <value>Job Type</value>
   </data>
-  <data name="choose Jobtype..." xml:space="preserve">
-    <value>choose Jobtype...</value>
+  <data name="Last" xml:space="preserve">
+    <value>Last</value>
   </data>
-  <data name="Create Date" xml:space="preserve">
-    <value>Create Date</value>
+  <data name="Next" xml:space="preserve">
+    <value>Next</value>
   </data>
-  <data name="Description" xml:space="preserve">
-    <value>Description</value>
-  </data>
-  <data name="Exper" xml:space="preserve">
-    <value>Exper</value>
-  </data>
-  <data name="JobType" xml:space="preserve">
-    <value>JobType</value>
-  </data>
-  <data name="Logout" xml:space="preserve">
-    <value>Logout</value>
-  </data>
-  <data name="Manage Jobs" xml:space="preserve">
-    <value>Manage Jobs</value>
-  </data>
-  <data name="Resumes" xml:space="preserve">
-    <value>Resumes</value>
+  <data name="Previous" xml:space="preserve">
+    <value>Previous</value>
   </data>
   <data name="Salary" xml:space="preserve">
     <value>Salary</value>
-  </data>
-  <data name="Save" xml:space="preserve">
-    <value>Save</value>
-  </data>
-  <data name="Transactions" xml:space="preserve">
-    <value>Transactions</value>
   </data>
 </root>

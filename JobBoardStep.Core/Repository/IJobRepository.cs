@@ -12,7 +12,7 @@ namespace JobBoardStep.Core.Repository
     {
         IList<JobListViewModel> JobList(string lang);
         IList<JobListViewModel> JobEmpManageList(string lang,int id);
-        IList<JobListViewModel> getById(int id);
+        IList<JobListViewModel> getById(int id, string lang);
         void Create(Job job);
         void Update(Job job);
         void Delete(int id);

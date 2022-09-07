@@ -20,7 +20,7 @@ namespace JobBoardStep.Core.Repository
         public void Create(Job job)
         {
            context.Jobs.Add(job);
-            context.SaveChanges();
+           context.SaveChanges();
         }
         public Job CreateNew(JobCreateViewModel jobcreate)
         {
@@ -29,7 +29,6 @@ namespace JobBoardStep.Core.Repository
             JobTypeTranslate jobType = context.JobTypeTranslates.FirstOrDefault(x => x.Id.Equals(jobcreate.JobTypeTrId));
             ExperienceTranslate exper = context.ExperienceTranslates.FirstOrDefault(x => x.Id.Equals(jobcreate.ExperienceTrId));
             //User data = context.Users.FirstOrDefault(a => a.UserId.Equals(jobcreate.UserId));
-
             Job newjob = new Job()
             {
                 JobId = jobcreate.JobId,
@@ -109,8 +108,12 @@ namespace JobBoardStep.Core.Repository
             return context.Jobs.Find(id);
         }
 
-        public IList<JobListViewModel> getById(int id)
+        public IList<JobListViewModel> getById(int id, string lang)
         {
+            if (lang == null)
+            {
+                lang = "ru";
+            }
             var d1 = GetById(id);
             
             var model = (from J in context.Jobs
@@ -128,7 +131,7 @@ namespace JobBoardStep.Core.Repository
                          on E.Id equals ET.ExperienceId
                          join U in context.Users
                          on J.UserId equals U.UserId
-                         where J.JobId == id && d1.ExperTId == ET.Id && d1.JobCatTId == JCT.Id && d1.JobTypeTId == JTT.Id && d1.UserId == U.UserId
+                         where J.JobId == id && d1.ExperTId == ET.Id && d1.JobCatTId == JCT.Id && d1.JobTypeTId == JTT.Id && d1.UserId == U.UserId 
                          select new JobListViewModel
                          {
                              JobId = J.JobId,
@@ -149,7 +152,7 @@ namespace JobBoardStep.Core.Repository
         {
             if (lang == null)
             {
-                lang = "en";
+                lang = "ru";
             }
             return context.JobCategoryTranslates.Where(x => x.Language.LanguageName == lang).ToList();
         }
@@ -158,7 +161,7 @@ namespace JobBoardStep.Core.Repository
         {
             if (lang == null)
             {
-                lang = "en";
+                lang = "ru";
             }
             var model = (from J in context.Jobs
                          join JC in context.JobCategories
@@ -198,7 +201,7 @@ namespace JobBoardStep.Core.Repository
         {
             if (lang == null)
             {
-                lang = "en";
+                lang = "ru";
             }
             return context.JobTypeTranslates.Where(x => x.Language.LanguageName == lang).ToList();
         }
@@ -290,7 +293,7 @@ namespace JobBoardStep.Core.Repository
         {
             if (lang == null)
             {
-                lang = "en";
+                lang = "ru";
             }
             var model = (from J in context.Jobs
                          join JC in context.JobCategories
