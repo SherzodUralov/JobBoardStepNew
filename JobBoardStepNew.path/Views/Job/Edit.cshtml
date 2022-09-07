@@ -1,64 +1,184 @@
-﻿@model JobEditViewModel
-<form asp-controller="Job" asp-action="Edit" method="post" enctype="multipart/form-data">
-  <div class="form-row">
-     
-  <div class="row">
-      <div class="form-group col-md-3">
-      <label asp-for="Salary" class="form-label">Salary</label>
-      <input asp-for="Salary" type="text" class="form-control" id="inputPassword4" placeholder="Salary">
-    </div>
-     <div class="form-group col-md-3">
-      <label asp-for="Description" class="form-label">Desc</label>
-      <input asp-for="Description" type="text" class="form-control" id="inputPassword4" placeholder="Descrip">
-    </div>
-   
-
-  <div class="form-group col-md-3">
-      <label asp-for="JobTypeTrId" class="form-label">JobType</label>
-      <select asp-for="JobTypeTrId" class="form-control" asp-items="@ViewBag.jobType">
-        <option selected>Choose...</option>
-      </select>
-    </div>
-
-  <div class="form-group col-md-3">
-    <label asp-for="CareateDate" class="form-label">CreateDate</label>
-    <input asp-for="CareateDate" class="form-control" id="inputAddress2" placeholder="CreateDate">
-  </div>
-   <div class="form-group col-md-3">
-    <label asp-for="UpdateDate" class="form-label">UpdateDate</label>
-    <input asp-for="UpdateDate" class="form-control" id="inputAddress2" placeholder="UpdateDate">
-  </div>
-  </div>
-   <div class="row">
-        <div class="form-group col-md-4">
-      <label asp-for="JobCateTrId" class="form-label">JobCategory</label>
-      <select asp-for="JobCateTrId" class="form-control" asp-items="@ViewBag.jobCategory">
-        <option selected>Choose...</option>
-      </select>
-    </div>
-     <div class="form-group col-md-4">
-      <label asp-for="ExperienceTrId" class="form-label">Experience</label>
-      <select asp-for="ExperienceTrId" class="form-control" asp-items="@ViewBag.exper">
-        <option selected>Choose...</option>
-      </select>
-    </div>
-    <div class="form-group col-md-4">
-      <label asp-for="UserId" class="form-label">User</label>
-      <select asp-for="UserId" class="form-control" asp-items="@ViewBag.user">
-        <option selected>Choose...</option>
-      </select>
-    </div>
-  </div>
-  </div>
-  <div class="form-row">
- 
-  </div>
-  <div class="mt-4">
-  <button asp-controller="User" asp-action="List" class="btn btn-success ">back</button>
-  <button type="submit" class="btn btn-primary">Create</button>
-  </div>
-</form>@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer 
+@model JobCreateViewModel
 @{
+     Layout = "~/Views/Shared/Job/_EmpMenage.cshtml";
 }
+ <form asp-action="Edit" asp-controller="Job" method="post">
+	<section>		
+			<div class="container">
+				 <div class="row no-gape">
+				 	<aside class="col-lg-3 column border-right">
+				 		<div class="widget">
+				 			<div class="tree_widget-sec">
+				 				<ul>
+				 					<li><a asp-action="ap404" asp-controller="App" title="">@localizer["Manage Jobs"]</a></li>
+				 					<li><a asp-action="ap404" asp-controller="App" title="">@localizer["Transactions"]</a></li>
+				 					<li><a asp-action="ap404" asp-controller="App" title="">@localizer["Resumes"]</a></li>				 					
+				 					<li><a asp-action="ChangePassword" asp-controller="User" title="">@localizer["Change Password"]</a></li>
+				 					<li><a asp-action="ap404" asp-controller="App" title="">@localizer["Logout"]</a></li>
+				 				</ul>
+				 			</div>
+				 		</div>
+				 	</aside>
+					
+				 	<div class="col-lg-9 column">
+				 		<div class="padding-left">
+					 		<div class="manage-jobs-sec">
+						 		<div class="resumeadd-form">
+						 			<div class="row">
+										 <div class="col-lg-4">
+					 						<span class="pf-title">@localizer["JobType"]</span>
+					 						<div class="pf-field">					 							
+					 							<select data-placeholder="Please Select Specialism" asp-for="JobTypeTrId" asp-items="@ViewBag.jobtype" class="chosen" id="validationCustom04" required>
+													<option selected disabled>@localizer["choose Jobtype..."]</option>
+												</select>
+					 						</div>
+					 					</div>
+					 					<div class="col-lg-4">
+					 						<span class="pf-title">@localizer["Category"]</span>
+					 						<div class="pf-field">
+					 							<select data-placeholder="Please Select Specialism" asp-for="JobCateTrId" asp-items="@ViewBag.jobcategory" class="chosen" id="validationCustom04" required>
+													<option selected disabled>@localizer["choose categories..."]</option>
+												</select>
+					 						</div>
+					 					</div>
+										<div class="col-lg-4">
+					 						<span class="pf-title">@localizer["Exper"]</span>
+					 						<div class="pf-field">					 							
+					 							<select data-placeholder="Please Select Specialism" asp-for="ExperienceTrId" asp-items="@ViewBag.exper" class="chosen"    id="validationCustom04" required>
+													<option selected disabled>@localizer["choose experience..."]</option>
+												</select>
+					 						</div>
+					 					</div>
+										 <div class="col-lg-5">
+									    <span class="pf-title">@localizer["Create Date"]</span>
+					 					<div class="pf-field">
+											 <input asp-for="CareateDate" placeholder="00-00-0000" type="text"  class="form-control datepicker" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+					 					</div>
+					 					</div>
+										 <div class="col-lg-5">
+									    <span class="pf-title">@localizer["Salary"]</span>
+					 					<div class="pf-field">
+											 <input asp-for="Salary" placeholder="1000$" type="text"  class="form-control datepicker" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+					 					</div>
+					 					</div>
+					 					<div class="col-lg-2">
+					 						<p class="remember-label">
+												<input  type="checkbox" name="cb" id="fgfg" id="invalidCheck" required><label for="fgfg">@localizer["Active"]</label>
+											</p>
+					 					</div>
+										<div class="col-lg-12">
+					 						<span class="pf-title">@localizer["Description"]</span>
+					 						<div class="pf-field">
+					 							<textarea class="form-control" id="exampleFormControlTextarea1" asp-for="Description" datepicker" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required></textarea>
+					 						</div>
+					 					</div>
+										 <div>
+											 <input asp-for="UserId" type="hidden" value="@ViewBag.user" />
+										 </div>
+										 <div>
+											 <input asp-for="UpdateDate" type="hidden" value="00-00-0000" />
+										 </div>
+					 					<div class="col-lg-12">
+					 						 <button type="submit">@localizer["Save"]</button>
+					 					</div>
+						 			</div>
+						 		</div>					 		
+						 	</div>
+					 	</div>
+					</div>				
+				 </div>
+			</div>
+	</section>
+		</form>
+@*<form asp-controller="Job" asp-action="Create" method="post">
+	<section>
+		<div class="block no-padding">
+			<div class="container">
+				 <div class="row no-gape">
+				 	<aside class="col-lg-3 column border-right">
+				 		<div class="widget">
+				 			<div class="tree_widget-sec">
+				 				<ul>
+				 					<li><a href="employer_manage_jobs.html" title="">Manage Jobs</a></li>
+				 					<li><a href="employer_transactions.html" title="">Transactions</a></li>
+				 					<li><a href="employer_resume.html" title="">Resumes</a></li>				 					
+				 					<li><a asp-action="ChangePassword" asp-controller="User" title="">Change Password</a></li>
+				 					<li><a href="employer_post_new.html#" title="">Logout</a></li>
+				 				</ul>
+				 			</div>
+				 		</div>
+				 	</aside>
+				 	<div class="col-lg-9 column">
+				 		<div class="padding-left">
+					 		<div class="profile-title">
+					 			<h3>Post a New Job</h3>
+					 		</div>
+					 		<div class="profile-form-edit">
+					 			
+					 				<div class="row">
+					 					<div class="col-lg-12">
+					 						<span class="pf-title">Description</span>
+					 						<div class="pf-field">
+					 							<textarea class="form-control" id="exampleFormControlTextarea1" asp-for="Description" datepicker" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required></textarea>
+					 						</div>
+					 					</div>
+					 					<div class="col-lg-6">
+					 						<span class="pf-title">Job Type</span>
+					 						<div class="pf-field">
+					 							<select data-placeholder="Please Select Specialism" asp-for="JobTypeTrId" asp-items="@ViewBag.jobtype" class="chosen" datepicker" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+													<option>choose Jobtype...</option>
+												</select>
+					 						</div>
+					 					</div>
+					 					<div class="col-lg-6">
+					 						<span class="pf-title">Categories</span>
+					 						<div class="pf-field">
+					 							<select data-placeholder="Please Select Specialism" asp-for="JobCateTrId" asp-items="@ViewBag.jobcategory" class="chosen" datepicker" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+													<option>choose categories...</option>
+												</select>
+					 						</div>
+					 					</div>
+					 					<div class="col-lg-6">
+					 						<span class="pf-title">Offerd Salary</span>
+					 						<div class="pf-field">
+												 <input placeholder="100$" type="text" asp-for="Salary" datepicker" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required />
+					 						</div>
+					 					</div>
+					 					<div class="col-lg-6">
+					 						<span class="pf-title">Experience</span>
+					 						<div class="pf-field">
+					 							<select data-placeholder="Please Select Specialism" asp-for="ExperienceTrId" asp-items="@ViewBag.exper" class="chosen" datepicker" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+													<option>choose experience...</option>
+												</select>
+					 						</div>
+					 					</div>
+										 <div>
+											 <input asp-for="UserId" type="hidden" value="@ViewBag.user" />
+										 </div>
+					 				
+					 					<div class="col-lg-12">
+					 						<span class="pf-title">Create Date</span>
+					 						<div class="pf-field">
+					 							<input  asp-for="CareateDate" placeholder="22.08.2022"  class="form-control datepicker" datepicker" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required/>
+					 						</div>
+					 					</div>
+					 					<div class="col-lg-12">
+					 						<span class="pf-title">Update Date</span>
+					 						<div class="pf-field">
+					 							<input asp-for="UpdateDate" placeholder="22.08.2022"  class="form-control datepicker" datepicker" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required/>
+					 						</div>
+					 					</div>
+										<div class="col-lg-12">
+					 						<button type="submit">Job Post</button>
+					 					</div>	
+					 				</div>					 			
+					 		</div>
+					 	</div>
+					</div>
+				 </div>
+			</div>
+		</div>
+	</section>
+
+</form>*@

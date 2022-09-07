@@ -1,4 +1,4 @@
-﻿
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer 
 @model IList<JobListViewModel>
 @{
     Layout = "~/Views/Shared/Job/_Details.cshtml";
@@ -20,20 +20,20 @@
 				 	<div class="col-lg-8 column">
 				 		<div class="job-single-sec">
 				 			<div class="job-single-head2">
-				 				<div class="job-title2"><h3>Job Type</h3><span class="job-is ft">@item.JobTypeName</span></div>
+				 				<div class="job-title2"><h3>@localizer["Job Type"]</h3><span class="job-is ft">@item.JobTypeName</span></div>
 				 				<ul class="tags-jobs">
-				 					<li> Uzbekiston</li>
-				 					<li> Salary : <span>@item.Salary</span></li>
-				 					<li> Post Date: @item.CareateDate</li>
+				 					<li> @localizer["Uzbekistan"]</li>
+				 					<li> @localizer["Job Type"] : <span>@item.Salary</span></li>
+				 					<li> @localizer["Post Date"]: @item.CareateDate</li>
 				 				</ul>
-				 				<span><strong>Category</strong> : @item.JobCatName</span>
+				 				<span><strong>@localizer["Category"]</strong> : @item.JobCatName</span>
 				 			</div><!-- Job Head -->
 				 			<div class="job-details">
-				 				<h3>Job Description</h3>
+				 				<h3>@localizer["Job Description"]</h3>
 				 				<p>@item.Description</p>				 							 				
 				 			</div>
 				 			<div class="share-bar">
-				 				<span>Share</span><a href="job_single2.html#" title="" class="share-fb"><i class="fa fa-facebook"></i></a><a href="job_single2.html#" title="" class="share-twitter"><i class="fa fa-twitter"></i></a>
+				 				<span>@localizer["Share"]</span><a href="job_single2.html#" title="" class="share-fb"><i class="fa fa-facebook"></i></a><a href="job_single2.html#" title="" class="share-twitter"><i class="fa fa-twitter"></i></a>
 				 			</div>
 				 		</div>
 				 	</div>
@@ -41,13 +41,13 @@
 				 		<div class="job-single-head style2">
 			 				<div class="job-thumb"> <img src="~/adminJob/images/images (1).jpg" alt="" /> </div>
 			 				<div class="job-head-info">
-			 					<h4>@item.UserName</h4>
-			 					<span>Toshkent shahar, Olmazor tumani, Universitet ko‘chasi, 7-uy</span>
+			 					<h4>Employer</h4>
+			 					<span>@localizer["University street, 7, Almazor district, Tashkent city"]</span>
 			 					<p> www.Innoweek.uz</p>
 			 					<p>+99893 123 45 67</p>
 			 					<p>inavations.uz</p>
 			 				</div>
-			 				<a asp-controller="User" asp-action=@ViewBag.login title="" class="apply-job-btn">Apply for job</a>
+			 				<a asp-controller="User" asp-action=@ViewBag.login title="" class="apply-job-btn">@localizer["Apply for job"]</a>
 			 			</div><!-- Job Head -->
 				 	</div>
 				</div>

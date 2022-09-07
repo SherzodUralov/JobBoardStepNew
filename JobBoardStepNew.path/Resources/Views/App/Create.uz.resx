@@ -117,55 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="1" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="Active" xml:space="preserve">
-    <value>Active</value>
-  </data>
-  <data name="Category" xml:space="preserve">
-    <value>Category</value>
-  </data>
-  <data name="Change Password" xml:space="preserve">
-    <value>Change Password</value>
-  </data>
-  <data name="choose categories..." xml:space="preserve">
-    <value>choose categories...</value>
-  </data>
-  <data name="choose experience..." xml:space="preserve">
-    <value>choose experience...</value>
-  </data>
-  <data name="choose Jobtype..." xml:space="preserve">
-    <value>choose Jobtype...</value>
+    <value>Faol</value>
   </data>
   <data name="Create Date" xml:space="preserve">
-    <value>Create Date</value>
+    <value>Yaratilish Vaqti</value>
   </data>
-  <data name="Description" xml:space="preserve">
-    <value>Description</value>
+  <data name="FirstName" xml:space="preserve">
+    <value>Ism</value>
   </data>
-  <data name="Exper" xml:space="preserve">
-    <value>Exper</value>
+  <data name="Increase your skill to 15%" xml:space="preserve">
+    <value>O'z mahoratingizni "15%" ga oshiring.</value>
   </data>
-  <data name="JobType" xml:space="preserve">
-    <value>JobType</value>
-  </data>
-  <data name="Logout" xml:space="preserve">
-    <value>Logout</value>
-  </data>
-  <data name="Manage Jobs" xml:space="preserve">
-    <value>Manage Jobs</value>
-  </data>
-  <data name="Resumes" xml:space="preserve">
-    <value>Resumes</value>
-  </data>
-  <data name="Salary" xml:space="preserve">
-    <value>Salary</value>
+  <data name="LastName" xml:space="preserve">
+    <value>Familya</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Save</value>
+    <value>Saqlash</value>
   </data>
-  <data name="Transactions" xml:space="preserve">
-    <value>Transactions</value>
+  <data name="Skills Percentage" xml:space="preserve">
+    <value>Ko'nikmalar foizi</value>
+  </data>
+  <data name="Specify the status of the application" xml:space="preserve">
+    <value>Ilovaning holatini belgilang</value>
   </data>
 </root>

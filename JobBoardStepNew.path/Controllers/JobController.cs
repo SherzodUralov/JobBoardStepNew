@@ -71,13 +71,17 @@ namespace JobBoardStepNew.path.Controllers
         [HttpGet]
         public ViewResult Edit(int id)
         {
-            var modelsession = HttpContext.Session.GetString("language");
             var model = repository.GetById(id);
             var newModel = repository.EditJob(model);
+            var modelsession = HttpContext.Session.GetString("language");
             ViewBag.jobcategory = new SelectList(repository.JCTList(modelsession), "Id", "JobCatName");
             ViewBag.jobtype = new SelectList(repository.JTTList(modelsession), "Id", "Name");
             ViewBag.exper = new SelectList(repository.ETList(modelsession), "Id", "Name");
-       //     ViewBag.user = new SelectList(repository.UserGet(), "UserId", "FirstName");
+            string data = User.Identity.Name;
+
+            var user = repository.UserGet(data);
+
+            ViewBag.user = user.UserId;
             return View(newModel);
         }
         [HttpPost]
@@ -118,9 +122,10 @@ namespace JobBoardStepNew.path.Controllers
         [HttpGet]
         public IActionResult data(int id)
         {
+            var modelsession = HttpContext.Session.GetString("language");
             //sessiya aplication create uchun.
             HttpContext.Session.SetInt32("id", id);
-            var da = repository.getById(id);
+            var da = repository.getById(id, modelsession);
             return View(da);
         }
         [HttpGet]
